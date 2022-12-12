@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-# Getting Started with Create React App
-=======
 ## SOUNCLOUD-CLONE
 SoundCloud-clone is an online audio distribution platform and music sharing website that enables its users to upload, promote, and share audio. This app is a Manchester Codes projects which aims to replicate some functionalities of the largest music streaming services in the world.
 ## Table of Contents
@@ -10,7 +6,6 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
  3. Setup
  4. Commands
  5. Attribution
->>>>>>> 29f1b92 (project setup and readme included)
 
 **Features**
 
@@ -93,27 +88,5 @@ $ npm run deploy
 Generates a production build of the app and deploys it to GitHub pages.
 
 **Attribution**
-
-<<<<<<< HEAD
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-=======
 Created by  **Nicola Giannotta, Perry Baran**.
  
->>>>>>> 29f1b92 (project setup and readme included)
