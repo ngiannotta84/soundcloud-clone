@@ -1,57 +1,100 @@
+<<<<<<< HEAD
 
 # Getting Started with Create React App
+=======
+## SOUNCLOUD-CLONE
+SoundCloud-clone is an online audio distribution platform and music sharing website that enables its users to upload, promote, and share audio. This app is a Manchester Codes projects which aims to replicate some functionalities of the largest music streaming services in the world.
+## Table of Contents
+ 1. Features
+ 2. Dependencies
+ 3. Setup
+ 4. Commands
+ 5. Attribution
+>>>>>>> 29f1b92 (project setup and readme included)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Features**
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ **Dependancies**
+ - [react](https://reactjs.org/)
+ - [axios](https://www.npmjs.com/package/axios)
+ - [proptypes](https://www.npmjs.com/package/prop-types)
+ - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+ 
+ **Dev Dependancies** 
+ 
+ - [prettier](https://www.npmjs.com/package/prettier)
+ - [eslint](https://www.npmjs.com/package/eslint)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup
+**Install Dependancies**
 
-### `npm test`
+ 1. Clone the repo to a local file.
+```
+$ git clone https://github.com/ngiannotta84/soundcloud-clone.git
+```
+ 2. Install all dependancies.
+``` 
+$ npm i 
+```
+## Commands
+``` 
+$ npm start
+```
+Runs the app in the development mode.  
+Open  [http://localhost:3000](http://localhost:3000/)  to view it in the browser.
+The page will reload if you make edits.  
+You will also see any lint errors in the console.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ npm test
 
-### `npm run build`
+```
 
-Builds the app for production to the `build` folder.\
+Launches the test runner in the interactive watch mode.  
+See the section about  [running tests](https://facebook.github.io/create-react-app/docs/running-tests)  for more information.
+
+```
+$ npm build
+
+```
+
+Builds the app for production to the  `build`  folder.  
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+$ npm run lint:fix
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `npm run eject`
+Runs eslint on all files to format code.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+$ npm run prettier
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+runs prettier on all files to formal code.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+$ npm run predeploy
 
-## Learn More
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+helps to bundle the react app. This command is run automatically when running deploy.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+$ npm run deploy
 
-### Code Splitting
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Generates a production build of the app and deploys it to GitHub pages.
 
-### Analyzing the Bundle Size
+**Attribution**
 
+<<<<<<< HEAD
 This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
 ### Making a Progressive Web App
@@ -70,3 +113,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+=======
+Created by  **Nicola Giannotta, Perry Baran**.
+ 
+>>>>>>> 29f1b92 (project setup and readme included)
