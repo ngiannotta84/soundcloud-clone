@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/navbar.css";
-import logo from "../assets/logosound.png";
 
 const Navbar = () => {
   return (
     <div className="navbar">
-      <img className="logo" src={logo} alt="logo soundcloud" />
+      <p> SOUNDCLONE </p>
       <ul className="navbar-links">
         <li>
           <Link className="navbar-links-item" to="/">
@@ -31,6 +30,11 @@ const Navbar = () => {
         <li>
           <Link className="navbar-links-item" to="upload">
             Upload
+          </Link>
+        </li>
+        <li>
+          <Link className="navbar-links-item" to="signup">
+            SignUp
           </Link>
         </li>
       </ul>
