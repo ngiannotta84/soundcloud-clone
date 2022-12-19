@@ -5,7 +5,6 @@ import "../styles/navbar.css";
 const Navbar = () => {
   return (
     <div className="navbar">
-      <p> SOUNDCLONE </p>
       <ul className="navbar-links">
         <li>
           <Link className="navbar-links-item" to="/">
@@ -30,11 +29,6 @@ const Navbar = () => {
         <li>
           <Link className="navbar-links-item" to="upload">
             Upload
-          </Link>
-        </li>
-        <li>
-          <Link className="navbar-links-item" to="signup">
-            SignUp
           </Link>
         </li>
       </ul>
