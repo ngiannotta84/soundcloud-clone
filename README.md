@@ -18,6 +18,8 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
 - [axios](https://www.npmjs.com/package/axios)
 - [proptypes](https://www.npmjs.com/package/prop-types)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- [js-cookie](https://www.npmjs.com/package/js-cookie)
+- [jwt-decode](https://www.npmjs.com/package/jwt-decode)
 
 **Dev Dependancies**
 

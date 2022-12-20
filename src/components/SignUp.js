@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import sendData from "../requests/request";
 import Alert from "./Alert";
 
 const SignUp = () => {
@@ -46,7 +45,6 @@ const SignUp = () => {
       });
     } else {
       try {
-        await sendData(fields);
         setAlert({
           message: "",
         });
