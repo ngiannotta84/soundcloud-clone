@@ -57,9 +57,15 @@ const App = () => {
             path="/"
             element={<Home handleSetPlaylist={handleSetPlaylist} />}
           />
-          <Route path="/search" element={<Search />} />
+          <Route
+            path="/search"
+            element={<Search handleSetPlaylist={handleSetPlaylist} />}
+          />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/profile/:userName" element={<Profile />} />
+          <Route
+            path="/profile/:userName"
+            element={<Profile handleSetPlaylist={handleSetPlaylist} />}
+          />
           <Route path="/login" element={<Login handleLogin={handleLogin} />} />
           <Route
             path="/signup"
