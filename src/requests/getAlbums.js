@@ -2,13 +2,19 @@
 import axios from "axios";
 import address from "./address";
 
-const userSignup = async (data) => {
+const getAlbums = async (id) => {
+  let endpoint = `${address}/albums`;
+  if (id) {
+    endpoint = `${endpoint}/id`;
+  }
+
   try {
-    const response = await axios.post(`${address}/users/signup`, data);
-    console.log(response);
+    const response = await axios.get(endpoint);
+    return response.data;
   } catch (err) {
     console.error(err);
+    throw new Error(err);
   }
 };
 
-export default userSignup;
+export default getAlbums;
