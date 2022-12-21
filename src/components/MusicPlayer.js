@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import "../styles/musicplayer.css";
 
 const MusicPlayer = ({ playlist }) => {
+  if (!playlist) return null;
+
   const [songIndex, setSongIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
@@ -158,6 +160,10 @@ const MusicPlayer = ({ playlist }) => {
   );
 };
 
+MusicPlayer.defaultProps = {
+  playlist: null,
+};
+
 MusicPlayer.propTypes = {
   playlist: PropTypes.arrayOf(
     PropTypes.shape({
@@ -167,7 +173,7 @@ MusicPlayer.propTypes = {
       audio: PropTypes.string,
       songName: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
 
 export default MusicPlayer;
