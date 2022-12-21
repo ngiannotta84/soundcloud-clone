@@ -10,8 +10,11 @@ import Search from "./Search";
 import Upload from "./Upload";
 import Profile from "./Profile";
 import SignUp from "./SignUp";
+import MusicPlayer from "./MusicPlayer";
+import fakePlaylist from "../data/fakePlaylist";
 
 const App = () => {
+  const [playlist, setPlaylist] = useState(fakePlaylist);
   const [user, setUser] = useState({
     name: null,
     id: null,
@@ -47,6 +50,7 @@ const App = () => {
             element={<SignUp handleLogin={handleLogin} />}
           />
         </Routes>
+        <MusicPlayer playlist={playlist} />
       </Router>
     </div>
   );
