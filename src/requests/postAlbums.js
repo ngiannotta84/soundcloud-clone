@@ -2,15 +2,9 @@
 import axios from "axios";
 import address from "./address";
 
-const postAlbums = async (data) => {
-  if (!data.name) {
-    throw new Error("missing data");
-  }
+const postAlbums = async () => {
   const formData = new FormData();
-  formData.append("name", data.name);
-  if (data.image) {
-    formData.append("image", data.image);
-  }
+  formData.append("name", "album");
 
   try {
     const response = await axios.post(`${address}/songs`, formData);
