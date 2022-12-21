@@ -7,33 +7,31 @@ const Navbar = ({ userName }) => {
   return (
     <nav className="navbar">
       <ul className="navbar-links">
-        <li>
-          <NavLink className="navbar-links-item" to="/">
-            Home
-          </NavLink>
+        <li className="navbar-links-item">
+          <h1>
+            <NavLink to="/">SOUNDCLONE</NavLink>
+          </h1>
         </li>
-        <li>
-          <NavLink className="navbar-links-item" to="search">
-            Search
-          </NavLink>
+        <li className="navbar-links-item">
+          <NavLink to="/">Home</NavLink>
+        </li>
+        <li className="navbar-links-item">
+          <NavLink to="search">Search</NavLink>
         </li>
         {!userName ? (
-          <li>
-            <NavLink className="navbar-links-item" to="login">
-              Login
-            </NavLink>
+          <li className="navbar-links-item">
+            <NavLink to="login">Login</NavLink>
           </li>
         ) : (
           <>
-            <li>
-              <NavLink className="navbar-links-item" to={`profile/${userName}`}>
-                Profile
-              </NavLink>
+            <li className="navbar-links-item">
+              <NavLink to={`profile/${userName}`}>Profile</NavLink>
             </li>
-            <li>
-              <NavLink className="navbar-links-item" to="upload">
-                Upload
-              </NavLink>
+            <li className="navbar-links-item">
+              <NavLink to="upload">Upload</NavLink>
+            </li>
+            <li className="navbar-links-item">
+              <NavLink to="logout">Logout</NavLink>
             </li>
           </>
         )}
