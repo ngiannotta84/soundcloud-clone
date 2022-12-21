@@ -1,0 +1,35 @@
+.album {
+  border: 2px solid grey;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.album__info-container {
+  display: flex;
+}
+
+.album__cover-art {
+  aspect-ratio: 1;
+  width: 100px;
+  margin: 10px;
+}
+
+.album__artist-name,
+.album__album-name,
+.album__song__song-name {
+  text-align: left;
+}
+
+.album__song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  border: 2px solid black;
+  margin: 10px;
+}
+
+.album__song__add-song {
+  cursor: pointer;
+}
