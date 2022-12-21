@@ -11,10 +11,10 @@ import Upload from "./Upload";
 import Profile from "./Profile";
 import SignUp from "./SignUp";
 import MusicPlayer from "./MusicPlayer";
-import fakePlaylist from "../data/fakePlaylist";
+import Logout from "./Logout";
 
 const App = () => {
-  const [playlist, setPlaylist] = useState(fakePlaylist);
+  const [playlist, setPlaylist] = useState(null);
   const [user, setUser] = useState({
     name: null,
     id: null,
@@ -41,13 +41,17 @@ const App = () => {
         <Navbar userName={user.name} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
           <Route path="/search" element={<Search />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/profile/:userName" element={<Profile />} />
+          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
           <Route
             path="/signup"
             element={<SignUp handleLogin={handleLogin} />}
+          />
+          <Route
+            path="/logout"
+            element={<Logout handleLogout={handleLogin} />}
           />
         </Routes>
         <MusicPlayer playlist={playlist} />
