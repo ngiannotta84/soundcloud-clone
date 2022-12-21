@@ -1,0 +1,24 @@
+.navbar {
+  background-color: var(--main-colour);
+  height: 50px;
+}
+
+.navbar-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.navbar-links-item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: white;
+}
+
+.navbar-links-item a {
+  text-decoration: none;
+}
