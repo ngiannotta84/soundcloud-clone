@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import Alert from "./Alert";
 import userLogin from "../requests/userLogin";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
   const initialState = {
     fields: {
       email: "",
@@ -13,6 +14,7 @@ const Login = () => {
   };
   const [fields, setFields] = useState(initialState.fields);
   const [alert, setAlert] = useState(initialState.alert);
+  const navigate = useNavigate();
 
   const handleFieldChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
@@ -31,8 +33,9 @@ const Login = () => {
       setAlert("password must be atleast 8 characters long");
     } else {
       try {
-        await userLogin(fields);
-        setAlert("");
+        const response = await userLogin(fields);
+        handleLogin(response);
+        navigate(`/profile/${response.name}`);
       } catch (err) {
         setAlert("Server Issue, please try again later");
       }
@@ -60,7 +63,7 @@ const Login = () => {
           <label htmlFor="password">
             <span>password</span>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               value={fields.password}
@@ -80,6 +83,10 @@ const Login = () => {
       </Link>
     </div>
   );
+};
+
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
 };
 
 export default Login;
