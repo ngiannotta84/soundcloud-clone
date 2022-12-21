@@ -5,28 +5,37 @@ import getUsers from "../requests/getUsers";
 import Album from "./Album";
 
 const Profile = ({ handleSetPlaylist }) => {
+  const initialState = {
+    profile: {
+      name: "no user found",
+    },
+  };
   const { userName } = useParams();
-  const [user, setUser] = useState({});
+  const [profile, setProfile] = useState(initialState.profile);
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await getUsers({ name: userName, exact: true });
-        setUser(response[0]);
+        const [response] = await getUsers({ name: userName, exact: true });
+        if (response) {
+          setProfile(response);
+        } else {
+          setProfile(initialState.profile);
+        }
       } catch (err) {
-        console.error(err);
+        setProfile(initialState.profile);
       }
     })();
-  }, []);
+  }, [userName]);
 
   return (
     <div>
-      <h2>{user.name}</h2>
-      {user.Albums &&
-        user.Albums.map((album) => {
+      <h2>{profile.name}</h2>
+      {profile.Albums &&
+        profile.Albums.map((album) => {
           return (
             <Album
-              artistName={user.name}
+              artistName={profile.name}
               albumName={album.name}
               albumArt={album.url}
               songs={album.Songs}

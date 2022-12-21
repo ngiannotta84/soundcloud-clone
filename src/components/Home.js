@@ -12,7 +12,6 @@ const Home = ({ handleSetPlaylist }) => {
         const response = await getAlbums();
         setAlbums(response);
       } catch (err) {
-        console.error(err);
         setAlbums([]);
       }
     })();
