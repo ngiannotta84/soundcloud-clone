@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import sendData from "../request/request";
+import sendData from "../requests/request";
 import Alert from "./Alert";
 
 const Login = () => {
@@ -49,6 +49,7 @@ const Login = () => {
       }
     }
   };
+
   return (
     <div className="login">
       <span>Please Login</span>
@@ -91,4 +92,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;

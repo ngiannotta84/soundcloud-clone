@@ -11,8 +11,10 @@ describe("Navbar", () => {
       </Router>
     );
     const linkElement = screen.getByText(/Login/i);
+
     expect(linkElement).toBeInTheDocument();
   });
+
   test("renders links", () => {
     render(
       <Router>
@@ -20,6 +22,7 @@ describe("Navbar", () => {
       </Router>
     );
     const linkelement = screen.getByText(/Home/i);
+
     expect(linkelement).toHaveAttribute("href", "/");
   });
 });

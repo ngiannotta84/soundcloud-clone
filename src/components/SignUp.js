@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import sendData from "../request/request";
+import sendData from "../requests/request";
 import Alert from "./Alert";
 
 const SignUp = () => {
@@ -15,12 +15,12 @@ const SignUp = () => {
     },
   };
   const [fields, setFields] = useState(initialState.fields);
-
   const [alert, setAlert] = useState(initialState.alert);
 
   const handleFieldChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
   };
+
   const handleCredentials = async (event) => {
     const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     event.preventDefault();
@@ -58,6 +58,7 @@ const SignUp = () => {
       }
     }
   };
+
   return (
     <div className="login">
       <p>Please Login</p>
@@ -120,4 +121,5 @@ const SignUp = () => {
     </div>
   );
 };
+
 export default SignUp;
