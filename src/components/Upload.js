@@ -1,33 +1,39 @@
 import { React, useState } from "react";
 
 const Upload = () => {
-  const initialState = {
-    albumName: "",
-    imageFile: "",
-    Songs: [{ songName: "", audioFile: "" }],
-  };
-  const [album, setAlbum] = useState(initialState);
+  const [album, setAlbum] = useState("");
   const handleAlbumNameChange = (e) => {
     setAlbum((prev) => ({
       ...prev,
       albumName: e.target.value,
     }));
   };
-
-  const [Image, setImage] = useState(initialState);
+  const [Image, setImage] = useState("");
   const handleImageChange = (e) => {
-    setImage((prev) => ({
-      ...prev,
-      imageFile: e.target.value,
-    }));
-    console.log(e.target.files);
+    setImage(e.target.files[0]);
+  };
+  const [songs, setSongs] = useState([]);
+  const handleSongsChange = (e) => {
+    setSongs(e.target.files);
+  };
+  const uploadAlbum = (e) => {
+    e.preventDefault();
+    const initialState = {
+      albumName: album,
+      imageFile: Image,
+      Songs: songs.map((song) => ({
+        songName: song.name,
+        audioFile: song,
+      })),
+    };
+    console.log(initialState);
   };
 
   return (
     <div>
       <span>Upload You Album</span>
 
-      <form className="upload_Form">
+      <form className="upload_Form" onSubmit={uploadAlbum}>
         <div className="upload_Formfield">
           <label htmlFor="album-name">
             <span>Album Name</span>
@@ -56,7 +62,12 @@ const Upload = () => {
         <div className="upload_Formfield">
           <label htmlFor="audio-files">
             <span>Audio Files</span>
-            <input type="file" name="audio-files" id="audio-files" />
+            <input
+              type="file"
+              name="audio-files"
+              id="audio-files"
+              onChange={handleSongsChange}
+            />
           </label>
           <button className="submit-button" type="submit">
             Submit
