@@ -3,17 +3,15 @@ import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "../styles/musicplayer.css";
 
-const MusicPlayer = ({ playlist }) => {
-  if (!playlist) return null;
-
-  const [songIndex, setSongIndex] = useState(0);
+const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
+  if (!playlist || playlist.length === 0) return null;
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.5);
   const audioRef = useRef(null);
 
-  const song = playlist[songIndex];
+  const song = playlist[playlistIndex];
 
   const handlePlaying = (isPlaying) => {
     if (isPlaying === undefined) {
@@ -25,15 +23,15 @@ const MusicPlayer = ({ playlist }) => {
 
   const skipSong = (forwards = true) => {
     if (forwards) {
-      if (songIndex === playlist.length) {
-        setSongIndex(0);
+      if (playlistIndex === playlist.length) {
+        setPlaylistIndex(0);
       } else {
-        setSongIndex((prev) => prev + 1);
+        setPlaylistIndex((prev) => prev + 1);
       }
-    } else if (songIndex === 0) {
-      setSongIndex(playlist.length);
+    } else if (playlistIndex === 0) {
+      setPlaylistIndex(playlist.length);
     } else {
-      setSongIndex((prev) => prev - 1);
+      setPlaylistIndex((prev) => prev - 1);
     }
   };
 
@@ -87,7 +85,7 @@ const MusicPlayer = ({ playlist }) => {
         audioRef.current.pause();
       }
     }
-  }, [playing, audioRef, songIndex]);
+  }, [playing, audioRef, playlistIndex]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -112,17 +110,19 @@ const MusicPlayer = ({ playlist }) => {
         ref={audioRef}
         onLoadedDataCapture={handleLoadedMetaData}
       />
-      <div>
-        <img
-          src={song.image}
-          alt={`${song.albumName} cover art`}
-          className="music-player__cover-art"
-        />
-        <div>
-          <h2>{song.artistName}</h2>
-          <h3>{song.songName}</h3>
+      <div className="music-player">
+        <div className="music-player__left">
+          <img
+            src={song.image}
+            alt={`${song.albumName} cover art`}
+            className="music-player__cover-art"
+          />
+          <div className="music-player__info">
+            <h2>{song.artistName}</h2>
+            <h3>{song.songName}</h3>
+          </div>
         </div>
-        <div>
+        <div className="music-player__center">
           <input
             type="range"
             name="time"
@@ -130,8 +130,9 @@ const MusicPlayer = ({ playlist }) => {
             max={duration}
             value={time}
             onChange={handleProgressBarChange}
+            className="music-player__progress-bar"
           />
-          <div>
+          <div className="music-player__center__under">
             <p>{calcTime(time)}</p>
             <div>
               <button type="button" onClick={() => skipSong(false)}>
@@ -174,6 +175,8 @@ MusicPlayer.propTypes = {
       songName: PropTypes.string,
     })
   ),
+  playlistIndex: PropTypes.number.isRequired,
+  setPlaylistIndex: PropTypes.func.isRequired,
 };
 
 export default MusicPlayer;
