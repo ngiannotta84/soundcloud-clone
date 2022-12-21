@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import getUsers from "../requests/getUsers";
 import Album from "./Album";
 
-const Profile = () => {
+const Profile = ({ handleSetPlaylist }) => {
   const { userName } = useParams();
   const [user, setUser] = useState({});
 
@@ -30,11 +31,16 @@ const Profile = () => {
               albumArt={album.url}
               songs={album.Songs}
               key={album.id}
+              handleSetPlaylist={handleSetPlaylist}
             />
           );
         })}
     </div>
   );
+};
+
+Profile.propTypes = {
+  handleSetPlaylist: PropTypes.func.isRequired,
 };
 
 export default Profile;

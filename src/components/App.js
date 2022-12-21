@@ -14,7 +14,8 @@ import MusicPlayer from "./MusicPlayer";
 import Logout from "./Logout";
 
 const App = () => {
-  const [playlist, setPlaylist] = useState(null);
+  const [playlist, setPlaylist] = useState([]);
+  const [playlistIndex, setPlaylistIndex] = useState(0);
   const [user, setUser] = useState({
     name: null,
     id: null,
@@ -25,6 +26,18 @@ const App = () => {
       name: data.name,
       id: data.id,
     });
+  };
+
+  const handleSetPlaylist = (song, addNext = false) => {
+    if (addNext && playlist.length > 0) {
+      setPlaylist((prev) => {
+        const clone = [...prev];
+        clone.splice(playlistIndex + 1, 0, song);
+        return clone;
+      });
+    } else {
+      setPlaylist((prev) => [...prev, song]);
+    }
   };
 
   useEffect(() => {
@@ -40,7 +53,10 @@ const App = () => {
       <Router>
         <Navbar userName={user.name} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home handleSetPlaylist={handleSetPlaylist} />}
+          />
           <Route path="/search" element={<Search />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/profile/:userName" element={<Profile />} />
@@ -54,8 +70,12 @@ const App = () => {
             element={<Logout handleLogout={handleLogin} />}
           />
         </Routes>
-        <MusicPlayer playlist={playlist} />
       </Router>
+      <MusicPlayer
+        playlist={playlist}
+        playlistIndex={playlistIndex}
+        setPlaylistIndex={setPlaylistIndex}
+      />
     </div>
   );
 };

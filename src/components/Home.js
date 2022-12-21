@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import getAlbums from "../requests/getAlbums";
 import Album from "./Album";
 
-const Home = () => {
+const Home = ({ handleSetPlaylist }) => {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
@@ -27,11 +28,16 @@ const Home = () => {
             albumArt={album.url}
             songs={album.Songs}
             key={album.id}
+            handleSetPlaylist={handleSetPlaylist}
           />
         );
       })}
     </div>
   );
+};
+
+Home.propTypes = {
+  handleSetPlaylist: PropTypes.func.isRequired,
 };
 
 export default Home;

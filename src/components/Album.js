@@ -2,10 +2,27 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../styles/album.css";
 
-const Album = ({ artistName, albumName, albumArt, songs }) => {
+const Album = ({
+  artistName,
+  albumName,
+  albumArt,
+  songs,
+  handleSetPlaylist,
+}) => {
   const orderedSongs = songs.sort(
     (a, b) => Number(a.position) - Number(b.position)
   );
+
+  const handleClick = (song, addNext = false) => {
+    const data = {
+      image: albumArt,
+      artistName,
+      albumName,
+      songName: song.name,
+      audio: song.url,
+    };
+    handleSetPlaylist(data, addNext);
+  };
 
   return (
     <div className="album">
@@ -25,9 +42,22 @@ const Album = ({ artistName, albumName, albumArt, songs }) => {
           return (
             <div key={song.id} className="album__song">
               <h4 className="album__song__song-name">{song.name}</h4>
-              <button type="button" className="album__song__add-song">
-                Add to queue
-              </button>
+              <div>
+                <button
+                  type="button"
+                  className="album__song__add-song"
+                  onClick={() => handleClick(song)}
+                >
+                  Add to queue
+                </button>
+                <button
+                  type="button"
+                  className="album__song__add-song"
+                  onClick={() => handleClick(song, true)}
+                >
+                  Play next
+                </button>
+              </div>
             </div>
           );
         })}
@@ -47,6 +77,7 @@ Album.propTypes = {
       url: PropTypes.string,
     })
   ).isRequired,
+  handleSetPlaylist: PropTypes.func.isRequired,
 };
 
 export default Album;
