@@ -58,7 +58,7 @@ const App = () => {
             element={<Home handleSetPlaylist={handleSetPlaylist} />}
           />
           <Route
-            path="/search"
+            path="/search/:name"
             element={<Search handleSetPlaylist={handleSetPlaylist} />}
           />
           <Route path="/upload" element={<Upload />} />

@@ -1,9 +1,17 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 import PropTypes from "prop-types";
 
 const Navbar = ({ userName }) => {
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    const query = searchRef.current.value;
+    navigate(`search/${query}`);
+  };
+
   return (
     <nav className="navbar">
       <ul className="navbar-links">
@@ -16,7 +24,10 @@ const Navbar = ({ userName }) => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li className="navbar-links-item">
-          <NavLink to="search">Search</NavLink>
+          <input type="text" ref={searchRef} />
+          <button type="button" onClick={handleSearch}>
+            search
+          </button>
         </li>
         {!userName ? (
           <li className="navbar-links-item">
