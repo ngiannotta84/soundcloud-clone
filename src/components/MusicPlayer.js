@@ -63,7 +63,7 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
     if (audioRef.current) {
       audioRef.current.currentTime = newTime;
     }
-    setTime(Number(e.target.value));
+    setTime(newTime);
   };
 
   const handleVolume = (e) => {
@@ -108,7 +108,7 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
       <audio
         src={song.audio}
         ref={audioRef}
-        onLoadedDataCapture={handleLoadedMetaData}
+        onLoadedMetadata={handleLoadedMetaData}
       />
       <div className="music-player">
         <div className="music-player__left">

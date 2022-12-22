@@ -29,15 +29,15 @@ const Login = ({ handleLogin }) => {
       setAlert("please insert your password here");
     } else if (!fields.email.match(EMAIL_REGEX)) {
       setAlert("please provide a valid email");
-    } else if (fields.password.length < 8) {
-      setAlert("password must be atleast 8 characters long");
     } else {
       try {
         const response = await userLogin(fields);
         handleLogin(response);
         navigate(`/profile/${response.name}`);
       } catch (err) {
-        setAlert("Server Issue, please try again later");
+        setAlert(
+          "Login failed, please recheck your email and password and try again"
+        );
       }
     }
   };

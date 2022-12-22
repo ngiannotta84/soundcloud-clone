@@ -4,7 +4,7 @@ import "../styles/navbar.css";
 import PropTypes from "prop-types";
 
 const Navbar = ({ userName }) => {
-  const searchRef = useRef(null);
+  const searchRef = useRef();
   const navigate = useNavigate();
 
   const handleSearch = () => {

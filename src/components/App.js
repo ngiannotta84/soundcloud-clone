@@ -14,18 +14,25 @@ import MusicPlayer from "./MusicPlayer";
 import Logout from "./Logout";
 
 const App = () => {
+  const initialState = {
+    user: {
+      name: null,
+      id: null,
+    },
+  };
   const [playlist, setPlaylist] = useState([]);
   const [playlistIndex, setPlaylistIndex] = useState(0);
-  const [user, setUser] = useState({
-    name: null,
-    id: null,
-  });
+  const [user, setUser] = useState(initialState.user);
 
   const handleLogin = (data) => {
-    setUser({
-      name: data.name,
-      id: data.id,
-    });
+    if (data === undefined) {
+      setUser(initialState.user);
+    } else {
+      setUser({
+        name: data.name,
+        id: data.id,
+      });
+    }
   };
 
   const handleSetPlaylist = (song, addNext = false) => {

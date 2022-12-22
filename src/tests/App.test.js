@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "../components/App";
 
-describe("describe App", () => {
+xdescribe("App", () => {
   test("renders title", () => {
     render(<App />);
     const getbyText = screen.getByText(/soundclone/i);

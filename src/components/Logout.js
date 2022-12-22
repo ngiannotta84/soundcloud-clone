@@ -8,10 +8,7 @@ const Logout = ({ handleLogout }) => {
 
   const handleClick = () => {
     userLogout();
-    handleLogout({
-      name: "",
-      id: "",
-    });
+    handleLogout();
     navigate("/");
   };
 

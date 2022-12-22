@@ -30,7 +30,7 @@ const Profile = ({ handleSetPlaylist }) => {
 
   return (
     <div>
-      <h2>{profile.name}</h2>
+      <h2 data-testid="profile-name">{profile.name}</h2>
       {profile.Albums &&
         profile.Albums.map((album) => {
           return (
