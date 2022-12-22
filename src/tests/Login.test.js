@@ -4,16 +4,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Login from "../components/Login";
 import * as userLogin from "../requests/userLogin";
 
-xdescribe("Login", () => {
+describe("Login", () => {
   const validProps = {
     handleLogin: jest.fn(),
   };
   const userLoginMock = jest.spyOn(userLogin, "default");
-  const mockNav = jest.fn();
-  jest.mock("react-router-dom", () => ({
-    ...jest.requireActual("react-router-dom"),
-    useNavigate: () => mockNav,
-  }));
 
   test("snapshot", () => {
     const { asFragment } = render(
@@ -34,16 +29,15 @@ xdescribe("Login", () => {
       );
     });
 
-    test("renders title", () => {
-      const linkElement = screen.getByText(/please login/i);
-
-      expect(linkElement).toBeInTheDocument();
-    });
-
-    test("it renders a button", () => {
-      const button = screen.getByText("Submit");
-
-      expect(button).toHaveClass("submit-button");
+    test("renders correctly", () => {
+      expect(screen.getByText(/please login/i)).toBeInstanceOf(
+        HTMLHeadingElement
+      );
+      expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+      expect(screen.getByText(/submit/i)).toBeInstanceOf(HTMLButtonElement);
+      expect(screen.getByText(/not registered?/i)).toBeInTheDocument();
+      expect(screen.getByText(/sign-up here/i)).toBeInTheDocument();
     });
 
     test("it renders an error message if no email is entered", () => {
@@ -58,9 +52,9 @@ xdescribe("Login", () => {
 
     test("it renders an error message if no password is entered", () => {
       const button = screen.getByText("Submit");
-      const eMail = screen.getByLabelText("email");
+      const email = screen.getByLabelText("email");
 
-      fireEvent.change(eMail, { target: { value: "me@gmail.com" } });
+      fireEvent.change(email, { target: { value: "me@gmail.com" } });
       fireEvent.click(button);
       const message = screen.getByText("please insert your password here");
 
@@ -69,10 +63,10 @@ xdescribe("Login", () => {
 
     test("it renders an error message if incorrect type of email is entered", () => {
       const button = screen.getByText("Submit");
-      const eMail = screen.getByLabelText("email");
+      const email = screen.getByLabelText("email");
       const password = screen.getByLabelText("password");
 
-      fireEvent.change(eMail, { target: { value: "megmail.com" } });
+      fireEvent.change(email, { target: { value: "megmail.com" } });
       fireEvent.change(password, { target: { value: "12345Nicola" } });
       fireEvent.click(button);
       const message = screen.getByText("please provide a valid email");
@@ -85,10 +79,10 @@ xdescribe("Login", () => {
         throw new Error();
       });
       const button = screen.getByText("Submit");
-      const eMail = screen.getByLabelText("email");
+      const email = screen.getByLabelText("email");
       const password = screen.getByLabelText("password");
 
-      fireEvent.change(eMail, { target: { value: "valid@email.com" } });
+      fireEvent.change(email, { target: { value: "valid@email.com" } });
       fireEvent.change(password, { target: { value: "validPassword" } });
       fireEvent.click(button);
 
@@ -99,7 +93,7 @@ xdescribe("Login", () => {
       ).toBeInTheDocument();
     });
 
-    test("user is logged in userLogin is succesfull", () => {
+    test("user is logged-in if userLogin is succesfull", async () => {
       const fakeResolve = {
         name: "fakeName",
         id: "fakeId",
@@ -107,16 +101,15 @@ xdescribe("Login", () => {
       userLoginMock.mockResolvedValue(fakeResolve);
 
       const button = screen.getByText("Submit");
-      const eMail = screen.getByLabelText("email");
+      const email = screen.getByLabelText("email");
       const password = screen.getByLabelText("password");
 
-      fireEvent.change(eMail, { target: { value: "valid@email.com" } });
+      fireEvent.change(email, { target: { value: "valid@email.com" } });
       fireEvent.change(password, { target: { value: "validPassword" } });
       fireEvent.click(button);
 
-      waitFor(() => {
+      await waitFor(() => {
         expect(validProps.handleLogin).toBeCalledWith(fakeResolve);
-        expect(mockNav).toBeCalledWith(`/profile/${validProps.name}`);
       });
     });
   });

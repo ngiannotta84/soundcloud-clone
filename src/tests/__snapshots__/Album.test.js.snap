@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Album snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="album"
+  >
+    <div
+      class="album__info-container"
+    >
+      <img
+        alt="album cover art"
+        class="album__cover-art"
+        src="album url"
+      />
+      <div>
+        <h2
+          class="album__artist-name"
+        >
+          artist
+        </h2>
+        <h3
+          class="album__album-name"
+        >
+          album
+        </h3>
+      </div>
+    </div>
+    <div>
+      <div
+        class="album__song"
+      >
+        <h4
+          class="album__song__song-name"
+        >
+          song 2
+        </h4>
+        <div>
+          <button
+            class="album__song__add-song"
+            type="button"
+          >
+            Add to queue
+          </button>
+          <button
+            class="album__song__add-song"
+            type="button"
+          >
+            Play next
+          </button>
+        </div>
+      </div>
+      <div
+        class="album__song"
+      >
+        <h4
+          class="album__song__song-name"
+        >
+          song 1
+        </h4>
+        <div>
+          <button
+            class="album__song__add-song"
+            type="button"
+          >
+            Add to queue
+          </button>
+          <button
+            class="album__song__add-song"
+            type="button"
+          >
+            Play next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

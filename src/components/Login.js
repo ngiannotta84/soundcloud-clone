@@ -44,7 +44,7 @@ const Login = ({ handleLogin }) => {
 
   return (
     <div className="login">
-      <span>Please Login</span>
+      <h2>Please Login</h2>
       <Alert message={alert} />
       <form onSubmit={handleCredentials}>
         <div className="form-field">
@@ -77,10 +77,12 @@ const Login = ({ handleLogin }) => {
           </button>
         </div>
       </form>
-      <span> Not Registered? </span>
-      <Link className="navbar-links-item" to="/signup">
-        Sign-Up Here
-      </Link>
+      <p>
+        Not Registered?
+        <Link className="navbar-links-item" to="/signup">
+          Sign-Up Here
+        </Link>
+      </p>
     </div>
   );
 };

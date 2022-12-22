@@ -12,7 +12,11 @@ const Search = ({ handleSetPlaylist }) => {
     (async () => {
       try {
         const response = await getAlbums({ name });
-        setAlbums(response);
+        if (response) {
+          setAlbums(response);
+        } else {
+          setAlbums([]);
+        }
       } catch (err) {
         setAlbums([]);
       }
@@ -21,18 +25,22 @@ const Search = ({ handleSetPlaylist }) => {
 
   return (
     <div>
-      {albums.map((album) => {
-        return (
-          <Album
-            artistName={album.User.name}
-            albumName={album.name}
-            albumArt={album.url}
-            songs={album.Songs}
-            key={album.id}
-            handleSetPlaylist={handleSetPlaylist}
-          />
-        );
-      })}
+      {albums.length > 0 ? (
+        albums.map((album) => {
+          return (
+            <Album
+              artistName={album.User.name}
+              albumName={album.name}
+              albumArt={album.url}
+              songs={album.Songs}
+              key={album.id}
+              handleSetPlaylist={handleSetPlaylist}
+            />
+          );
+        })
+      ) : (
+        <h2>No results</h2>
+      )}
     </div>
   );
 };

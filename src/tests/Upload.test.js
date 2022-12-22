@@ -2,9 +2,20 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Upload from "../components/Upload";
 
-xtest("renders title", () => {
-  render(<Upload />);
-  const linkElement = screen.getByText(/soundclone/i);
+describe("Upload", () => {
+  test("snapshot", () => {
+    const { asFragment } = render(<Upload />);
 
-  expect(linkElement).toBeInTheDocument();
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  describe("tests", () => {
+    beforeEach(() => {
+      render(<Upload />);
+    });
+
+    test("renders correctly", () => {
+      expect(screen.getByText(/upload/i)).toBeInTheDocument();
+    });
+  });
 });

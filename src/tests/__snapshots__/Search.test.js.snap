@@ -1,25 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Profile snapshots snapshot no user data 1`] = `
+exports[`Search snapshots snapshot with user data 1`] = `
 <DocumentFragment>
   <div>
-    <h2
-      data-testid="profile-name"
-    >
-      no user found
-    </h2>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Profile snapshots snapshot with user data 1`] = `
-<DocumentFragment>
-  <div>
-    <h2
-      data-testid="profile-name"
-    >
-      name 1
-    </h2>
     <div
       class="album"
     >
@@ -35,7 +18,7 @@ exports[`Profile snapshots snapshot with user data 1`] = `
           <h2
             class="album__artist-name"
           >
-            name 1
+            artist name 1
           </h2>
           <h3
             class="album__album-name"
@@ -108,7 +91,7 @@ exports[`Profile snapshots snapshot with user data 1`] = `
           <h2
             class="album__artist-name"
           >
-            name 1
+            artist name 2
           </h2>
           <h3
             class="album__album-name"
@@ -166,6 +149,16 @@ exports[`Profile snapshots snapshot with user data 1`] = `
         </div>
       </div>
     </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Search snapshots snapshot. no user data 1`] = `
+<DocumentFragment>
+  <div>
+    <h2>
+      No results
+    </h2>
   </div>
 </DocumentFragment>
 `;

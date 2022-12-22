@@ -33,7 +33,7 @@ describe("Home", () => {
       });
     });
 
-    test("renders albums", async () => {
+    test("renders correctly", async () => {
       await waitFor(() => {
         const images = screen.getAllByRole("img");
 

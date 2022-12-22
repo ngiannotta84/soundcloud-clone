@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-xdescribe("Navbar", () => {
+describe("Navbar", () => {
   const validProps = {
     userName: "validName",
   };

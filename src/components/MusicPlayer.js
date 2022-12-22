@@ -28,10 +28,10 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
       } else {
         setPlaylistIndex((prev) => prev + 1);
       }
-    } else if (playlistIndex === 0) {
-      setPlaylistIndex(playlist.length);
-    } else {
+    } else if (playlistIndex > 0) {
       setPlaylistIndex((prev) => prev - 1);
+    } else {
+      setPlaylistIndex(playlist.length);
     }
   };
 

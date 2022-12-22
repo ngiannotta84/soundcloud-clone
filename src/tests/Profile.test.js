@@ -10,24 +10,40 @@ describe("Profile", () => {
     handleSetPlaylist: jest.fn(),
   };
 
-  beforeEach(() => {
-    jest.spyOn(getUsers, "default").mockResolvedValue(fakeUserData);
-  });
+  describe("snapshots", () => {
+    test("snapshot with user data", async () => {
+      jest.spyOn(getUsers, "default").mockResolvedValue(fakeUserData);
 
-  test("snapshot", async () => {
-    let asFragment;
-    await act(() => {
-      const view = render(
-        <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
-      );
-      asFragment = view.asFragment;
+      let asFragment;
+      await act(() => {
+        const view = render(
+          <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+        );
+        asFragment = view.asFragment;
+      });
+
+      expect(asFragment()).toMatchSnapshot();
     });
 
-    expect(asFragment()).toMatchSnapshot();
+    test("snapshot no user data", async () => {
+      jest.spyOn(getUsers, "default").mockResolvedValue([]);
+
+      let asFragment;
+      await act(() => {
+        const view = render(
+          <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+        );
+        asFragment = view.asFragment;
+      });
+
+      expect(asFragment()).toMatchSnapshot();
+    });
   });
 
-  describe("truthy response", () => {
+  describe("with user data", () => {
     beforeEach(async () => {
+      jest.spyOn(getUsers, "default").mockResolvedValue(fakeUserData);
+
       await act(() => {
         render(<Profile handleSetPlaylist={validProps.handleSetPlaylist} />);
       });
@@ -44,6 +60,24 @@ describe("Profile", () => {
         expect(images[0]).toHaveAttribute(
           "alt",
           `${fakeUserData[0].Albums[0].name} cover art`
+        );
+      });
+    });
+  });
+
+  describe("with no user data", () => {
+    beforeEach(async () => {
+      jest.spyOn(getUsers, "default").mockResolvedValue([]);
+
+      await act(() => {
+        render(<Profile handleSetPlaylist={validProps.handleSetPlaylist} />);
+      });
+    });
+
+    test("renders correctly", async () => {
+      await waitFor(() => {
+        expect(screen.getByText(/no user found/i)).toBeInstanceOf(
+          HTMLHeadingElement
         );
       });
     });
