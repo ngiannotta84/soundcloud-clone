@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../styles/album.css";
+import { music } from "../media/icons";
 
 const Album = ({
   artistName,
@@ -28,7 +29,7 @@ const Album = ({
     <div className="album">
       <div className="album__info-container">
         <img
-          src={albumArt}
+          src={albumArt || music}
           alt={`${albumName} cover art`}
           className="album__cover-art"
         />
