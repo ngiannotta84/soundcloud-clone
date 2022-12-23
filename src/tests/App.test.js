@@ -10,6 +10,13 @@ describe("App", () => {
     jest.spyOn(getAlbums, "default").mockResolvedValue(fakeAlbumData);
   });
 
+  jest
+    .spyOn(window.HTMLMediaElement.prototype, "play")
+    .mockImplementation(jest.fn());
+  jest
+    .spyOn(window.HTMLMediaElement.prototype, "pause")
+    .mockImplementation(jest.fn());
+
   test("snapshot", async () => {
     let asFragment;
     await act(() => {

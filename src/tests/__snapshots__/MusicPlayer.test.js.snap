@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MusicPlayer snapshot 1`] = `
+<DocumentFragment>
+  <audio
+    data-testid="audio"
+    src="audio 2"
+  />
+  <div
+    class="music-player"
+  >
+    <div
+      class="music-player__left"
+    >
+      <img
+        alt="album 2 cover art"
+        class="music-player__cover-art"
+        src="image 2"
+      />
+      <div
+        class="music-player__info"
+      >
+        <h2>
+          artist 2
+        </h2>
+        <h3>
+          song 2
+        </h3>
+      </div>
+    </div>
+    <div
+      class="music-player__center"
+    >
+      <input
+        class="music-player__progress-bar"
+        data-testid="progressBar"
+        max="0"
+        min="0"
+        name="time"
+        type="range"
+        value="0"
+      />
+      <div
+        class="music-player__center__under"
+      >
+        <p>
+          0:00
+        </p>
+        <div>
+          <button
+            class="music-player__skip-backwards"
+            type="button"
+          >
+            <img
+              alt="skip backwards"
+              src="skip.png"
+            />
+          </button>
+          <button
+            class="music-player__play-pause"
+            type="button"
+          >
+            <img
+              alt="pause"
+              src="play.png"
+            />
+          </button>
+          <button
+            class="music-player__skip-forwards"
+            type="button"
+          >
+            <img
+              alt="skip forwards"
+              src="skip.png"
+            />
+          </button>
+        </div>
+        <p>
+          0:00
+        </p>
+      </div>
+    </div>
+    <div
+      class="music-player__right"
+    >
+      <div
+        class="music-player__volume"
+      >
+        <button
+          type="button"
+        >
+          <img
+            alt="volume"
+            src="volume-medium.png"
+          />
+        </button>
+      </div>
+      <div
+        class="music-player__playlist"
+      >
+        <button
+          type="button"
+        >
+          <img
+            alt="playlist"
+            src="menu.png"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

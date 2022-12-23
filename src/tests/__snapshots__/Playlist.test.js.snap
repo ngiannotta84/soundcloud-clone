@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Playlist snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="playlist"
+  >
+    <div
+      class="playlist__song false"
+    >
+      <div
+        class="playlist__song-left"
+      >
+        <img
+          alt="album 1 cover art"
+          class="playlist__song-cover-art"
+          src="image 1"
+        />
+      </div>
+      <div
+        class="playlist__song-right"
+      >
+        <div
+          class="playlist__song-info"
+        >
+          <p
+            class="playlist__song-artist"
+          >
+            artist 1
+          </p>
+          <p
+            class="playlist__song-name"
+          >
+            song 1
+          </p>
+        </div>
+        <button
+          class="playlist__song-button"
+          type="button"
+        >
+          Play Now
+        </button>
+      </div>
+    </div>
+    <div
+      class="playlist__song play__song-active"
+    >
+      <div
+        class="playlist__song-left"
+      >
+        <img
+          alt="album 2 cover art"
+          class="playlist__song-cover-art"
+          src="image 2"
+        />
+      </div>
+      <div
+        class="playlist__song-right"
+      >
+        <div
+          class="playlist__song-info"
+        >
+          <p
+            class="playlist__song-artist"
+          >
+            artist 2
+          </p>
+          <p
+            class="playlist__song-name"
+          >
+            song 2
+          </p>
+        </div>
+        <button
+          class="playlist__song-button"
+          type="button"
+        >
+          Play Now
+        </button>
+      </div>
+    </div>
+    <div
+      class="playlist__song false"
+    >
+      <div
+        class="playlist__song-left"
+      >
+        <img
+          alt="album 3 cover art"
+          class="playlist__song-cover-art"
+          src="image 3"
+        />
+      </div>
+      <div
+        class="playlist__song-right"
+      >
+        <div
+          class="playlist__song-info"
+        >
+          <p
+            class="playlist__song-artist"
+          >
+            artist 3
+          </p>
+          <p
+            class="playlist__song-name"
+          >
+            song 3
+          </p>
+        </div>
+        <button
+          class="playlist__song-button"
+          type="button"
+        >
+          Play Now
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
