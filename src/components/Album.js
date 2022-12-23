@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../styles/album.css";
+import { Link } from "react-router-dom";
 import { music } from "../media/icons";
 
 const Album = ({
@@ -34,7 +35,9 @@ const Album = ({
           className="album__cover-art"
         />
         <div>
-          <h2 className="album__artist-name">{artistName}</h2>
+          <h2 className="album__artist-name">
+            <Link to={`/profile/${artistName}`}>{artistName}</Link>
+          </h2>
           <h3 className="album__album-name">{albumName}</h3>
         </div>
       </div>
