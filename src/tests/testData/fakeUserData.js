@@ -1,6 +1,8 @@
 const fakeUserData = [
   {
     name: "name 1",
+    createAt: "01 Jan 1970 00:00:00 GMT",
+    email: "me@email.com",
     Albums: [
       {
         name: "album1",
@@ -40,6 +42,8 @@ const fakeUserData = [
   },
   {
     name: "name 2",
+    createAt: "01 Jan 1970 00:00:00 GMT",
+    email: "me2@email.com",
     Albums: [
       {
         name: "album3",

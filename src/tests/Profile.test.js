@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { BrowserRouter as Router } from "react-router-dom";
 import Profile from "../components/Profile";
 import * as getUsers from "../requests/getUsers";
 import fakeUserData from "./testData/fakeUserData";
@@ -17,7 +18,9 @@ describe("Profile", () => {
       let asFragment;
       await act(() => {
         const view = render(
-          <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+          <Router>
+            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
         );
         asFragment = view.asFragment;
       });
@@ -31,7 +34,9 @@ describe("Profile", () => {
       let asFragment;
       await act(() => {
         const view = render(
-          <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+          <Router>
+            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
         );
         asFragment = view.asFragment;
       });
@@ -45,7 +50,11 @@ describe("Profile", () => {
       jest.spyOn(getUsers, "default").mockResolvedValue(fakeUserData);
 
       await act(() => {
-        render(<Profile handleSetPlaylist={validProps.handleSetPlaylist} />);
+        render(
+          <Router>
+            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
+        );
       });
     });
 
@@ -70,7 +79,11 @@ describe("Profile", () => {
       jest.spyOn(getUsers, "default").mockResolvedValue([]);
 
       await act(() => {
-        render(<Profile handleSetPlaylist={validProps.handleSetPlaylist} />);
+        render(
+          <Router>
+            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
+        );
       });
     });
 

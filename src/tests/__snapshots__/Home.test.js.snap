@@ -18,7 +18,11 @@ exports[`Home snapshot 1`] = `
           <h2
             class="album__artist-name"
           >
-            artist name 1
+            <a
+              href="/profile/artist name 1"
+            >
+              artist name 1
+            </a>
           </h2>
           <h3
             class="album__album-name"
@@ -91,7 +95,11 @@ exports[`Home snapshot 1`] = `
           <h2
             class="album__artist-name"
           >
-            artist name 2
+            <a
+              href="/profile/artist name 2"
+            >
+              artist name 2
+            </a>
           </h2>
           <h3
             class="album__album-name"

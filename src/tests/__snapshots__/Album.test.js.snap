@@ -17,7 +17,11 @@ exports[`Album snapshot 1`] = `
         <h2
           class="album__artist-name"
         >
-          artist
+          <a
+            href="/profile/artist"
+          >
+            artist
+          </a>
         </h2>
         <h3
           class="album__album-name"

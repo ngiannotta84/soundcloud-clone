@@ -2,9 +2,11 @@ const fakeAlbumData = [
   {
     name: "album1",
     url: "art url 1",
+    UserId: "63534",
     User: {
       name: "artist name 1",
     },
+    createAt: "01 Jan 1970 00:00:00 GMT",
     Songs: [
       {
         id: "songId1",
@@ -22,9 +24,11 @@ const fakeAlbumData = [
   {
     name: "album2",
     url: "art url 2",
+    UserId: "635364324",
     User: {
       name: "artist name 2",
     },
+    createAt: "01 Jan 1970 12:00:00 GMT",
     Songs: [
       {
         id: "songId3",

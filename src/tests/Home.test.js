@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { BrowserRouter as Router } from "react-router-dom";
 import Home from "../components/Home";
 import * as getAlbums from "../requests/getAlbums";
 import fakeAlbumData from "./testData/fakeAlbumData";
@@ -18,7 +19,9 @@ describe("Home", () => {
     let asFragment;
     await act(() => {
       const view = render(
-        <Home handleSetPlaylist={validProps.handleSetPlaylist} />
+        <Router>
+          <Home handleSetPlaylist={validProps.handleSetPlaylist} />
+        </Router>
       );
       asFragment = view.asFragment;
     });
@@ -29,7 +32,11 @@ describe("Home", () => {
   describe("tests", () => {
     beforeEach(async () => {
       await act(() => {
-        render(<Home handleSetPlaylist={validProps.handleSetPlaylist} />);
+        render(
+          <Router>
+            <Home handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
+        );
       });
     });
 

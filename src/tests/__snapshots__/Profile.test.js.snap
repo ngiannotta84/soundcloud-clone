@@ -35,7 +35,11 @@ exports[`Profile snapshots snapshot with user data 1`] = `
           <h2
             class="album__artist-name"
           >
-            name 1
+            <a
+              href="/profile/name 1"
+            >
+              name 1
+            </a>
           </h2>
           <h3
             class="album__album-name"
@@ -108,7 +112,11 @@ exports[`Profile snapshots snapshot with user data 1`] = `
           <h2
             class="album__artist-name"
           >
-            name 1
+            <a
+              href="/profile/name 1"
+            >
+              name 1
+            </a>
           </h2>
           <h3
             class="album__album-name"

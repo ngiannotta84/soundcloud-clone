@@ -1,34 +1,22 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Album from "../components/Album";
+import Song from "../components/Song";
 
-describe("Album", () => {
+describe("Song", () => {
   const validProps = {
     artistName: "artist",
     albumName: "album",
-    albumArt: "album url",
-    songs: [
-      {
-        id: "1",
-        name: "song 1",
-        position: "1",
-        url: "song url 1",
-      },
-      {
-        id: "2",
-        name: "song 2",
-        position: "0",
-        url: "song url 2",
-      },
-    ],
+    albumArt: "alburl",
+    songName: "song",
+    songAudio: "songurl",
     handleSetPlaylist: jest.fn(),
   };
 
   test("snapshot", () => {
     const { asFragment } = render(
       <Router>
-        <Album {...validProps} />
+        <Song {...validProps} />
       </Router>
     );
 
@@ -39,7 +27,7 @@ describe("Album", () => {
     beforeEach(() => {
       render(
         <Router>
-          <Album {...validProps} />
+          <Song {...validProps} />
         </Router>
       );
     });
@@ -53,28 +41,23 @@ describe("Album", () => {
         "href",
         `/profile/${validProps.artistName}`
       );
-      expect(screen.getByText(validProps.albumName)).toBeInstanceOf(
+      expect(screen.getByText(validProps.songName)).toBeInstanceOf(
         HTMLHeadingElement
       );
-      expect(screen.getAllByText(/add to queue/i)).toHaveLength(
-        validProps.songs.length
+      expect(screen.getByText(/add to queue/i)).toBeInstanceOf(
+        HTMLButtonElement
       );
-      expect(screen.getAllByText(/play next/i)).toHaveLength(
-        validProps.songs.length
-      );
-      validProps.songs.forEach((song) => {
-        expect(screen.getByText(song.name)).toBeInstanceOf(HTMLHeadingElement);
-      });
+      expect(screen.getByText(/play next/i)).toBeInstanceOf(HTMLButtonElement);
     });
 
     test("add to queue button", () => {
-      const button = screen.getAllByText(/add to queue/i)[0];
+      const button = screen.getByText(/add to queue/i);
       const data = {
         image: validProps.albumArt,
         artistName: validProps.artistName,
         albumName: validProps.albumName,
-        songName: validProps.songs[0].name,
-        audio: validProps.songs[0].url,
+        songName: validProps.songName,
+        audio: validProps.songAudio,
       };
 
       fireEvent.click(button);
@@ -88,8 +71,8 @@ describe("Album", () => {
         image: validProps.albumArt,
         artistName: validProps.artistName,
         albumName: validProps.albumName,
-        songName: validProps.songs[0].name,
-        audio: validProps.songs[0].url,
+        songName: validProps.songName,
+        audio: validProps.songAudio,
       };
 
       fireEvent.click(button);

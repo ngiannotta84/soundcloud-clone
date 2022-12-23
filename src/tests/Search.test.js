@@ -1,9 +1,18 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { BrowserRouter as Router } from "react-router-dom";
 import Search from "../components/Search";
 import * as getAlbums from "../requests/getAlbums";
+import * as getUsers from "../requests/getUsers";
+import * as getSongs from "../requests/getSongs";
 import fakeAlbumData from "./testData/fakeAlbumData";
+import fakeUserData from "./testData/fakeUserData";
+import fakeSongData from "./testData/fakeSongData";
+
+const jestSpy = (func, data) => {
+  jest.spyOn(func, "default").mockResolvedValue(data);
+};
 
 describe("Search", () => {
   const validProps = {
@@ -12,12 +21,16 @@ describe("Search", () => {
 
   describe("snapshots", () => {
     test("snapshot with user data", async () => {
-      jest.spyOn(getAlbums, "default").mockResolvedValue(fakeAlbumData);
+      jestSpy(getAlbums, fakeAlbumData);
+      jestSpy(getUsers, fakeUserData);
+      jestSpy(getSongs, fakeSongData);
 
       let asFragment;
       await act(() => {
         const view = render(
-          <Search handleSetPlaylist={validProps.handleSetPlaylist} />
+          <Router>
+            <Search handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
         );
         asFragment = view.asFragment;
       });
@@ -25,8 +38,10 @@ describe("Search", () => {
       expect(asFragment()).toMatchSnapshot();
     });
 
-    test("snapshot. no user data", async () => {
-      jest.spyOn(getAlbums, "default").mockResolvedValue([]);
+    test("snapshot no user data", async () => {
+      jestSpy(getAlbums, []);
+      jestSpy(getUsers, []);
+      jestSpy(getSongs, []);
 
       let asFragment;
       await act(() => {
@@ -42,10 +57,16 @@ describe("Search", () => {
 
   describe("with data", () => {
     beforeEach(async () => {
-      jest.spyOn(getAlbums, "default").mockResolvedValue(fakeAlbumData);
+      jestSpy(getAlbums, fakeAlbumData);
+      jestSpy(getUsers, fakeUserData);
+      jestSpy(getSongs, fakeSongData);
 
       await act(() => {
-        render(<Search handleSetPlaylist={validProps.handleSetPlaylist} />);
+        render(
+          <Router>
+            <Search handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
+        );
       });
     });
 
@@ -53,10 +74,8 @@ describe("Search", () => {
       await waitFor(() => {
         const images = screen.getAllByRole("img");
 
-        expect(images).toHaveLength(fakeAlbumData.length);
-        expect(images[0]).toHaveAttribute(
-          "alt",
-          `${fakeAlbumData[0].name} cover art`
+        expect(images).toHaveLength(
+          fakeAlbumData.length + fakeSongData.length + fakeUserData.length
         );
       });
     });
@@ -64,10 +83,16 @@ describe("Search", () => {
 
   describe("without data", () => {
     beforeEach(async () => {
-      jest.spyOn(getAlbums, "default").mockResolvedValue([]);
+      jestSpy(getAlbums, []);
+      jestSpy(getUsers, []);
+      jestSpy(getSongs, []);
 
       await act(() => {
-        render(<Search handleSetPlaylist={validProps.handleSetPlaylist} />);
+        render(
+          <Router>
+            <Search handleSetPlaylist={validProps.handleSetPlaylist} />
+          </Router>
+        );
       });
     });
 

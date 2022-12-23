@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Search snapshots snapshot no user data 1`] = `
+<DocumentFragment>
+  <div>
+    <h2>
+      No results
+    </h2>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Search snapshots snapshot with user data 1`] = `
 <DocumentFragment>
   <div>
@@ -18,7 +28,11 @@ exports[`Search snapshots snapshot with user data 1`] = `
           <h2
             class="album__artist-name"
           >
-            artist name 1
+            <a
+              href="/profile/artist name 1"
+            >
+              artist name 1
+            </a>
           </h2>
           <h3
             class="album__album-name"
@@ -91,7 +105,11 @@ exports[`Search snapshots snapshot with user data 1`] = `
           <h2
             class="album__artist-name"
           >
-            artist name 2
+            <a
+              href="/profile/artist name 2"
+            >
+              artist name 2
+            </a>
           </h2>
           <h3
             class="album__album-name"
@@ -149,16 +167,173 @@ exports[`Search snapshots snapshot with user data 1`] = `
         </div>
       </div>
     </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Search snapshots snapshot. no user data 1`] = `
-<DocumentFragment>
-  <div>
-    <h2>
-      No results
-    </h2>
+    <div
+      class="song"
+    >
+      <div
+        class="song__info-container"
+      >
+        <img
+          alt="album 6tggj cover art"
+          class="song__cover-art"
+          src="url 0hgnid"
+        />
+        <div>
+          <h2
+            class="song__artist-name"
+          >
+            <a
+              href="/profile/name 7gbn"
+            >
+              name 7gbn
+            </a>
+          </h2>
+          <h3
+            class="song__album-name"
+          >
+            song 756453
+          </h3>
+        </div>
+      </div>
+      <div>
+        <button
+          class="album__song__add-song"
+          type="button"
+        >
+          Add to queue
+        </button>
+        <button
+          class="album__song__add-song"
+          type="button"
+        >
+          Play next
+        </button>
+      </div>
+    </div>
+    <div
+      class="song"
+    >
+      <div
+        class="song__info-container"
+      >
+        <img
+          alt="album jgjf6tggj cover art"
+          class="song__cover-art"
+          src="url 0hgnfgj6id"
+        />
+        <div>
+          <h2
+            class="song__artist-name"
+          >
+            <a
+              href="/profile/name 7gbhfgjfn"
+            >
+              name 7gbhfgjfn
+            </a>
+          </h2>
+          <h3
+            class="song__album-name"
+          >
+            song 7553
+          </h3>
+        </div>
+      </div>
+      <div>
+        <button
+          class="album__song__add-song"
+          type="button"
+        >
+          Add to queue
+        </button>
+        <button
+          class="album__song__add-song"
+          type="button"
+        >
+          Play next
+        </button>
+      </div>
+    </div>
+    <div
+      class="song"
+    >
+      <div
+        class="song__info-container"
+      >
+        <img
+          alt="albujfm 6tggj cover art"
+          class="song__cover-art"
+          src="url 0hgni754d"
+        />
+        <div>
+          <h2
+            class="song__artist-name"
+          >
+            <a
+              href="/profile/namefjrtu54 7gbn"
+            >
+              namefjrtu54 7gbn
+            </a>
+          </h2>
+          <h3
+            class="song__album-name"
+          >
+            song 756457553
+          </h3>
+        </div>
+      </div>
+      <div>
+        <button
+          class="album__song__add-song"
+          type="button"
+        >
+          Add to queue
+        </button>
+        <button
+          class="album__song__add-song"
+          type="button"
+        >
+          Play next
+        </button>
+      </div>
+    </div>
+    <div
+      class="artist"
+    >
+      <a
+        class="artist__link"
+        href="/profile/name 1"
+      >
+        <img
+          alt="album by name 1"
+          class="artist__cover-art"
+          src="art url 1"
+        />
+        <h2
+          class="artist__name"
+        >
+          name 1
+        </h2>
+      </a>
+    </div>
+    <div
+      class="artist"
+    >
+      <a
+        class="artist__link"
+        href="/profile/name 2"
+      >
+        <img
+          alt="album by name 2"
+          class="artist__cover-art"
+          src="art url 4"
+        />
+        <h2
+          class="artist__name"
+        >
+          name 2
+        </h2>
+      </a>
+    </div>
   </div>
 </DocumentFragment>
 `;
