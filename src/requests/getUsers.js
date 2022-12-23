@@ -2,18 +2,21 @@
 import axios from "axios";
 import address from "./address";
 
-const getUsers = async ({ name, exact, limit }) => {
+const getUsers = async (obj) => {
   let endpoint = `${address}/users`;
   const queryArray = [];
-  if (name) {
-    queryArray.push(`name=${name}`);
-    if (exact) {
-      queryArray.push("exact=true");
+  if (obj) {
+    if (obj.name) {
+      queryArray.push(`name=${obj.name}`);
+      if (obj.exact) {
+        queryArray.push("exact=true");
+      }
+    }
+    if (obj.limit) {
+      queryArray.push(`limit=${obj.limit}`);
     }
   }
-  if (limit) {
-    queryArray.push(`limit=${limit}`);
-  }
+
   if (queryArray.length > 0) {
     const query = queryArray.join("&");
     endpoint = `${endpoint}?${query}`;
