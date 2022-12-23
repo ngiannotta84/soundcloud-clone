@@ -23,7 +23,6 @@ const getAlbums = async (obj) => {
 
   try {
     const response = await axios.get(endpoint);
-    console.log(response);
     return response.data;
   } catch (err) {
     console.error(err);
