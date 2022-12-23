@@ -1,0 +1,21 @@
+.artist {
+  border: 2px solid grey;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.artist__link {
+  display: flex;
+  align-items: center;
+}
+
+.artist__cover-art {
+  aspect-ratio: 1;
+  width: 100px;
+  margin: 10px;
+}
+
+.artist__name{
+  text-align: left;
+}

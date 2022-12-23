@@ -6,6 +6,7 @@
 
 .album__info-container {
   display: flex;
+  align-items: center;
 }
 
 .album__cover-art {
