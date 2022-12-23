@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "../styles/App.css";
 import Cookie from "js-cookie";
 import jwtDecode from "jwt-decode";
+import { v4 as uuid } from "uuid";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Login from "./Login";
@@ -36,14 +37,17 @@ const App = () => {
   };
 
   const handleSetPlaylist = (song, addNext = false) => {
+    const data = song;
+    data.key = uuid();
+
     if (addNext && playlist.length > 0) {
       setPlaylist((prev) => {
         const clone = [...prev];
-        clone.splice(playlistIndex + 1, 0, song);
+        clone.splice(playlistIndex + 1, 0, data);
         return clone;
       });
     } else {
-      setPlaylist((prev) => [...prev, song]);
+      setPlaylist((prev) => [...prev, data]);
     }
   };
 
