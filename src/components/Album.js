@@ -10,6 +10,9 @@ const Album = ({
   albumArt,
   songs,
   handleSetPlaylist,
+  albumUserId,
+  userId,
+  albumId,
 }) => {
   const orderedSongs = songs.sort(
     (a, b) => Number(a.position) - Number(b.position)
@@ -66,8 +69,16 @@ const Album = ({
           );
         })}
       </div>
+      {userId !== null && userId === albumUserId && (
+        <Link to={`/edit/${albumId}`}>Edit</Link>
+      )}
     </div>
   );
+};
+
+Album.defaultProps = {
+  albumUserId: null,
+  userId: null,
 };
 
 Album.propTypes = {
@@ -82,6 +93,9 @@ Album.propTypes = {
     })
   ).isRequired,
   handleSetPlaylist: PropTypes.func.isRequired,
+  albumUserId: PropTypes.number,
+  userId: PropTypes.number,
+  albumId: PropTypes.number.isRequired,
 };
 
 export default Album;

@@ -27,6 +27,7 @@ const Home = ({ handleSetPlaylist }) => {
             albumArt={album.url}
             songs={album.Songs}
             key={album.id}
+            albumId={album.id}
             handleSetPlaylist={handleSetPlaylist}
           />
         );

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import getUsers from "../requests/getUsers";
 import Album from "./Album";
 
-const Profile = ({ handleSetPlaylist }) => {
+const Profile = ({ handleSetPlaylist, userId }) => {
   const initialState = {
     profile: {
       name: "no user found",
@@ -41,6 +41,9 @@ const Profile = ({ handleSetPlaylist }) => {
               songs={album.Songs}
               key={album.id}
               handleSetPlaylist={handleSetPlaylist}
+              albumId={album.id}
+              userId={userId}
+              albumUserId={profile.id}
             />
           );
         })}
@@ -48,8 +51,13 @@ const Profile = ({ handleSetPlaylist }) => {
   );
 };
 
+Profile.defaultProps = {
+  userId: null,
+};
+
 Profile.propTypes = {
   handleSetPlaylist: PropTypes.func.isRequired,
+  userId: PropTypes.number,
 };
 
 export default Profile;

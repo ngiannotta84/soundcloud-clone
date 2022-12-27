@@ -53,6 +53,7 @@ const Search = ({ handleSetPlaylist }) => {
                 songs={data.Songs}
                 handleSetPlaylist={handleSetPlaylist}
                 key={`${data.id}${data.name}`}
+                albumId={data.id}
               />
             );
           }
