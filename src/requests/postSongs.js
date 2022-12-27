@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-import axios from "axios";
-import address from "./address";
+import instance from "./instance";
 
 const postSongs = async (data) => {
   if (!data.name || !data.AlbumId || !data.position || !data.audio) {
@@ -13,7 +12,7 @@ const postSongs = async (data) => {
   formData.append("audio", data.audio);
 
   try {
-    const response = await axios.post(`${address}/songs`, formData);
+    const response = await instance.post(`/songs`, formData);
     console.log(response);
   } catch (err) {
     console.error(err);

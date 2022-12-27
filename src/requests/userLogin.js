@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
-import axios from "axios";
-import address from "./address";
+import instance from "./instance";
 
 const userLogin = async (data) => {
   try {
-    const response = await axios.post(`${address}/users/login`, data, {
+    const response = await instance.post(`/users/login`, data, {
       withCredentials: true,
     });
     return response.data;

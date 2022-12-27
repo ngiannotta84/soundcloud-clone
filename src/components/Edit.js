@@ -1,7 +1,14 @@
+/* eslint-disable no-await-in-loop */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import Alert from "./Alert";
 import getAlbumById from "../requests/getAlbumById";
+import deleteAlbum from "../requests/deleteAlbum";
+import patchAlbum from "../requests/patchAlbum";
+import patchSong from "../requests/patchSong";
+import deleteSong from "../requests/deleteSong";
+import postSongs from "../requests/postSongs";
 
 const Edit = () => {
   const initialState = {
@@ -17,19 +24,27 @@ const Edit = () => {
   const [originalSongs, setOriginalSongs] = useState([]);
   const [newSongs, setNewSongs] = useState([]);
   const { albumId } = useParams();
+  const navigate = useNavigate();
+  const [alert, setAlert] = useState("");
+  console.log(originalSongs);
 
   const handleAlbumNameChange = (e) => {
     const { value } = e.target;
     setAlbum((prev) => {
-      return { ...prev, name: [value] };
+      return { ...prev, name: value };
     });
   };
 
   const handleImageChange = (e) => {
+    setAlert("");
     const file = e.target.files[0];
-    setAlbum((prev) => {
-      return { ...prev, image: [file] };
-    });
+    if (file.type.split("/")[0] !== "image") {
+      setAlert("Album art must be of type image");
+    } else {
+      setAlbum((prev) => {
+        return { ...prev, image: file };
+      });
+    }
   };
 
   const handleSongNameChange = (e, i) => {
@@ -42,12 +57,17 @@ const Edit = () => {
   };
 
   const handleSongFileChange = (e, i) => {
+    setAlert("");
     const file = e.target.files[0];
-    setOriginalSongs((prev) => {
-      const clone = [...prev];
-      clone[i].audio = file;
-      return clone;
-    });
+    if (file.type.split("/")[0] !== "audio") {
+      setAlert("Songs files must be of type audio");
+    } else {
+      setOriginalSongs((prev) => {
+        const clone = [...prev];
+        clone[i].audio = file;
+        return clone;
+      });
+    }
   };
 
   const handleSongDelete = (e, i) => {
@@ -88,7 +108,7 @@ const Edit = () => {
     ]);
   };
 
-  const deleteSong = (i) => {
+  const handleDeleteSong = (i) => {
     setNewSongs((prev) => {
       const clone = [...prev];
       clone.splice(i, 1);
@@ -96,11 +116,71 @@ const Edit = () => {
     });
   };
 
+  const cancel = () => {
+    navigate(-1);
+  };
+
+  const deleteAlbumClick = async () => {
+    try {
+      await deleteAlbum(albumId);
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const saveChanges = async () => {
+    try {
+      setAlert("");
+      const { length: newSongLength } = newSongs;
+      for (let i = 0; i < newSongLength; i += 1) {
+        const song = newSongs[i];
+        if (!song.name || !song.audio) {
+          setAlert("all new songs must contain a name and audio");
+          return;
+        }
+      }
+      if (album.name || album.image) {
+        const data = {};
+        if (album.name) data.name = album.name;
+        if (album.image) data.image = album.image;
+        await patchAlbum(albumId, data);
+      }
+      let songPosition = originalSongs.length;
+      const { length: originalSongsLength } = originalSongs;
+      for (let i = 0; i < originalSongsLength; i += 1) {
+        const song = originalSongs[i];
+        if (song.delete) {
+          await deleteSong(song.id);
+          songPosition -= 1;
+        } else if (song.name || song.audio) {
+          const data = {};
+          if (song.name) data.name = song.name;
+          if (song.audio) data.audio = song.audio;
+          await patchSong(song.id, data);
+        }
+      }
+      for (let i = 0; i < newSongLength; i += 1) {
+        const data = {
+          name: newSongs[i].name,
+          audio: newSongs[i].audio,
+          position: songPosition + i,
+          AlbumId: albumId,
+        };
+        await postSongs(data);
+      }
+      navigate(-1);
+    } catch (err) {
+      setAlert(err.message);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       try {
         const response = await getAlbumById(albumId);
         if (response) {
+          response.Songs.sort((a, b) => a.position - b.position);
           setOriginal(response);
           const emptySongArray = response.Songs.map((song) => {
             return {
@@ -124,6 +204,7 @@ const Edit = () => {
   return (
     <div>
       <form>
+        <Alert message={alert} />
         <h2>Edit</h2>
         <h3>Edit Album Info</h3>
         <label htmlFor="name">
@@ -138,12 +219,7 @@ const Edit = () => {
         </label>
         <label htmlFor="image">
           <span>Album Artwork</span>
-          <input
-            type="file"
-            id="image"
-            value={album.image}
-            onChange={handleImageChange}
-          />
+          <input type="file" id="image" onChange={handleImageChange} />
         </label>
         <h3>Edit Songs</h3>
         {originalSongs.map((song, i) => {
@@ -165,7 +241,6 @@ const Edit = () => {
                 <input
                   type="file"
                   id={`song image ${i}`}
-                  value={originalSongs[i].audio}
                   onChange={(e) => handleSongFileChange(e, i)}
                 />
               </label>
@@ -201,11 +276,10 @@ const Edit = () => {
                 <input
                   type="file"
                   id={`new song image ${i}`}
-                  value={newSongs[i].audio}
                   onChange={(e) => handleNewSongFileChange(e, i)}
                 />
               </label>
-              <button type="button" onClick={() => deleteSong(i)}>
+              <button type="button" onClick={() => handleDeleteSong(i)}>
                 delete
               </button>
             </div>
@@ -214,6 +288,17 @@ const Edit = () => {
         <button type="button" onClick={addSong}>
           Add Song
         </button>
+        <div>
+          <button type="button" onClick={cancel}>
+            Cancel
+          </button>
+          <button type="button" onClick={deleteAlbumClick}>
+            Delete Album
+          </button>
+          <button type="button" onClick={saveChanges}>
+            Save Changes
+          </button>
+        </div>
       </form>
     </div>
   );

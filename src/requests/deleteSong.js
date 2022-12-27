@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import instance from "./instance";
 
-const getAlbumById = async (id) => {
+const deleteSong = async (id) => {
   try {
-    const response = await instance.get(`/albums/${id}`);
+    const response = await instance.delete(`/songs/${id}`);
     return response.data;
   } catch (err) {
     console.error(err);
@@ -11,4 +11,4 @@ const getAlbumById = async (id) => {
   }
 };
 
-export default getAlbumById;
+export default deleteSong;

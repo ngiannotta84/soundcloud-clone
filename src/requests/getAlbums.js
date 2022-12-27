@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
-import axios from "axios";
-import address from "./address";
+import instance from "./instance";
 
 const getAlbums = async (obj) => {
-  let endpoint = `${address}/albums`;
+  let endpoint = `/albums`;
   const queryArray = [];
   if (obj) {
     if (obj.name) {
@@ -22,7 +21,7 @@ const getAlbums = async (obj) => {
   }
 
   try {
-    const response = await axios.get(endpoint);
+    const response = await instance.get(endpoint);
     return response.data;
   } catch (err) {
     console.error(err);
