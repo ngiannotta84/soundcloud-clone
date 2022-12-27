@@ -13,6 +13,7 @@ import Profile from "./Profile";
 import SignUp from "./SignUp";
 import MusicPlayer from "./MusicPlayer";
 import Logout from "./Logout";
+import Edit from "./Edit";
 
 const App = () => {
   const initialState = {
@@ -73,9 +74,12 @@ const App = () => {
             element={<Search handleSetPlaylist={handleSetPlaylist} />}
           />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/edit/:albumId" element={<Edit />} />
           <Route
             path="/profile/:userName"
-            element={<Profile handleSetPlaylist={handleSetPlaylist} />}
+            element={
+              <Profile handleSetPlaylist={handleSetPlaylist} userId={user.id} />
+            }
           />
           <Route path="/login" element={<Login handleLogin={handleLogin} />} />
           <Route
