@@ -78,7 +78,11 @@ const App = () => {
           <Route
             path="/profile/:userName"
             element={
-              <Profile handleSetPlaylist={handleSetPlaylist} userId={user.id} />
+              <Profile
+                handleSetPlaylist={handleSetPlaylist}
+                userId={user.id}
+                handleLogout={handleLogin}
+              />
             }
           />
           <Route path="/login" element={<Login handleLogin={handleLogin} />} />
