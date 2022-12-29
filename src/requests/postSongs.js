@@ -1,7 +1,13 @@
 import { postRequest } from "./helpers";
 
 const postSongs = async (data) => {
-  if (!data.name || !data.AlbumId || !data.position || !data.audio) {
+  console.log(data);
+  if (
+    !data.name ||
+    !data.AlbumId ||
+    data.position === undefined ||
+    !data.audio
+  ) {
     throw new Error("missing data");
   }
 

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import Cookie from "js-cookie";
 import instance from "./instance";
 
 const createForm = (model, data) => {
@@ -11,7 +12,7 @@ const createForm = (model, data) => {
       if (data.audio) {
         formData.append("audio", data.audio);
       }
-      if (data.position) {
+      if (data.position !== undefined) {
         formData.append("position", data.position);
       }
       if (data.AlbumId) {
@@ -35,9 +36,17 @@ const createForm = (model, data) => {
   return formData;
 };
 
+const config = () => {
+  return {
+    headers: {
+      userToken: Cookie.get("userToken"),
+    },
+  };
+};
+
 const deleteRequest = async (model, id) => {
   try {
-    const response = await instance.delete(`/${model}/${id}`);
+    const response = await instance.delete(`/${model}/${id}`, config());
     return response.data;
   } catch (err) {
     console.error(err);
@@ -47,7 +56,7 @@ const deleteRequest = async (model, id) => {
 
 const getByIdRequest = async (model, id) => {
   try {
-    const response = await instance.get(`/${model}/${id}`);
+    const response = await instance.get(`/${model}/${id}`, config());
     return response.data;
   } catch (err) {
     console.error(err);
@@ -75,7 +84,7 @@ const getRequest = async (model, obj) => {
   }
 
   try {
-    const response = await instance.get(endpoint);
+    const response = await instance.get(endpoint, config());
     return response.data;
   } catch (err) {
     console.error(err);
@@ -87,7 +96,11 @@ const patchRequest = async (model, id, data) => {
   const formData = createForm(model, data);
 
   try {
-    const response = await instance.patch(`/${model}/${id}`, formData);
+    const response = await instance.patch(
+      `/${model}/${id}`,
+      formData,
+      config()
+    );
     return response.data;
   } catch (err) {
     console.error(err);
@@ -99,7 +112,7 @@ const postRequest = async (model, data) => {
   const formData = createForm(model, data);
 
   try {
-    const response = await instance.post(`/${model}`, formData);
+    const response = await instance.post(`/${model}`, formData, config());
     return response.data;
   } catch (err) {
     console.error(err);
