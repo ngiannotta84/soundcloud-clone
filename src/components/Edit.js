@@ -23,10 +23,9 @@ const Edit = () => {
   });
   const [originalSongs, setOriginalSongs] = useState([]);
   const [newSongs, setNewSongs] = useState([]);
+  const [alert, setAlert] = useState("");
   const { albumId } = useParams();
   const navigate = useNavigate();
-  const [alert, setAlert] = useState("");
-  console.log(originalSongs);
 
   const handleAlbumNameChange = (e) => {
     const { value } = e.target;
