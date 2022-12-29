@@ -1,7 +1,6 @@
 import { postRequest } from "./helpers";
 
 const postSongs = async (data) => {
-  console.log(data);
   if (
     !data.name ||
     !data.AlbumId ||
