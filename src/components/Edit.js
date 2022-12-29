@@ -125,7 +125,7 @@ const Edit = () => {
       await deleteAlbum(albumId);
       navigate(-1);
     } catch (err) {
-      console.error(err);
+      setAlert("failed to delete album");
     }
   };
 
@@ -272,7 +272,7 @@ const Edit = () => {
                 />
               </label>
               <label htmlFor={`new song image ${i}`}>
-                <span>New Song {i} Audio</span>
+                <span>New Song {i + 1} Audio</span>
                 <input
                   type="file"
                   id={`new song image ${i}`}
