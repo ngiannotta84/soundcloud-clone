@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Playlist from "../components/Playlist";
 import fakePlaylist from "./testData/fakePlaylist";
 
