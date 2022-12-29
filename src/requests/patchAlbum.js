@@ -1,20 +1,10 @@
-/* eslint-disable no-console */
-import instance from "./instance";
+import { patchRequest } from "./helpers";
 
 const patchAlbum = async (id, data) => {
-  const formData = new FormData();
-  if (data.name) {
-    formData.append("name", data.name);
-  }
-  if (data.image) {
-    formData.append("image", data.image);
-  }
-
   try {
-    const response = await instance.patch(`/albums/${id}`, formData);
-    return response.data;
+    const response = await patchRequest("albums", id, data);
+    return response;
   } catch (err) {
-    console.error(err);
     throw new Error(err);
   }
 };

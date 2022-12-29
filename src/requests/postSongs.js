@@ -1,21 +1,15 @@
-/* eslint-disable no-console */
-import instance from "./instance";
+import { postRequest } from "./helpers";
 
 const postSongs = async (data) => {
   if (!data.name || !data.AlbumId || !data.position || !data.audio) {
     throw new Error("missing data");
   }
-  const formData = new FormData();
-  formData.append("name", data.name);
-  formData.append("AlbumId", data.AlbumId);
-  formData.append("position", data.position);
-  formData.append("audio", data.audio);
 
   try {
-    const response = await instance.post(`/songs`, formData);
-    console.log(response);
+    const response = await postRequest("songs", data);
+    return response;
   } catch (err) {
-    console.error(err);
+    throw new Error(err);
   }
 };
 

@@ -1,12 +1,10 @@
-/* eslint-disable no-console */
-import instance from "./instance";
+import { getByIdRequest } from "./helpers";
 
 const getAlbumById = async (id) => {
   try {
-    const response = await instance.get(`/albums/${id}`);
-    return response.data;
+    const response = await getByIdRequest("albums", id);
+    return response;
   } catch (err) {
-    console.error(err);
     throw new Error(err);
   }
 };

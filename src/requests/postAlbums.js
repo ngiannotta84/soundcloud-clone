@@ -1,15 +1,15 @@
-/* eslint-disable no-console */
-import instance from "./instance";
+import { postRequest } from "./helpers";
 
-const postAlbums = async () => {
-  const formData = new FormData();
-  formData.append("name", "album");
+const postAlbums = async (data) => {
+  if (!data.name) {
+    throw new Error("missing data");
+  }
 
   try {
-    const response = await instance.post(`/songs`, formData);
-    console.log(response);
+    const response = await postRequest("albums", data);
+    return response;
   } catch (err) {
-    console.error(err);
+    throw new Error(err);
   }
 };
 

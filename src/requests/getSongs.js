@@ -1,30 +1,10 @@
-/* eslint-disable no-console */
-import instance from "./instance";
+import { getRequest } from "./helpers";
 
 const getSongs = async (obj) => {
-  let endpoint = `/songs`;
-  const queryArray = [];
-  if (obj) {
-    if (obj.name) {
-      queryArray.push(`name=${obj.name}`);
-      if (obj.exact) {
-        queryArray.push("exact=true");
-      }
-    }
-    if (obj.limit) {
-      queryArray.push(`limit=${obj.limit}`);
-    }
-    if (queryArray.length > 0) {
-      const query = queryArray.join("&");
-      endpoint = `${endpoint}?${query}`;
-    }
-  }
-
   try {
-    const response = await instance.get(endpoint);
-    return response.data;
+    const response = await getRequest("songs", obj);
+    return response;
   } catch (err) {
-    console.error(err);
     throw new Error(err);
   }
 };

@@ -1,12 +1,10 @@
-/* eslint-disable no-console */
-import instance from "./instance";
+import { postRequest } from "./helpers";
 
 const userSignup = async (data) => {
   try {
-    const response = await instance.post(`/users/signup`, data);
-    return response.data;
+    const response = await postRequest("users/signup", data);
+    return response;
   } catch (err) {
-    console.error(err);
     throw new Error(err);
   }
 };

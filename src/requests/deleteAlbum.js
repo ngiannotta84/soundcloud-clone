@@ -1,12 +1,10 @@
-/* eslint-disable no-console */
-import instance from "./instance";
+import { deleteRequest } from "./helpers";
 
 const deleteAlbum = async (id) => {
   try {
-    const response = await instance.delete(`/albums/${id}`);
-    return response.data;
+    const response = await deleteRequest("albums", id);
+    return response;
   } catch (err) {
-    console.error(err);
     throw new Error(err);
   }
 };
