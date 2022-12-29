@@ -176,16 +176,6 @@ const Edit = () => {
     }
   };
 
-  const areYouSure = (callback) => {
-    return (
-      <div>
-        <h3>Are You Sure?</h3>
-        <button type="button">Yes</button>
-        <button type="button">No</button>
-      </div>
-    );
-  };
-
   useEffect(() => {
     (async () => {
       try {

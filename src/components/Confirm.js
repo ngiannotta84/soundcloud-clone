@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Confirm = ({ callback, setState }) => {
   const handleNo = () => {
-    setState("");
+    setState(null);
   };
 
   return (
