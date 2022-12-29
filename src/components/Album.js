@@ -79,6 +79,7 @@ const Album = ({
 Album.defaultProps = {
   albumUserId: null,
   userId: null,
+  albumId: null,
 };
 
 Album.propTypes = {
@@ -93,9 +94,9 @@ Album.propTypes = {
     })
   ).isRequired,
   handleSetPlaylist: PropTypes.func.isRequired,
-  albumUserId: PropTypes.number,
-  userId: PropTypes.number,
-  albumId: PropTypes.number.isRequired,
+  albumUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  userId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  albumId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default Album;
