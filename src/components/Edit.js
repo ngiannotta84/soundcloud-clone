@@ -9,6 +9,7 @@ import patchAlbum from "../requests/patchAlbum";
 import patchSong from "../requests/patchSong";
 import deleteSong from "../requests/deleteSong";
 import postSongs from "../requests/postSongs";
+import Confirm from "./Confirm";
 
 const Edit = () => {
   const initialState = {
@@ -24,6 +25,7 @@ const Edit = () => {
   const [originalSongs, setOriginalSongs] = useState([]);
   const [newSongs, setNewSongs] = useState([]);
   const [alert, setAlert] = useState("");
+  const [confirm, setConfirm] = useState("");
   const { albumId } = useParams();
   const navigate = useNavigate();
 
@@ -174,6 +176,16 @@ const Edit = () => {
     }
   };
 
+  const areYouSure = (callback) => {
+    return (
+      <div>
+        <h3>Are You Sure?</h3>
+        <button type="button">Yes</button>
+        <button type="button">No</button>
+      </div>
+    );
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -288,17 +300,26 @@ const Edit = () => {
           Add Song
         </button>
         <div>
-          <button type="button" onClick={cancel}>
+          <button type="button" onClick={() => setConfirm("cancel")}>
             Cancel
           </button>
-          <button type="button" onClick={deleteAlbumClick}>
+          <button type="button" onClick={() => setConfirm("delete")}>
             Delete Album
           </button>
-          <button type="button" onClick={saveChanges}>
+          <button type="button" onClick={() => setConfirm("save")}>
             Save Changes
           </button>
         </div>
       </form>
+      {confirm === "cancel" && (
+        <Confirm callback={cancel} setState={setConfirm} />
+      )}
+      {confirm === "delete" && (
+        <Confirm callback={deleteAlbumClick} setState={setConfirm} />
+      )}
+      {confirm === "save" && (
+        <Confirm callback={saveChanges} setState={setConfirm} />
+      )}
     </div>
   );
 };
