@@ -134,9 +134,9 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
           <img
             src={song.image || music}
             alt={`${song.albumName} cover art`}
-            className="music-player__cover-art"
+            className="music-player__left__cover-art"
           />
-          <div className="music-player__info">
+          <div className="music-player__left__info">
             <h2>{song.artistName}</h2>
             <h3>{song.songName}</h3>
           </div>
