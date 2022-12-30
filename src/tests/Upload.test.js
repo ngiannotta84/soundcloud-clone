@@ -1,10 +1,20 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-xtest("renders title", () => {
-  // eslint-disable-next-line react/jsx-no-undef
-  render(<Upload />);
-  const linkElement = screen.getByText(/soundclone/i);
+describe("Upload", () => {
+  test("snapshot", () => {
+    const { asFragment } = render(<Upload />);
+  
+    expect(asFragment()).toMatchSnapshot();
+  });
 
-  expect(linkElement).toBeInTheDocument();
+  describe("tests", () => {
+    beforeEach(() => {
+      render(<Upload />);
+    });
+
+    test("renders correctly", () => {
+      expect(screen.getByText(/upload/i)).toBeInTheDocument();
+    });
+  });
 });

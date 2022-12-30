@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Upload snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    Upload
+  </div>
+</DocumentFragment>
+`;

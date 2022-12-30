@@ -1,0 +1,25 @@
+.song {
+  border: 2px solid grey;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.song__cover-art {
+  aspect-ratio: 1;
+  width: 100px;
+  margin: 10px;
+}
+
+.song__info-container {
+  display: flex;
+  align-items: center;
+}
+
+.song__artist-name,
+.song__album-name {
+  text-align: left;
+}

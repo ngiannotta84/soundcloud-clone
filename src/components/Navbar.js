@@ -1,39 +1,62 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
+import PropTypes from "prop-types";
 
-const Navbar = () => {
+const Navbar = ({ userName }) => {
+  const searchRef = useRef();
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    const query = searchRef.current.value;
+    navigate(`search/${query}`);
+  };
+
   return (
     <nav className="navbar">
       <ul className="navbar-links">
-        <li>
-          <NavLink className="navbar-links-item" to="/">
-            Home
-          </NavLink>
+        <li className="navbar-links-item">
+          <h1>
+            <NavLink to="/">SOUNDCLONE</NavLink>
+          </h1>
         </li>
-        <li>
-          <NavLink className="navbar-links-item" to="login">
-            Login
-          </NavLink>
+        <li className="navbar-links-item">
+          <NavLink to="/">Home</NavLink>
         </li>
-        <li>
-          <NavLink className="navbar-links-item" to="profile">
-            Profile
-          </NavLink>
+        <li className="navbar-links-item">
+          <input type="text" ref={searchRef} />
+          <button type="button" onClick={handleSearch}>
+            search
+          </button>
         </li>
-        <li>
-          <NavLink className="navbar-links-item" to="search">
-            Search
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="navbar-links-item" to="upload">
-            Upload
-          </NavLink>
-        </li>
+        {!userName ? (
+          <li className="navbar-links-item">
+            <NavLink to="login">Login</NavLink>
+          </li>
+        ) : (
+          <>
+            <li className="navbar-links-item">
+              <NavLink to={`profile/${userName}`}>Profile</NavLink>
+            </li>
+            <li className="navbar-links-item">
+              <NavLink to="upload">Upload</NavLink>
+            </li>
+            <li className="navbar-links-item">
+              <NavLink to="logout">Logout</NavLink>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
+};
+
+Navbar.defaultProps = {
+  userName: null,
+};
+
+Navbar.propTypes = {
+  userName: PropTypes.string,
 };
 
 export default Navbar;

@@ -1,21 +1,22 @@
 import { React, useState } from "react";
-import sendData from "../requests/request";
+import PropTypes from "prop-types";
+import { useNavigate, Link } from "react-router-dom";
 import Alert from "./Alert";
+import userSignup from "../requests/userSignup";
 
-const SignUp = () => {
+const SignUp = ({ handleLogin }) => {
   const initialState = {
     fields: {
       username: "",
       email: "",
       password: "",
-      password_confirmation: "",
+      passwordConfirmation: "",
     },
-    alert: {
-      message: "",
-    },
+    alert: "",
   };
   const [fields, setFields] = useState(initialState.fields);
   const [alert, setAlert] = useState(initialState.alert);
+  const navigate = useNavigate();
 
   const handleFieldChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
@@ -24,45 +25,38 @@ const SignUp = () => {
   const handleCredentials = async (event) => {
     const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     event.preventDefault();
-    if (!fields.email) {
-      setAlert({
-        message: "please provide your email address here",
-      });
+    if (!fields.username) {
+      setAlert("please provide a username");
+    } else if (!fields.email) {
+      setAlert("please provide your email address here");
     } else if (!fields.password) {
-      setAlert({
-        message: "please insert your password here",
-      });
-    } else if (!fields.password_confirmation) {
-      setAlert({
-        message: "please insert your password here",
-      });
-    } else if (fields.password_confirmation !== fields.password) {
-      setAlert({
-        message: "please insert 2 matching passwords here",
-      });
+      setAlert("please insert your password here");
+    } else if (fields.password.length < 8) {
+      setAlert("password must be atleast 8 characters long");
+    } else if (fields.passwordConfirmation !== fields.password) {
+      setAlert("passwords must match");
     } else if (!fields.email.match(EMAIL_REGEX)) {
-      setAlert({
-        message: "please provide a valid email",
-      });
+      setAlert("please provide a valid email");
     } else {
       try {
-        await sendData(fields);
-        setAlert({
-          message: "",
+        const response = await userSignup({
+          name: fields.username,
+          email: fields.email,
+          password: fields.password,
         });
-        setFields(initialState.fields);
-      } catch ({ message }) {
-        setAlert({
-          message,
-        });
+        handleLogin(response);
+        navigate(`/profile/${response.name}`);
+      } catch (err) {
+        // add more specific alerts later (e.g. if username is taken)
+        setAlert("Something went wrong, please try again");
       }
     }
   };
 
   return (
     <div className="login">
-      <p>Please Login</p>
-      <Alert message={alert.message} />
+      <h2>Please Signup</h2>
+      <Alert message={alert} />
       <form onSubmit={handleCredentials}>
         <div className="form-field">
           <label htmlFor="username">
@@ -92,7 +86,7 @@ const SignUp = () => {
           <label htmlFor="password">
             <span>Password</span>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               value={fields.password}
@@ -101,12 +95,12 @@ const SignUp = () => {
           </label>
         </div>
         <div className="form-field">
-          <label htmlFor="password_confirmation">
+          <label htmlFor="passwordConfirmation">
             <span>Confirm Password</span>
             <input
-              type="text"
-              id="password_confirmation"
-              name="password_confirmation"
+              type="password"
+              id="passwordConfirmation"
+              name="passwordConfirmation"
               value={fields.password_confirmation}
               onChange={handleFieldChange}
             />
@@ -118,8 +112,18 @@ const SignUp = () => {
           </button>
         </div>
       </form>
+      <p>
+        Already have an account?
+        <Link className="navbar-links-item" to="/login">
+          Log in Here
+        </Link>
+      </p>
     </div>
   );
+};
+
+SignUp.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
 };
 
 export default SignUp;

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <form>
+      <h2>
+        Edit
+      </h2>
+      <h3>
+        Edit Album Info
+      </h3>
+      <label
+        for="name"
+      >
+        <span>
+          Album Name
+        </span>
+        <input
+          id="name"
+          placeholder=""
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        for="image"
+      >
+        <span>
+          Album Artwork
+        </span>
+        <input
+          id="image"
+          type="file"
+        />
+      </label>
+      <h3>
+        Edit Songs
+      </h3>
+      <h3>
+        Add Songs
+      </h3>
+      <button
+        type="button"
+      >
+        Add Song
+      </button>
+      <div>
+        <button
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+        >
+          Delete Album
+        </button>
+        <button
+          type="button"
+        >
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

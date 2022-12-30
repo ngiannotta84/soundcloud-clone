@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile snapshots snapshot no user data 1`] = `
+<DocumentFragment>
+  <div>
+    <h2
+      data-testid="profile-name"
+    >
+      no user found
+    </h2>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Profile snapshots snapshot with user data 1`] = `
+<DocumentFragment>
+  <div>
+    <h2
+      data-testid="profile-name"
+    >
+      name 1
+    </h2>
+    <div
+      class="album"
+    >
+      <div
+        class="album__info-container"
+      >
+        <img
+          alt="album1 cover art"
+          class="album__cover-art"
+          src="art url 1"
+        />
+        <div>
+          <h2
+            class="album__artist-name"
+          >
+            <a
+              href="/profile/name 1"
+            >
+              name 1
+            </a>
+          </h2>
+          <h3
+            class="album__album-name"
+          >
+            album1
+          </h3>
+        </div>
+      </div>
+      <div>
+        <div
+          class="album__song"
+        >
+          <h4
+            class="album__song__song-name"
+          >
+            song1
+          </h4>
+          <div>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Add to queue
+            </button>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Play next
+            </button>
+          </div>
+        </div>
+        <div
+          class="album__song"
+        >
+          <h4
+            class="album__song__song-name"
+          >
+            song2
+          </h4>
+          <div>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Add to queue
+            </button>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Play next
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="album"
+    >
+      <div
+        class="album__info-container"
+      >
+        <img
+          alt="album2 cover art"
+          class="album__cover-art"
+          src="art url 2"
+        />
+        <div>
+          <h2
+            class="album__artist-name"
+          >
+            <a
+              href="/profile/name 1"
+            >
+              name 1
+            </a>
+          </h2>
+          <h3
+            class="album__album-name"
+          >
+            album2
+          </h3>
+        </div>
+      </div>
+      <div>
+        <div
+          class="album__song"
+        >
+          <h4
+            class="album__song__song-name"
+          >
+            song4
+          </h4>
+          <div>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Add to queue
+            </button>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Play next
+            </button>
+          </div>
+        </div>
+        <div
+          class="album__song"
+        >
+          <h4
+            class="album__song__song-name"
+          >
+            song3
+          </h4>
+          <div>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Add to queue
+            </button>
+            <button
+              class="album__song__add-song"
+              type="button"
+            >
+              Play next
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
