@@ -99,4 +99,7 @@ $ npm run deploy
 Generates a production build of the app and deploys it to GitHub pages.
 
 **Attribution**
+
 Created by **Nicola Giannotta, Perry Baran**.
+
+Icons by [flaticon](https://www.flaticon.com/)
