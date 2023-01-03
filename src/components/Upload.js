@@ -1,31 +1,50 @@
-import { React, useState } from "react";
+/* eslint-disable no-await-in-loop */
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuid } from "uuid";
+import Alert from "./Alert";
+import postAlbums from "../requests/postAlbums";
+import postSongs from "../requests/postSongs";
 
 const Upload = () => {
-  const [album, setAlbum] = useState("");
+  const [album, setAlbum] = useState({
+    name: "",
+    image: null,
+  });
+  const [songs, setSongs] = useState([
+    {
+      name: "",
+      audio: "",
+      key: uuid(),
+    },
+  ]);
+  const [alert, setAlert] = useState("");
+  const navigate = useNavigate();
+
   const handleAlbumNameChange = (e) => {
-    setAlbum(e.target.value);
+    const name = e.target.value;
+    setAlbum((prev) => {
+      return { ...prev, name };
+    });
   };
-  const [image, setImage] = useState("");
+
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const image = e.target.files[0];
+    setAlbum((prev) => {
+      return { ...prev, image };
+    });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const createAlbum = {
-      albumName: album,
-      imageFile: image,
-    };
-    return createAlbum;
-  };
-  const emptysong = {
-    songName: "",
-    audioFile: "",
-  };
-  const [songs, setSongs] = useState([emptysong]); // the state is just an array with and instance of empty song inside this means you can create an album with an empty song to start with//
-  // eslint-disable-next-line no-unused-vars
+
   const addSong = () => {
-    setSongs((prev) => [...prev, emptysong]);
+    const emptySong = {
+      name: "",
+      audio: "",
+      key: uuid(),
+    };
+
+    setSongs((prev) => [...prev, emptySong]);
   };
+
   const removeSong = (index) => {
     setSongs((prev) => {
       const clone = [...prev];
@@ -33,26 +52,68 @@ const Upload = () => {
       return clone;
     });
   };
+
   const handleSongsName = (e, index) => {
     const name = e.target.value;
+
     setSongs((prev) => {
       const clone = [...prev];
-      clone[index].songName = name; // get just the clone instance with the specified index(its like saying array[0].songname) and set it to the value given into the text box(event)//
+      clone[index].name = name;
       return clone;
     });
   };
+
   const handleAudioFile = (event, index) => {
     const file = event.target.files[0];
+
     setSongs((prev) => {
       const clone = [...prev];
-      clone[index].audioFile = file;
+      clone[index].audio = file;
       return clone;
     });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setAlert("");
+
+    try {
+      if (!album.name) {
+        setAlert("album must contain a name");
+        return;
+      }
+
+      const { length } = songs;
+      for (let i = 0; i < length; i += 1) {
+        const song = songs[i];
+        if (!song.name || !song.audio) {
+          setAlert("all songs must contain a name and audio");
+          return;
+        }
+      }
+
+      const { id: AlbumId } = await postAlbums(album);
+
+      for (let i = 0; i < length; i += 1) {
+        const data = {
+          name: songs[i].name,
+          audio: songs[i].audio,
+          position: i,
+          AlbumId,
+        };
+
+        await postSongs(data);
+      }
+      navigate(-1);
+    } catch (err) {
+      setAlert(err.message);
+    }
+  };
+
   return (
     <div>
-      <span>Upload You Album</span>
-
+      <Alert message={alert} />
+      <h2>Upload You Album</h2>
       <form className="upload_Form" onSubmit={handleSubmit}>
         <div className="upload_Formfield">
           <label htmlFor="album-name">
@@ -61,12 +122,11 @@ const Upload = () => {
               type="text"
               name="album-name"
               id="album-name"
-              value={album}
+              value={album.name}
               onChange={handleAlbumNameChange}
             />
           </label>
         </div>
-
         <div className="upload_Formfield">
           <label htmlFor="albumImage">
             <span>File Image</span>
@@ -78,12 +138,10 @@ const Upload = () => {
             />
           </label>
         </div>
-
         <div className="upload_Formfield">
           {songs.map((song, index) => {
             return (
-              // eslint-disable-next-line react/no-array-index-key
-              <div key={index}>
+              <div key={song.key}>
                 <label htmlFor={`song-name${index}`}>
                   <span>SongName</span>
                   <input
@@ -100,7 +158,6 @@ const Upload = () => {
                     type="file"
                     name="audio-files"
                     id={`audio-files${index}`}
-                    // eslint-disable-next-line no-undef
                     onChange={(event) => handleAudioFile(event, index)}
                   />
                 </label>
@@ -114,7 +171,7 @@ const Upload = () => {
               </div>
             );
           })}
-          <button className="submit-button" type="submit" onClick={addSong}>
+          <button className="submit-button" type="button" onClick={addSong}>
             Add Song
           </button>
           <button className="submit-button" type="submit">
