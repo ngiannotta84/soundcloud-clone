@@ -1,11 +1,11 @@
 .playlist {
   position: absolute;
-  bottom: 100px;
+  bottom: var(--navbar-height);
   right: 0;
   width: 250px;
   max-height: 400px;
-  background-color: white;
-  border: 1px solid grey;
+  background-color: var(--almost-white);
+  border: 1px solid var(--darker-grey);
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -13,11 +13,11 @@
 
 .playlist__song {
   display: flex;
-  border: 1px solid grey;
+  border: 1px solid var(--dark-grey);
 }
 
 .play__song-active {
-  background-color: lightgray;
+  background-color: var(--dark-grey);
 }
 
 .playlist__song-artist,
@@ -44,8 +44,10 @@
   width: 100%;
 }
 
-.playlist__song-cover-art img {
-
+.playlist__song-cover-art {
+  aspect-ratio: 1;
+  width: 30px;
+  margin-right: 2px;
 }
 
 .playlist__song-button {
