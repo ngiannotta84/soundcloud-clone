@@ -61,7 +61,7 @@ const Search = ({ handleSetPlaylist }) => {
             return (
               <Artist
                 name={data.name}
-                image={data.Albums[0].url}
+                image={data.Albums[0]?.url}
                 key={`${data.id}${data.name}`}
               />
             );
