@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
@@ -141,35 +140,50 @@ const Edit = () => {
           return;
         }
       }
+
+      const albumPromise = [];
+
       if (album.name || album.image) {
-        const data = {};
-        if (album.name) data.name = album.name;
-        if (album.image) data.image = album.image;
-        await patchAlbum(albumId, data);
-      }
-      let songPosition = originalSongs.length;
-      const { length: originalSongsLength } = originalSongs;
-      for (let i = 0; i < originalSongsLength; i += 1) {
-        const song = originalSongs[i];
-        if (song.delete) {
-          await deleteSong(song.id);
-          songPosition -= 1;
-        } else if (song.name || song.audio) {
-          const data = {};
-          if (song.name) data.name = song.name;
-          if (song.audio) data.audio = song.audio;
-          await patchSong(song.id, data);
-        }
-      }
-      for (let i = 0; i < newSongLength; i += 1) {
         const data = {
-          name: newSongs[i].name,
-          audio: newSongs[i].audio,
+          name: album.name || undefined,
+          image: album.image || undefined,
+        };
+        albumPromise.push(patchAlbum(albumId, data));
+      }
+
+      let songPosition = originalSongs.length;
+      const songUpdatePromises = originalSongs.map((song) => {
+        if (song.delete) {
+          songPosition -= 1;
+          return deleteSong(song.id);
+        }
+        if (song.name || song.audio) {
+          const data = {
+            name: song.name || undefined,
+            audio: song.audio || undefined,
+          };
+          return patchSong(song.id, data);
+        }
+        return null;
+      });
+
+      const songPostPromises = newSongs.map((song, i) => {
+        const data = {
+          name: song.name,
+          audio: song.audio,
           position: songPosition + i,
           AlbumId: albumId,
         };
-        await postSongs(data);
-      }
+        return postSongs(data);
+      });
+
+      const promises = albumPromise.concat(
+        songUpdatePromises,
+        songPostPromises
+      );
+
+      await Promise.all(promises);
+
       navigate(-1);
     } catch (err) {
       setAlert(err.message);

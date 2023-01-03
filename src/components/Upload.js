@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
@@ -94,16 +93,19 @@ const Upload = () => {
 
       const { id: AlbumId } = await postAlbums(album);
 
-      for (let i = 0; i < length; i += 1) {
+      const songPromises = songs.map((song, i) => {
         const data = {
-          name: songs[i].name,
-          audio: songs[i].audio,
+          name: song.name,
+          audio: song.audio,
           position: i,
           AlbumId,
         };
 
-        await postSongs(data);
-      }
+        return postSongs(data);
+      });
+
+      await Promise.all(songPromises);
+
       navigate(-1);
     } catch (err) {
       setAlert(err.message);
