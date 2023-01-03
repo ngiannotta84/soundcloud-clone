@@ -127,102 +127,102 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
         src={song.audio}
         ref={audioRef}
         onLoadedMetadata={handleLoadedMetaData}
+        onEnded={() => skipSong()}
         data-testid="audio"
       />
       <div className="music-player-space" />
       <div className="music-player">
-        <div className="music-player__song-info">
-          <h2>{song.artistName && `${song.artistName} - ${song.songName}`}</h2>
+        <div className="music-player__left">
+          <img
+            src={song.image || music}
+            alt={`${song.albumName} cover art`}
+            className="music-player__left__cover-art"
+          />
         </div>
-        <div className="music-player__main">
-          <div className="music-player__left">
-            <img
-              src={song.image || music}
-              alt={`${song.albumName} cover art`}
-              className="music-player__left__cover-art"
-            />
-          </div>
-          <div className="music-player__center">
-            <input
-              type="range"
-              name="time"
-              min={0}
-              max={duration}
-              value={time}
-              onChange={handleProgressBarChange}
-              className="music-player__progress-bar"
-              data-testid="progressBar"
-            />
-            <div className="music-player__center__under">
-              <p className="music-player__center__under__time">
-                {calcTime(time)}
-              </p>
-              <div className="music-player__center__under__buttons">
-                <button
-                  type="button"
-                  onClick={() => skipSong(false)}
-                  className="music-player__skip-backwards"
-                >
-                  <img src={skip} alt="skip backwards" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handlePlaying()}
-                  className="music-player__play-pause"
-                >
-                  <img
-                    src={playing ? pause : play}
-                    alt={playing ? "play" : "pause"}
-                  />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => skipSong()}
-                  className="music-player__skip-forwards"
-                >
-                  <img src={skip} alt="skip forwards" />
-                </button>
-              </div>
-              <p className="music-player__center__under__time">
-                {calcTime(duration)}
-              </p>
-            </div>
-          </div>
-          <div className="music-player__right">
-            <div className="music-player__volume">
-              {showVolumeInput && (
-                <input
-                  type="range"
-                  onChange={handleVolume}
-                  value={volume * 100}
-                  min={0}
-                  max={100}
-                  name="volume"
-                  data-testid="volume"
-                />
-              )}
+        <div className="music-player__center">
+          <h2 className="music-player__song-info">
+            {song.artistName && `${song.artistName} - ${song.songName}`}
+          </h2>
+          <input
+            type="range"
+            name="time"
+            min={0}
+            max={duration}
+            value={time}
+            onChange={handleProgressBarChange}
+            className="music-player__progress-bar"
+            data-testid="progressBar"
+          />
+          <div className="music-player__center__under">
+            <p className="music-player__center__under__time">
+              {calcTime(time)}
+            </p>
+            <div className="music-player__center__under__buttons">
               <button
                 type="button"
-                onClick={() => setShowVolumeInput((prev) => !prev)}
+                onClick={() => skipSong(false)}
+                className="music-player__skip-backwards"
               >
-                <img src={volumeIcon()} alt="volume" />
+                <img src={skip} alt="skip backwards" />
               </button>
-            </div>
-            <div className="music-player__playlist">
-              {showPlaylist && (
-                <Playlist
-                  playlist={playlist}
-                  playlistIndex={playlistIndex}
-                  setPlaylistIndex={setPlaylistIndex}
-                />
-              )}
               <button
                 type="button"
-                onClick={() => setShowPlaylist((prev) => !prev)}
+                onClick={() => handlePlaying()}
+                className="music-player__play-pause"
               >
-                <img src={menu} alt="playlist" />
+                <img
+                  src={playing ? pause : play}
+                  alt={playing ? "play" : "pause"}
+                />
+              </button>
+              <button
+                type="button"
+                onClick={() => skipSong()}
+                className="music-player__skip-forwards"
+              >
+                <img src={skip} alt="skip forwards" />
               </button>
             </div>
+            <p className="music-player__center__under__time">
+              {calcTime(duration)}
+            </p>
+          </div>
+        </div>
+        <div className="music-player__right">
+          <div className="music-player__volume">
+            {showVolumeInput && (
+              <input
+                type="range"
+                onChange={handleVolume}
+                value={volume * 100}
+                min={0}
+                max={100}
+                name="volume"
+                data-testid="volume"
+                className="music-player__volume__input"
+              />
+            )}
+            <button
+              type="button"
+              onClick={() => setShowVolumeInput((prev) => !prev)}
+            >
+              <img src={volumeIcon()} alt="volume" />
+            </button>
+          </div>
+          <div className="music-player__playlist">
+            {showPlaylist && (
+              <Playlist
+                playlist={playlist}
+                playlistIndex={playlistIndex}
+                setPlaylistIndex={setPlaylistIndex}
+              />
+            )}
+            <button
+              type="button"
+              onClick={() => setShowPlaylist((prev) => !prev)}
+            >
+              <img src={menu} alt="playlist" />
+            </button>
           </div>
         </div>
       </div>

@@ -7,26 +7,20 @@
   bottom: 0;
   width: 100%;
   border-top: 1px solid var(--dark-grey);
-  background-color: var(--main-colour);
+  background-color: var(--off-colour);
   height: var(--navbar-height);
+  display: flex;
 }
 
 .music-player__song-info {
   height: 15px;
 }
 
-.music-player__song-info > h2 {
+.music-player__song-info {
   font-size: min(1rem, 2.5vw);
-  position: relative;
   font-weight: 400;
-  top: 2px;
   color: var(--almost-white);
-}
-
-.music-player__main {
   width: 100%;
-  height: calc(100% - 15px);
-  display: flex;
 }
 
 .music-player__left {
@@ -40,7 +34,9 @@
 
 .music-player__left__cover-art {
   aspect-ratio: 1;
-  height: 80%;
+  height: 90%;
+  background-color: var(--almost-white);
+  padding: 2px;
 }
 
 .music-player__left__info {
@@ -128,11 +124,47 @@
   cursor: pointer;
 }
 
-.music-player__volume input {
+.music-player__progress-bar {
+  display: block;
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+  overflow: visible;
+}
+
+.music-player__progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 15px;
+  height: 15px;
+
+  border-radius: 4px;
+
+  background: var(--main-colour);
+}
+
+.music-player__progress-bar::-moz-range-thumb {
+  width: 25px;
+  height: 15px;
+
+  border-radius: 4px;
+
+  background: var(--main-colour);
+}
+
+.music-player__volume__input {
+  -webkit-appearance: none;
   position: absolute;
   bottom: 160px;
 
   width: 200px;
+  border: 2px solid var(--off-colour);
   border-radius: 4px;
 
   transform: rotate(270deg);
@@ -140,4 +172,24 @@
   z-index: 1000000;
   cursor: pointer;
   overflow: visible;
+}
+
+.music-player__volume__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 15px;
+  height: 15px;
+
+  border-radius: 4px;
+
+  background: var(--main-colour);
+}
+
+.music-player__volume__input::-moz-range-thumb {
+  width: 25px;
+  height: 15px;
+  border-radius: 20px;
+
+  background: var(--main-colour);
 }
