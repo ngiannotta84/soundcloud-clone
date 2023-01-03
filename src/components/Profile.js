@@ -59,7 +59,7 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
       )}
       {confirm && (
         <div>
-          <input type="text" ref={passwordRef} />
+          <input type="password" ref={passwordRef} />
           <button type="button" onClick={deleteProfile}>
             Confirm
           </button>
