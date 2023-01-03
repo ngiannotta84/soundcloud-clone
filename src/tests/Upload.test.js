@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 describe("Upload", () => {
   test("snapshot", () => {
     const { asFragment } = render(<Upload />);
-  
+
     expect(asFragment()).toMatchSnapshot();
   });
 

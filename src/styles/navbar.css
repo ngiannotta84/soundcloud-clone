@@ -20,7 +20,7 @@
 
 .navbar__links__item a {
   height: 100%;
-  width: 100%;  
+  width: 100%;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -66,12 +66,10 @@
   color: var(--almost-white);
 }
 
-
-
 .navbar__links__item__heading,
 .navbar__links__item__text {
   text-decoration: none;
-  font-family: 'Major Mono Display', monospace;
+  font-family: "Major Mono Display", monospace;
   font-size: min(1.2rem, 2vw);
   font-weight: 600;
   margin-left: 5px;
