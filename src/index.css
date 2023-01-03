@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
 
 * {
   box-sizing: border-box;
@@ -11,9 +11,11 @@
   --main-colour: rgb(177, 51, 177);
   --off-colour: rgb(116, 27, 116);
   --almost-black: rgb(7, 7, 7);
-  --almost-white: rgb(245, 245, 245);
-  --light-grey: rgb(175, 175, 175);
-  --dark-grey: rgb(80, 80, 80);
+  --almost-white: rgb(252, 252, 252);
+  --light-grey: rgb(248, 248, 248);
+  --dark-grey: rgb(235, 235, 235);
+  --darker-grey: rgb(119, 119, 119);
+  --navbar-height: 80px;
 }
 
 h1 {
