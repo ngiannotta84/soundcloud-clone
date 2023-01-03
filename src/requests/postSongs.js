@@ -10,12 +10,8 @@ const postSongs = async (data) => {
     throw new Error("missing data");
   }
 
-  try {
-    const response = await postRequest("songs", data);
-    return response;
-  } catch (err) {
-    throw new Error(err);
-  }
+  const response = await postRequest("songs", data);
+  return response;
 };
 
 export default postSongs;

@@ -5,12 +5,8 @@ const postAlbums = async (data) => {
     throw new Error("missing data");
   }
 
-  try {
-    const response = await postRequest("albums", data);
-    return response;
-  } catch (err) {
-    throw new Error(err);
-  }
+  const response = await postRequest("albums", data);
+  return response;
 };
 
 export default postAlbums;

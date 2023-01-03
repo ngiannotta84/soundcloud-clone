@@ -50,7 +50,7 @@ const deleteRequest = async (model, id) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -60,7 +60,7 @@ const getByIdRequest = async (model, id) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -88,7 +88,7 @@ const getRequest = async (model, obj) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -104,7 +104,7 @@ const patchRequest = async (model, id, data) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -116,7 +116,7 @@ const postRequest = async (model, data) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    throw new Error(err);
+    throw new Error(err.response.data.message);
   }
 };
 

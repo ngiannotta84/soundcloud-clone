@@ -35,9 +35,7 @@ const Login = ({ handleLogin }) => {
         handleLogin(response);
         navigate(`/profile/${response.name}`);
       } catch (err) {
-        setAlert(
-          "Login failed, please recheck your email and password and try again"
-        );
+        setAlert(err.message);
       }
     }
   };
