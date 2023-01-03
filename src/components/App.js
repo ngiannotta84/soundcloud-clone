@@ -61,7 +61,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <Navbar userName={user.name} />
         <Routes>
