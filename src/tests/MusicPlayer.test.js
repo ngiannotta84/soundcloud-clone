@@ -37,12 +37,9 @@ describe("MusicPlayer", () => {
       expect(screen.getByTestId("audio")).toHaveAttribute("src", song.audio);
       expect(coverArt).toHaveAttribute("alt", `${song.albumName} cover art`);
       expect(coverArt).toHaveAttribute("src", song.image);
-      expect(screen.getByText(song.artistName)).toBeInstanceOf(
-        HTMLHeadingElement
-      );
-      expect(screen.getByText(song.songName)).toBeInstanceOf(
-        HTMLHeadingElement
-      );
+      expect(
+        screen.getByText(`${song.artistName} - ${song.songName}`)
+      ).toBeInstanceOf(HTMLHeadingElement);
       expect(screen.getByTestId("progressBar")).toHaveAttribute(
         "type",
         "range"

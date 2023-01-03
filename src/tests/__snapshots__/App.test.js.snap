@@ -3,40 +3,51 @@
 exports[`App snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="App"
+    class="app"
   >
     <nav
       class="navbar"
     >
       <ul
-        class="navbar-links"
+        class="navbar__links"
       >
         <li
-          class="navbar-links-item"
-        >
-          <h1>
-            <a
-              aria-current="page"
-              class="active"
-              href="/"
-            >
-              SOUNDCLONE
-            </a>
-          </h1>
-        </li>
-        <li
-          class="navbar-links-item"
+          class="navbar__links__item"
         >
           <a
             aria-current="page"
             class="active"
             href="/"
           >
-            Home
+            <h1
+              class="navbar__links__item__heading"
+            >
+              SoundClone
+            </h1>
           </a>
         </li>
         <li
-          class="navbar-links-item"
+          class="navbar__links__item"
+        >
+          <a
+            aria-current="page"
+            class="navbar__links__item--active"
+            href="/"
+          >
+            <img
+              alt="home"
+              class="navbar__links__item__img"
+              src="home.png"
+            />
+            <span
+              class="navbar__links__item__text"
+            >
+              home
+            </span>
+          </a>
+        </li>
+        <li
+          class="navbar__links__search"
         >
           <input
             type="text"
@@ -44,17 +55,29 @@ exports[`App snapshot 1`] = `
           <button
             type="button"
           >
-            search
+            <img
+              alt="search"
+              class="navbar__links__search__img"
+              src="search.png"
+            />
           </button>
         </li>
         <li
-          class="navbar-links-item"
+          class="navbar__links__item"
         >
           <a
-            class=""
             href="/login"
           >
-            Login
+            <img
+              alt="login"
+              class="navbar__links__item__img"
+              src="login.png"
+            />
+            <span
+              class="navbar__links__item__text"
+            >
+              login
+            </span>
           </a>
         </li>
       </ul>
@@ -219,6 +242,9 @@ exports[`App snapshot 1`] = `
       data-testid="audio"
     />
     <div
+      class="music-player-space"
+    />
+    <div
       class="music-player"
     >
       <div
@@ -226,19 +252,16 @@ exports[`App snapshot 1`] = `
       >
         <img
           alt="undefined cover art"
-          class="music-player__cover-art"
+          class="music-player__left__cover-art"
           src="music.png"
         />
-        <div
-          class="music-player__info"
-        >
-          <h2 />
-          <h3 />
-        </div>
       </div>
       <div
         class="music-player__center"
       >
+        <h2
+          class="music-player__song-info"
+        />
         <input
           class="music-player__progress-bar"
           data-testid="progressBar"
@@ -251,10 +274,14 @@ exports[`App snapshot 1`] = `
         <div
           class="music-player__center__under"
         >
-          <p>
+          <p
+            class="music-player__center__under__time"
+          >
             0:00
           </p>
-          <div>
+          <div
+            class="music-player__center__under__buttons"
+          >
             <button
               class="music-player__skip-backwards"
               type="button"
@@ -283,7 +310,9 @@ exports[`App snapshot 1`] = `
               />
             </button>
           </div>
-          <p>
+          <p
+            class="music-player__center__under__time"
+          >
             0:00
           </p>
         </div>
