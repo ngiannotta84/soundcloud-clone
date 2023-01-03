@@ -9,7 +9,7 @@
 
 :root {
   --main-colour: rgb(177, 51, 177);
-  --off-colour: rgb(88, 7, 88);
+  --off-colour: rgb(116, 27, 116);
   --almost-black: rgb(7, 7, 7);
   --almost-white: rgb(245, 245, 245);
   --light-grey: rgb(175, 175, 175);
@@ -17,6 +17,7 @@
 }
 
 h1 {
+  all: unset;
   color: inherit;
 }
 
