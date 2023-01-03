@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../styles/artist.css";
+import { profile } from "../media/icons";
 
 const Artist = ({ name, image }) => {
   return (
@@ -18,9 +19,13 @@ const Artist = ({ name, image }) => {
   );
 };
 
+Artist.defaultProps = {
+  image: profile,
+};
+
 Artist.propTypes = {
   name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
 export default Artist;
