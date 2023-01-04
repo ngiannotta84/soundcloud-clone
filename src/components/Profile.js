@@ -6,6 +6,7 @@ import Album from "./Album";
 import deleteUser from "../requests/deleteUser";
 import Alert from "./Alert";
 import userLogout from "../requests/userLogout";
+import "../styles/profile.css";
 
 const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
   const initialState = {
@@ -49,21 +50,45 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
   };
 
   return (
-    <div>
+    <div className="feed">
       <Alert message={alert} />
-      <h2 data-testid="profile-name">{profile.name}</h2>
-      {profile.id === userId && (
-        <button type="button" onClick={() => setConfirm(true)}>
-          Delete Profile
-        </button>
-      )}
+      <div className="profile__header">
+        <h2 data-testid="profile-name" className="profile__header__heading">
+          {profile.name}
+        </h2>
+        {profile.id === userId && (
+          <button
+            type="button"
+            onClick={() => setConfirm(true)}
+            className="profile__header__button"
+          >
+            Delete Profile
+          </button>
+        )}
+      </div>
       {confirm && (
-        <div>
-          <input type="password" ref={passwordRef} />
-          <button type="button" onClick={deleteProfile}>
+        <div className="profile__confirm-password">
+          <label
+            htmlFor="confirm-password"
+            className="profile__confirm-password__label"
+          >
+            <span className="profile__confirm-password__label-text">
+              Password:
+            </span>
+            <input type="password" ref={passwordRef} id="confirm-password" />
+          </label>
+          <button
+            type="button"
+            onClick={deleteProfile}
+            className="profile__header__button"
+          >
             Confirm
           </button>
-          <button type="button" onClick={() => setConfirm(false)}>
+          <button
+            type="button"
+            onClick={() => setConfirm(false)}
+            className="profile__header__button"
+          >
             Cancel
           </button>
         </div>

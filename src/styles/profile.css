@@ -1,0 +1,33 @@
+.profile__header {
+  width: 95%;
+  max-width: 1000px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__header__heading {
+  font-size: 3rem;
+  font-family: "Major Mono Display", monospace;
+}
+
+.profile__header__button {
+  background-color: var(--dark-grey);
+  border: 2px solid var(--almost-black);
+  color: var(--almost-black);
+  cursor: pointer;
+  font-weight: 700;
+  margin: 0 2px;
+}
+
+.profile__header__button:hover {
+  background-color: var(--almost-black);
+  color: var(--almost-white);
+}
+
+.profile__confirm-password__label-text {
+  margin-right: 5px;
+}
+
+.profile__confirm-password {
+}

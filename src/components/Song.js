@@ -31,24 +31,29 @@ const Song = ({
           alt={`${albumName} cover art`}
           className="song__cover-art"
         />
-        <div>
+        <div className="song__info">
           <h2 className="song__artist-name">
-            <Link to={`/profile/${artistName}`}>{artistName}</Link>
+            <Link
+              to={`/profile/${artistName}`}
+              className="song__artist-name__link"
+            >
+              {artistName}
+            </Link>
           </h2>
-          <h3 className="song__album-name">{songName}</h3>
+          <h3 className="song__song-name">{songName}</h3>
         </div>
       </div>
-      <div>
+      <div className="song__buttons">
         <button
           type="button"
-          className="album__song__add-song"
+          className="song__button"
           onClick={() => handleClick()}
         >
           Add to queue
         </button>
         <button
           type="button"
-          className="album__song__add-song"
+          className="song__button"
           onClick={() => handleClick(true)}
         >
           Play next
