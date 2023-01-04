@@ -159,7 +159,7 @@
 }
 
 .music-player__volume__input {
-  -webkit-appearance: none;
+  appearance: none;
   position: absolute;
   bottom: 160px;
 
