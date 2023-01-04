@@ -41,15 +41,14 @@ const App = () => {
     const data = song;
     data.key = uuid();
 
-    if (addNext && playlist.length > 0) {
-      setPlaylist((prev) => {
+    setPlaylist((prev) => {
+      if (addNext) {
         const clone = [...prev];
         clone.splice(playlistIndex + 1, 0, data);
         return clone;
-      });
-    } else {
-      setPlaylist((prev) => [...prev, data]);
-    }
+      }
+      return [...prev, data];
+    });
   };
 
   useEffect(() => {
@@ -64,37 +63,42 @@ const App = () => {
     <div className="app">
       <Router>
         <Navbar userName={user.name} />
-        <Routes>
-          <Route
-            path="/"
-            element={<Home handleSetPlaylist={handleSetPlaylist} />}
-          />
-          <Route
-            path="/search/:name"
-            element={<Search handleSetPlaylist={handleSetPlaylist} />}
-          />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/edit/:albumId" element={<Edit />} />
-          <Route
-            path="/profile/:userName"
-            element={
-              <Profile
-                handleSetPlaylist={handleSetPlaylist}
-                userId={user.id}
-                handleLogout={handleLogin}
-              />
-            }
-          />
-          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-          <Route
-            path="/signup"
-            element={<SignUp handleLogin={handleLogin} />}
-          />
-          <Route
-            path="/logout"
-            element={<Logout handleLogout={handleLogin} />}
-          />
-        </Routes>
+        <div className="app__routes">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home handleSetPlaylist={handleSetPlaylist} />}
+            />
+            <Route
+              path="/search/:name"
+              element={<Search handleSetPlaylist={handleSetPlaylist} />}
+            />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/edit/:albumId" element={<Edit />} />
+            <Route
+              path="/profile/:userName"
+              element={
+                <Profile
+                  handleSetPlaylist={handleSetPlaylist}
+                  userId={user.id}
+                  handleLogout={handleLogin}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={<Login handleLogin={handleLogin} />}
+            />
+            <Route
+              path="/signup"
+              element={<SignUp handleLogin={handleLogin} />}
+            />
+            <Route
+              path="/logout"
+              element={<Logout handleLogout={handleLogin} />}
+            />
+          </Routes>
+        </div>
       </Router>
       <MusicPlayer
         playlist={playlist}
