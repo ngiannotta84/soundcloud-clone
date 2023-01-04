@@ -35,7 +35,7 @@ const Navbar = ({ userName }) => {
           </NavLink>
         </li>
         <li className="navbar__links__search">
-          <input type="text" ref={searchRef} />
+          <input type="text" ref={searchRef} placeholder="Search" />
           <button type="button" onClick={handleSearch}>
             <img
               src={search}

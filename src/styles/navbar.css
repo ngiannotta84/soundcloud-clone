@@ -45,6 +45,7 @@
   height: 25px;
   border: none;
   background-color: var(--almost-white);
+  padding: 5px;
 }
 
 .navbar__links__search > button {
