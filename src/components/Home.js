@@ -18,7 +18,7 @@ const Home = ({ handleSetPlaylist }) => {
   }, []);
 
   return (
-    <div>
+    <div className="feed">
       {albums.map((album) => {
         return (
           <Album

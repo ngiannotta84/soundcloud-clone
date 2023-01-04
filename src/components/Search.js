@@ -28,7 +28,7 @@ const Search = ({ handleSetPlaylist }) => {
   }, [name]);
 
   return (
-    <div>
+    <div className="feed">
       {search.length > 0 ? (
         search.map((data) => {
           if (data.AlbumId) {
