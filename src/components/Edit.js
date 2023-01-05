@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import Alert from "./Alert";
+import Loader from "./Loader";
 import getAlbumById from "../requests/getAlbumById";
 import deleteAlbum from "../requests/deleteAlbum";
 import patchAlbum from "../requests/patchAlbum";
@@ -16,6 +17,7 @@ const Edit = () => {
     url: "",
     Songs: [],
   };
+
   const [original, setOriginal] = useState({
     name: "",
     url: "",
@@ -29,6 +31,8 @@ const Edit = () => {
   const [newSongs, setNewSongs] = useState([]);
   const [alert, setAlert] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const { albumId } = useParams();
   const navigate = useNavigate();
 
@@ -126,16 +130,20 @@ const Edit = () => {
 
   const deleteAlbumClick = async () => {
     try {
+      setLoading(true);
       await deleteAlbum(albumId);
       navigate(-1);
     } catch (err) {
       setAlert("failed to delete album");
+    } finally {
+      setLoading(false);
     }
   };
 
   const saveChanges = async () => {
     try {
       setAlert("");
+      setLoading(true);
 
       const { length: newSongLength } = newSongs;
       for (let i = 0; i < newSongLength; i += 1) {
@@ -192,12 +200,15 @@ const Edit = () => {
       navigate(-1);
     } catch (err) {
       setAlert(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const response = await getAlbumById(albumId);
         if (response) {
           response.Songs.sort((a, b) => a.position - b.position);
@@ -217,12 +228,16 @@ const Edit = () => {
         }
       } catch (err) {
         setOriginal(initialState);
+        setAlert("failed to find Album");
+      } finally {
+        setLoading(false);
       }
     })();
   }, [albumId]);
 
   return (
     <div>
+      <Loader loading={loading} />
       <form>
         <Alert message={alert} />
         <h2>Edit</h2>

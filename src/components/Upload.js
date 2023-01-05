@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import Alert from "./Alert";
+import Loader from "./Loader";
 import postAlbums from "../requests/postAlbums";
 import postSongs from "../requests/postSongs";
 
@@ -18,6 +19,8 @@ const Upload = () => {
     },
   ]);
   const [alert, setAlert] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleAlbumNameChange = (e) => {
@@ -75,6 +78,7 @@ const Upload = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAlert("");
+    setLoading(true);
 
     try {
       if (!album.name) {
@@ -109,11 +113,14 @@ const Upload = () => {
       navigate(-1);
     } catch (err) {
       setAlert(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
+      <Loader loading={loading} />
       <Alert message={alert} />
       <h2>Upload You Album</h2>
       <form className="upload_Form" onSubmit={handleSubmit}>

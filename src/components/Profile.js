@@ -5,6 +5,7 @@ import getUsers from "../requests/getUsers";
 import Album from "./Album";
 import deleteUser from "../requests/deleteUser";
 import Alert from "./Alert";
+import Loader from "./Loader";
 import userLogout from "../requests/userLogout";
 import "../styles/profile.css";
 
@@ -14,16 +15,20 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
       name: "no user found",
     },
   };
-  const { userName } = useParams();
+
   const [profile, setProfile] = useState(initialState.profile);
   const [alert, setAlert] = useState("");
   const [confirm, setConfirm] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const passwordRef = useRef(null);
+  const { userName } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const [response] = await getUsers({ name: userName, exact: true });
         if (response) {
           setProfile(response);
@@ -32,6 +37,8 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
         }
       } catch (err) {
         setProfile(initialState.profile);
+      } finally {
+        setLoading(false);
       }
     })();
   }, [userName]);
@@ -40,21 +47,25 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
     const password = passwordRef.current.value;
 
     try {
+      setLoading(true);
       await deleteUser(userId, password);
       await userLogout();
       handleLogout();
       navigate("/");
     } catch (err) {
       setAlert(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="feed">
+      <Loader loading={loading} />
       <Alert message={alert} />
       <div className="profile__header">
         <h2 data-testid="profile-name" className="profile__header__heading">
-          {profile.name}
+          {!loading && profile.name}
         </h2>
         {profile.id === userId && (
           <button
