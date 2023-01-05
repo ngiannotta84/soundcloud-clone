@@ -6,8 +6,7 @@
   justify-content: space-between;
 }
 
-.profile__header__heading,
-.profile__header__No-User {
+.profile__header__heading {
   font-size: 3rem;
   font-family: "Major Mono Display", monospace;
 }
@@ -26,10 +25,6 @@
   color: var(--almost-white);
 }
 
-.profile__confirm-password__label-text {
-  margin-right: 5px;
-}
-
 .profile__delete-button {
   border: none;
   border-radius: 3px;
@@ -41,4 +36,54 @@
 
 .profile__delete-button:hover {
   background-color: var(--off-colour);
+}
+
+.profile__confirm-password--container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(128, 128, 128, 0.418);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__confirm-password {
+  background-color: var(--almost-white);
+  width: 300px;
+  height: 120px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.profile__confirm-password__label {
+  display: block;
+}
+
+.profile__confirm-password__label-text {
+  margin-right: 5px;
+  display: block;
+}
+
+.profile__confirm-password__confirm,
+.profile__confirm-password__cancel {
+  background-color: var(--dark-grey);
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 80px;
+}
+
+.profile__confirm-password__confirm:hover {
+  background-color: red;
+  color: var(--almost-white);
+}
+
+.profile__confirm-password__cancel:hover {
+  background-color: var(--main-colour);
+  color: var(--almost-white);
 }

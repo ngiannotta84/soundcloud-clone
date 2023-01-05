@@ -15,13 +15,13 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
   const [confirm, setConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const sortedAlbums = profile.Albums?.sort(
-    (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
-  );
-
   const passwordRef = useRef(null);
   const { userName } = useParams();
   const navigate = useNavigate();
+
+  const sortedAlbums = profile.Albums?.sort(
+    (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+  );
 
   useEffect(() => {
     (async () => {
@@ -54,6 +54,7 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
       setAlert(err.message);
     } finally {
       setLoading(false);
+      setConfirm(false);
     }
   };
 
@@ -61,48 +62,51 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
     <div className="feed">
       <Loader loading={loading} />
       <Alert message={alert} />
-      {!loading && !profile.name && (
-        <h2 className="profile__header__No-User">no user found</h2>
+      {!loading && !profile.name ? (
+        <h2>No User Found</h2>
+      ) : (
+        <div className="profile__header">
+          <h2 data-testid="profile-name" className="profile__header__heading">
+            {profile.name}
+          </h2>
+          {profile.id === userId && (
+            <button
+              type="button"
+              onClick={() => setConfirm(true)}
+              className="profile__delete-button"
+            >
+              Delete Profile
+            </button>
+          )}
+        </div>
       )}
-      <div className="profile__header">
-        <h2 data-testid="profile-name" className="profile__header__heading">
-          {!loading && profile.name}
-        </h2>
-        {profile.id === userId && (
-          <button
-            type="button"
-            onClick={() => setConfirm(true)}
-            className="profile__delete-button"
-          >
-            Delete Profile
-          </button>
-        )}
-      </div>
       {confirm && (
-        <div className="profile__confirm-password">
-          <label
-            htmlFor="confirm-password"
-            className="profile__confirm-password__label"
-          >
-            <span className="profile__confirm-password__label-text">
-              Password:
-            </span>
-            <input type="password" ref={passwordRef} id="confirm-password" />
-          </label>
-          <button
-            type="button"
-            onClick={deleteProfile}
-            className="profile__header__button"
-          >
-            Confirm
-          </button>
-          <button
-            type="button"
-            onClick={() => setConfirm(false)}
-            className="profile__header__button"
-          >
-            Cancel
-          </button>
+        <div className="profile__confirm-password--container">
+          <div className="profile__confirm-password">
+            <label
+              htmlFor="confirm-password"
+              className="profile__confirm-password__label"
+            >
+              <span className="profile__confirm-password__label-text">
+                Confirm Password
+              </span>
+              <input type="password" ref={passwordRef} id="confirm-password" />
+            </label>
+            <button
+              type="button"
+              onClick={deleteProfile}
+              className="profile__confirm-password__confirm"
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              onClick={() => setConfirm(false)}
+              className="profile__confirm-password__cancel"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
       {profile.Albums &&
