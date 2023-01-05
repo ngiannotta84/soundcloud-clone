@@ -221,6 +221,7 @@ const MusicPlayer = ({
                 playlistIndex={playlistIndex}
                 setPlaylistIndex={setPlaylistIndex}
                 removeFromPlaylist={removeFromPlaylist}
+                setPlaying={setPlaying}
               />
             )}
             <button

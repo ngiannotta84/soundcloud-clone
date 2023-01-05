@@ -8,7 +8,13 @@ const Playlist = ({
   playlistIndex,
   setPlaylistIndex,
   removeFromPlaylist,
+  setPlaying,
 }) => {
+  const handleSetPlaying = (i) => {
+    setPlaylistIndex(i);
+    setPlaying(true);
+  };
+
   return (
     <div className="playlist">
       {playlist.map((song, i) => {
@@ -34,7 +40,7 @@ const Playlist = ({
               <button
                 type="button"
                 className="playlist__play-now"
-                onClick={() => setPlaylistIndex(i)}
+                onClick={() => handleSetPlaying(i)}
               >
                 <img src={play} alt="play now" />
               </button>
@@ -70,6 +76,7 @@ Playlist.propTypes = {
   playlistIndex: PropTypes.number.isRequired,
   setPlaylistIndex: PropTypes.func.isRequired,
   removeFromPlaylist: PropTypes.func.isRequired,
+  setPlaying: PropTypes.func.isRequired,
 };
 
 export default Playlist;
