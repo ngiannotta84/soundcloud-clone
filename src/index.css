@@ -17,6 +17,7 @@
   --darker-grey: rgb(119, 119, 119);
   --very-dark-grey: rgb(43, 43, 43);
   --navbar-height: 80px;
+  --scroll-bar-width: 8px;
 }
 
 h1 {
@@ -45,4 +46,17 @@ a {
 .addSong-large {
   margin: 5px 20px;
   width: min(203px, 20cqw);
+}
+
+::-webkit-scrollbar {
+  width: var(--scroll-bar-width);
+}
+
+::-webkit-scrollbar-track {
+  border-left: 2px solid var(--off-colour);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-colour);
+  border-left: 1px solid var(--off-colour);
 }
