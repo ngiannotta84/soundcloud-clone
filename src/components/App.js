@@ -57,6 +57,13 @@ const App = () => {
       clone.splice(i, 1);
       return clone;
     });
+
+    setPlaylistIndex((prev) => {
+      if (i >= prev || prev === 0) {
+        return prev;
+      }
+      return prev - 1;
+    });
   };
 
   useEffect(() => {
@@ -81,8 +88,11 @@ const App = () => {
               path="/search/:name"
               element={<Search handleSetPlaylist={handleSetPlaylist} />}
             />
-            <Route path="/upload" element={<Upload />} />
-            <Route path="/edit/:albumId" element={<Edit />} />
+            <Route path="/upload" element={<Upload userName={user.name} />} />
+            <Route
+              path="/edit/:albumId"
+              element={<Edit userName={user.name} />}
+            />
             <Route
               path="/profile/:userName"
               element={
