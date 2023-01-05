@@ -17,7 +17,7 @@
   --darker-grey: rgb(119, 119, 119);
   --very-dark-grey: rgb(43, 43, 43);
   --navbar-height: 80px;
-  --scroll-bar-width: 8px;
+  --scroll-bar-width: 10px;
 }
 
 h1 {
@@ -53,10 +53,10 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  border-left: 2px solid var(--off-colour);
+  border-left: 2px solid var(--main-colour);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--main-colour);
-  border-left: 1px solid var(--off-colour);
+  background-color: var(--off-colour);
+  border-left: 1px solid var(--main-colour);
 }
