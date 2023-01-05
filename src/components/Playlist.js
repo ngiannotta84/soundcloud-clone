@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { music } from "../media/icons";
+import { music, play } from "../media/icons";
 import "../styles/playlist.css";
 
-const Playlist = ({ playlist, playlistIndex, setPlaylistIndex }) => {
+const Playlist = ({
+  playlist,
+  playlistIndex,
+  setPlaylistIndex,
+  removeFromPlaylist,
+}) => {
   return (
     <div className="playlist">
       {playlist.map((song, i) => {
@@ -28,10 +33,17 @@ const Playlist = ({ playlist, playlistIndex, setPlaylistIndex }) => {
               </div>
               <button
                 type="button"
-                className="playlist__song-button"
+                className="playlist__play-now"
                 onClick={() => setPlaylistIndex(i)}
               >
-                Play Now
+                <img src={play} alt="play now" />
+              </button>
+              <button
+                type="button"
+                className="playlist__remove"
+                onClick={() => removeFromPlaylist(i)}
+              >
+                x
               </button>
             </div>
           </div>
@@ -57,6 +69,7 @@ Playlist.propTypes = {
   ),
   playlistIndex: PropTypes.number.isRequired,
   setPlaylistIndex: PropTypes.func.isRequired,
+  removeFromPlaylist: PropTypes.func.isRequired,
 };
 
 export default Playlist;

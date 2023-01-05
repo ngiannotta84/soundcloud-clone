@@ -14,7 +14,12 @@ import {
   menu,
 } from "../media/icons";
 
-const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
+const MusicPlayer = ({
+  playlist,
+  playlistIndex,
+  setPlaylistIndex,
+  removeFromPlaylist,
+}) => {
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -215,6 +220,7 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
                 playlist={playlist}
                 playlistIndex={playlistIndex}
                 setPlaylistIndex={setPlaylistIndex}
+                removeFromPlaylist={removeFromPlaylist}
               />
             )}
             <button
@@ -246,6 +252,7 @@ MusicPlayer.propTypes = {
   ),
   playlistIndex: PropTypes.number.isRequired,
   setPlaylistIndex: PropTypes.func.isRequired,
+  removeFromPlaylist: PropTypes.func.isRequired,
 };
 
 export default MusicPlayer;

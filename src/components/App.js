@@ -51,6 +51,14 @@ const App = () => {
     });
   };
 
+  const removeFromPlaylist = (i) => {
+    setPlaylist((prev) => {
+      const clone = [...prev];
+      clone.splice(i, 1);
+      return clone;
+    });
+  };
+
   useEffect(() => {
     const token = Cookie.get("userToken");
     if (token) {
@@ -104,6 +112,7 @@ const App = () => {
         playlist={playlist}
         playlistIndex={playlistIndex}
         setPlaylistIndex={setPlaylistIndex}
+        removeFromPlaylist={removeFromPlaylist}
       />
     </div>
   );

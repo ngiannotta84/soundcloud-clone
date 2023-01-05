@@ -50,9 +50,41 @@
   margin-right: 2px;
 }
 
-.playlist__song-button {
+.playlist__play-now,
+.playlist__remove {
   font-size: 0.7rem;
-  border: 1px solid grey;
-  background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
+  height: 40px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-left: 1px solid var(--light-grey);
+  background-color: var(--dark-grey);
+  border-radius: 0px;
+}
+
+.playlist__remove {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.playlist__play-now > img {
+  aspect-ratio: 1;
+  height: 50%;
+}
+
+.playlist__remove:hover {
+  background-color: red;
+  color: var(--almost-white);
+}
+
+.playlist__play-now:hover {
+  background-color: green;
+  color: var(--almost-white);
+}
+
+.playlist__play-now:hover > img {
+  filter: invert();
 }
