@@ -6,7 +6,8 @@
   justify-content: space-between;
 }
 
-.profile__header__heading {
+.profile__header__heading,
+.profile__header__No-User {
   font-size: 3rem;
   font-family: "Major Mono Display", monospace;
 }

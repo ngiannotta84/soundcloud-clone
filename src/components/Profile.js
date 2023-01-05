@@ -10,16 +10,14 @@ import userLogout from "../requests/userLogout";
 import "../styles/profile.css";
 
 const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
-  const initialState = {
-    profile: {
-      name: "no user found",
-    },
-  };
-
-  const [profile, setProfile] = useState(initialState.profile);
+  const [profile, setProfile] = useState({});
   const [alert, setAlert] = useState("");
   const [confirm, setConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const sortedAlbums = profile.Albums?.sort(
+    (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+  );
 
   const passwordRef = useRef(null);
   const { userName } = useParams();
@@ -33,10 +31,10 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
         if (response) {
           setProfile(response);
         } else {
-          setProfile(initialState.profile);
+          setProfile({});
         }
       } catch (err) {
-        setProfile(initialState.profile);
+        setProfile({});
       } finally {
         setLoading(false);
       }
@@ -63,6 +61,9 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
     <div className="feed">
       <Loader loading={loading} />
       <Alert message={alert} />
+      {!loading && !profile.name && (
+        <h2 className="profile__header__No-User">no user found</h2>
+      )}
       <div className="profile__header">
         <h2 data-testid="profile-name" className="profile__header__heading">
           {!loading && profile.name}
@@ -105,7 +106,7 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
         </div>
       )}
       {profile.Albums &&
-        profile.Albums.map((album) => {
+        sortedAlbums.map((album) => {
           return (
             <Album
               artistName={profile.name}
