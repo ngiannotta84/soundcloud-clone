@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import Alert from "./Alert";
 import Loader from "./Loader";
 import postAlbums from "../requests/postAlbums";
 import postSongs from "../requests/postSongs";
 
-const Upload = () => {
+const Upload = ({ userName }) => {
   const [album, setAlbum] = useState({
     name: "",
     image: null,
@@ -110,7 +111,7 @@ const Upload = () => {
 
       await Promise.all(songPromises);
 
-      navigate(-1);
+      navigate(`/profile/${userName}`);
     } catch (err) {
       setAlert(err.message);
     } finally {
@@ -190,6 +191,14 @@ const Upload = () => {
       </form>
     </div>
   );
+};
+
+Upload.defaultProps = {
+  userName: "",
+};
+
+Upload.propTypes = {
+  userName: PropTypes.string,
 };
 
 export default Upload;

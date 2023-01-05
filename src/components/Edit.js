@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import PropTypes from "prop-types";
 import Alert from "./Alert";
 import Loader from "./Loader";
 import getAlbumById from "../requests/getAlbumById";
@@ -11,7 +12,7 @@ import deleteSong from "../requests/deleteSong";
 import postSongs from "../requests/postSongs";
 import Confirm from "./Confirm";
 
-const Edit = () => {
+const Edit = ({ userName }) => {
   const initialState = {
     name: "",
     url: "",
@@ -197,7 +198,7 @@ const Edit = () => {
 
       await Promise.all(promises);
 
-      navigate(-1);
+      navigate(`/profile/${userName}`);
     } catch (err) {
       setAlert(err.message);
     } finally {
@@ -346,6 +347,14 @@ const Edit = () => {
       )}
     </div>
   );
+};
+
+Edit.defaultProps = {
+  userName: "",
+};
+
+Edit.propTypes = {
+  userName: PropTypes.string,
 };
 
 export default Edit;
