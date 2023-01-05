@@ -71,32 +71,20 @@
   justify-self: end;
 }
 
-.album__buttons__link,
-.album__buttons__button,
-.album__song__button {
-  background-color: var(--almost-white);
-  border: 2px solid var(--almost-black);
-  color: var(--almost-black);
-  cursor: pointer;
-  font-weight: 700;
-  font-size: min(1rem, 2cqw);
-}
-
-.album__buttons__link:hover,
-.album__buttons__button:hover,
-.album__song__button:hover {
-  background-color: var(--almost-black);
-  color: var(--almost-white);
-}
-
-.album__buttons__link,
-.album__buttons__button {
-  margin: 5px 20px;
-  font-size: min(1rem, 2cqw);
-  width: min(176px, 20cqw);
-}
-
 .album__buttons__link {
   text-decoration: none;
   font-size: 0.9rem;
+}
+
+.album__buttons__link {
+  border: none;
+  border-radius: 3px;
+  background-color: var(--main-colour);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.album__buttons__link:hover {
+  background-color: var(--off-colour);
 }

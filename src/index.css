@@ -27,3 +27,22 @@ h1 {
 a {
   color: inherit;
 }
+
+.addSong-button {
+  background-color: var(--almost-white);
+  border: 2px solid var(--almost-black);
+  color: var(--almost-black);
+  cursor: pointer;
+  font-weight: 400;
+  font-size: min(1rem, 2cqw);
+}
+
+.addSong-button:hover {
+  background-color: var(--almost-black);
+  color: var(--almost-white);
+}
+
+.addSong-large {
+  margin: 5px 20px;
+  width: min(203px, 20cqw);
+}

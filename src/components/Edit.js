@@ -16,7 +16,11 @@ const Edit = () => {
     url: "",
     Songs: [],
   };
-  const [original, setOriginal] = useState(initialState);
+  const [original, setOriginal] = useState({
+    name: "",
+    url: "",
+    Songs: [],
+  });
   const [album, setAlbum] = useState({
     name: "",
     image: "",
@@ -132,6 +136,7 @@ const Edit = () => {
   const saveChanges = async () => {
     try {
       setAlert("");
+
       const { length: newSongLength } = newSongs;
       for (let i = 0; i < newSongLength; i += 1) {
         const song = newSongs[i];

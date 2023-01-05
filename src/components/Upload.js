@@ -165,8 +165,8 @@ const Upload = () => {
                 </label>
                 <button
                   className="submit-button"
-                  type="submit"
-                  onClick={removeSong}
+                  type="button"
+                  onClick={() => removeSong(index)}
                 >
                   Remove Song
                 </button>

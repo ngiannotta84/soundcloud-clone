@@ -60,7 +60,7 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
           <button
             type="button"
             onClick={() => setConfirm(true)}
-            className="profile__header__button"
+            className="profile__delete-button"
           >
             Delete Profile
           </button>

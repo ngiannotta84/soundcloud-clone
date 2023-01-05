@@ -46,14 +46,14 @@ const Song = ({
       <div className="song__buttons">
         <button
           type="button"
-          className="song__button"
+          className="addSong-button addSong-large"
           onClick={() => handleClick()}
         >
           Add to queue
         </button>
         <button
           type="button"
-          className="song__button"
+          className="addSong-button addSong-large"
           onClick={() => handleClick(true)}
         >
           Play next

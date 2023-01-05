@@ -20,9 +20,6 @@
   align-items: center;
 }
 
-.song__info {
-}
-
 .song__artist-name {
   text-align: left;
   font-size: min(1.5rem, 5cqw);
@@ -36,21 +33,6 @@
 .song__buttons {
   display: flex;
   flex-direction: column;
-}
-
-.song__button {
-  background-color: var(--almost-white);
-  border: 2px solid var(--almost-black);
-  color: var(--almost-black);
-  cursor: pointer;
-  font-weight: 700;
-  margin: 5px 20px;
-  width: min(176px, 20cqw);
-}
-
-.song__button:hover {
-  background-color: var(--almost-black);
-  color: var(--almost-white);
 }
 
 .song__artist-name__link {

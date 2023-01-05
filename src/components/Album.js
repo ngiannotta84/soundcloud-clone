@@ -66,20 +66,23 @@ const Album = ({
         <div className="album__buttons">
           <button
             type="button"
-            className="album__buttons__button"
+            className="addSong-button addSong-large"
             onClick={() => handleClickAlbum()}
           >
             Add Album to queue
           </button>
           <button
             type="button"
-            className="album__buttons__button"
+            className="addSong-button addSong-large"
             onClick={() => handleClickAlbum(true)}
           >
             Play Album next
           </button>
           {userId !== null && userId === albumUserId && (
-            <Link to={`/edit/${albumId}`} className="album__buttons__link">
+            <Link
+              to={`/edit/${albumId}`}
+              className="album__buttons__link addSong-large"
+            >
               Edit
             </Link>
           )}
@@ -93,14 +96,14 @@ const Album = ({
               <div>
                 <button
                   type="button"
-                  className="album__song__button"
+                  className="addSong-button album__song__button"
                   onClick={() => handleClickSong(song)}
                 >
                   Add to queue
                 </button>
                 <button
                   type="button"
-                  className="album__song__button"
+                  className="addSong-button album__song__button"
                   onClick={() => handleClickSong(song, true)}
                 >
                   Play next

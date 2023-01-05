@@ -29,5 +29,15 @@
   margin-right: 5px;
 }
 
-.profile__confirm-password {
+.profile__delete-button {
+  border: none;
+  border-radius: 3px;
+  background-color: var(--main-colour);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile__delete-button:hover {
+  background-color: var(--off-colour);
 }
