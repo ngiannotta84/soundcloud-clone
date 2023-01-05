@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "../styles/App.css";
+import "../styles/app.css";
 import Cookie from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { v4 as uuid } from "uuid";
