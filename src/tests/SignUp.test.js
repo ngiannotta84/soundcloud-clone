@@ -128,8 +128,9 @@ describe("Login", () => {
     });
 
     test("it renders and error message if userSignup throws an error", () => {
+      const error = "Error!";
       userSignupMock.mockImplementation(() => {
-        throw new Error();
+        throw new Error(error);
       });
       const username = screen.getByLabelText(/username/i);
       const email = screen.getByLabelText(/email/i);
@@ -143,9 +144,7 @@ describe("Login", () => {
       fireEvent.change(confirmPassword, { target: { value: "12345Nicola" } });
       fireEvent.click(button);
 
-      expect(
-        screen.getByText("Something went wrong, please try again")
-      ).toBeInTheDocument();
+      expect(screen.getByText(error)).toBeInTheDocument();
     });
 
     test("user is logged-in if userSignup is succesfull", async () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import MusicPlayer from "../components/MusicPlayer";
 import fakePlaylist from "./testData/fakePlaylist";
 
@@ -8,6 +8,7 @@ describe("MusicPlayer", () => {
     playlist: fakePlaylist,
     playlistIndex: 1,
     setPlaylistIndex: jest.fn(),
+    removeFromPlaylist: jest.fn(),
   };
   const audioPlay = jest.fn();
   const audioPause = jest.fn();

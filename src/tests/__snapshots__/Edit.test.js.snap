@@ -3,6 +3,10 @@
 exports[`Edit snapshot 1`] = `
 <DocumentFragment>
   <div>
+    <span
+      aria-label="Loading Spinner"
+      style="width: 150px; height: 150px; border-radius: 100%; border: 2px solid; border-top-color: #B133B1; border-bottom-color: transparent; border-left-color: #B133B1; border-right-color: #B133B1; display: inline-block; animation: react-spinners-ClipLoader-clip 0.75s 0s infinite linear; animation-fill-mode: both;"
+    />
     <form>
       <h2>
         Edit
