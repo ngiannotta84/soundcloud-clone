@@ -14,6 +14,8 @@ import SignUp from "./SignUp";
 import MusicPlayer from "./MusicPlayer";
 import Logout from "./Logout";
 import Edit from "./Edit";
+import EditProfile from "./EditProfile";
+import getUserById from "../requests/getUserById";
 
 const App = () => {
   const initialState = {
@@ -30,9 +32,8 @@ const App = () => {
     if (data === undefined) {
       setUser(initialState.user);
     } else {
-      setUser({
-        name: data.name,
-        id: data.id,
+      setUser((prev) => {
+        return { ...prev, ...data };
       });
     }
   };
@@ -67,11 +68,16 @@ const App = () => {
   };
 
   useEffect(() => {
-    const token = Cookie.get("userToken");
-    if (token) {
-      const currentUser = jwtDecode(token);
-      handleLogin(currentUser);
-    }
+    (async () => {
+      const token = Cookie.get("userToken");
+      if (!token) return;
+      const { id } = jwtDecode(token);
+      const response = await getUserById(id);
+      handleLogin({
+        name: response.name,
+        id: response.id,
+      });
+    })();
   }, []);
 
   return (
@@ -102,6 +108,10 @@ const App = () => {
                   handleLogout={handleLogin}
                 />
               }
+            />
+            <Route
+              path="/profile/edit"
+              element={<EditProfile user={user} handleLogin={handleLogin} />}
             />
             <Route
               path="/login"
