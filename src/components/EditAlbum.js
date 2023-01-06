@@ -12,7 +12,7 @@ import deleteSong from "../requests/deleteSong";
 import postSongs from "../requests/postSongs";
 import Confirm from "./Confirm";
 
-const Edit = ({ userName }) => {
+const EditAlbum = ({ userName }) => {
   const initialState = {
     name: "",
     Songs: [],
@@ -339,12 +339,12 @@ const Edit = ({ userName }) => {
   );
 };
 
-Edit.defaultProps = {
+EditAlbum.defaultProps = {
   userName: "",
 };
 
-Edit.propTypes = {
+EditAlbum.propTypes = {
   userName: PropTypes.string,
 };
 
-export default Edit;
+export default EditAlbum;

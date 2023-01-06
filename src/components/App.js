@@ -13,7 +13,7 @@ import Profile from "./Profile";
 import SignUp from "./SignUp";
 import MusicPlayer from "./MusicPlayer";
 import Logout from "./Logout";
-import Edit from "./Edit";
+import EditAlbum from "./EditAlbum";
 import EditProfile from "./EditProfile";
 import getUserById from "../requests/getUserById";
 
@@ -97,7 +97,7 @@ const App = () => {
             <Route path="/upload" element={<Upload userName={user.name} />} />
             <Route
               path="/edit/:albumId"
-              element={<Edit userName={user.name} />}
+              element={<EditAlbum userName={user.name} />}
             />
             <Route
               path="/profile/:userName"
