@@ -19,10 +19,6 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
   const { userName } = useParams();
   const navigate = useNavigate();
 
-  const sortedAlbums = profile.Albums?.sort(
-    (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
-  );
-
   useEffect(() => {
     (async () => {
       try {
@@ -110,7 +106,7 @@ const Profile = ({ handleSetPlaylist, userId, handleLogout }) => {
         </div>
       )}
       {profile.Albums &&
-        sortedAlbums.map((album) => {
+        profile.Albums.map((album) => {
           return (
             <Album
               artistName={profile.name}

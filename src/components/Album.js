@@ -14,10 +14,6 @@ const Album = ({
   userId,
   albumId,
 }) => {
-  const orderedSongs = songs.sort(
-    (a, b) => Number(a.position) - Number(b.position)
-  );
-
   const songData = (song) => {
     return {
       image: albumArt,
@@ -34,16 +30,16 @@ const Album = ({
   };
 
   const handleClickAlbum = (addNext = false) => {
-    const { length } = orderedSongs;
+    const { length } = songs;
 
     if (addNext) {
       for (let i = length - 1; i >= 0; i -= 1) {
-        const data = songData(orderedSongs[i]);
+        const data = songData(songs[i]);
         handleSetPlaylist(data, addNext);
       }
     } else {
       for (let i = 0; i < length; i += 1) {
-        const data = songData(orderedSongs[i]);
+        const data = songData(songs[i]);
         handleSetPlaylist(data, addNext);
       }
     }
@@ -89,7 +85,7 @@ const Album = ({
         </div>
       </div>
       <li className="album__songs">
-        {orderedSongs.map((song) => {
+        {songs.map((song) => {
           return (
             <ul key={song.id} className="album__song">
               <h4 className="album__song__song-name">{song.name}</h4>
