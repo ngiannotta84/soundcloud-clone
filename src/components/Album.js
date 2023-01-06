@@ -79,7 +79,7 @@ const Album = ({
               to={`/edit/${albumId}`}
               className="album__buttons__link addSong-large"
             >
-              Edit
+              Edit Album
             </Link>
           )}
         </div>

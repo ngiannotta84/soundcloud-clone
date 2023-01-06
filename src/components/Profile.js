@@ -40,7 +40,9 @@ const Profile = ({ handleSetPlaylist, userId }) => {
             {profile.name}
           </h2>
           {profile.id === userId && (
-            <Link to="/profile/edit">Edit Profile</Link>
+            <Link to="/profile/edit" className="profile__edit">
+              Edit Profile
+            </Link>
           )}
         </div>
       )}
