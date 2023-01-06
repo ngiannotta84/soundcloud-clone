@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import "../styles/confirm.css";
+import "../styles/confirmPassword.css";
 
 const ConfirmPassword = ({ callback, setConfirm }) => {
   const passwordRef = useRef();
@@ -15,28 +15,23 @@ const ConfirmPassword = ({ callback, setConfirm }) => {
   };
 
   return (
-    <div className="profile__confirm-password--container">
-      <div className="profile__confirm-password">
-        <label
-          htmlFor="confirm-password"
-          className="profile__confirm-password__label"
-        >
-          <span className="profile__confirm-password__label-text">
-            Confirm Password
-          </span>
+    <div className="confirm-password--container">
+      <div className="confirm-password">
+        <label htmlFor="confirm-password" className="confirm-password__label">
+          <span className="confirm-password__label-text">Confirm Password</span>
           <input type="password" ref={passwordRef} id="confirm-password" />
         </label>
         <button
           type="button"
           onClick={handleDelete}
-          className="profile__confirm-password__confirm"
+          className="confirm-password__confirm"
         >
           Delete
         </button>
         <button
           type="button"
           onClick={handleCancel}
-          className="profile__confirm-password__cancel"
+          className="confirm-password__cancel"
         >
           Cancel
         </button>
