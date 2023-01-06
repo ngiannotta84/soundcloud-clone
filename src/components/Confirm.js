@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../styles/confirm.css";
 
-const Confirm = ({ callback, setState }) => {
+const Confirm = ({ callback, setConfirm }) => {
   const handleNo = () => {
-    setState(null);
+    setConfirm(null);
   };
 
   return (
@@ -24,7 +24,7 @@ const Confirm = ({ callback, setState }) => {
 
 Confirm.propTypes = {
   callback: PropTypes.func.isRequired,
-  setState: PropTypes.func.isRequired,
+  setConfirm: PropTypes.func.isRequired,
 };
 
 export default Confirm;
