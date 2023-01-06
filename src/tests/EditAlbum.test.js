@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { act } from "react-dom/test-utils";
-import Edit from "../components/Edit";
+import EditAlbum from "../components/EditAlbum";
 import * as getAlbumById from "../requests/getAlbumById";
 import * as deleteAlbum from "../requests/deleteAlbum";
 import * as patchAlbum from "../requests/patchAlbum";
@@ -29,7 +29,7 @@ describe("Edit", () => {
     await act(() => {
       const view = render(
         <Router>
-          <Edit />
+          <EditAlbum />
         </Router>
       );
       asFragment = view.asFragment;
@@ -43,7 +43,7 @@ describe("Edit", () => {
       await act(() => {
         render(
           <Router>
-            <Edit />
+            <EditAlbum />
           </Router>
         );
       });
