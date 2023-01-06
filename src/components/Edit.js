@@ -15,20 +15,12 @@ import Confirm from "./Confirm";
 const Edit = ({ userName }) => {
   const initialState = {
     name: "",
-    url: "",
     Songs: [],
   };
 
-  const [original, setOriginal] = useState({
-    name: "",
-    url: "",
-    Songs: [],
-  });
-  const [album, setAlbum] = useState({
-    name: "",
-    image: "",
-  });
-  const [originalSongs, setOriginalSongs] = useState([]);
+  const [placeHolders, setPlaceHolders] = useState(initialState);
+  const [album, setAlbum] = useState({});
+  const [editSongs, setEditSongs] = useState([]);
   const [newSongs, setNewSongs] = useState([]);
   const [alert, setAlert] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -58,7 +50,7 @@ const Edit = ({ userName }) => {
 
   const handleSongNameChange = (e, i) => {
     const { name, value } = e.target;
-    setOriginalSongs((prev) => {
+    setEditSongs((prev) => {
       const clone = [...prev];
       clone[i][name] = value;
       return clone;
@@ -71,7 +63,7 @@ const Edit = ({ userName }) => {
     if (file.type.split("/")[0] !== "audio") {
       setAlert("Songs files must be of type audio");
     } else {
-      setOriginalSongs((prev) => {
+      setEditSongs((prev) => {
         const clone = [...prev];
         clone[i].audio = file;
         return clone;
@@ -81,7 +73,7 @@ const Edit = ({ userName }) => {
 
   const handleSongDelete = (e, i) => {
     const { checked } = e.target;
-    setOriginalSongs((prev) => {
+    setEditSongs((prev) => {
       const clone = [...prev];
       clone[i].delete = checked;
       return clone;
@@ -165,10 +157,8 @@ const Edit = ({ userName }) => {
         albumPromise.push(patchAlbum(albumId, data));
       }
 
-      let songPosition = originalSongs.length;
-      const songUpdatePromises = originalSongs.map((song) => {
+      const songUpdatePromises = editSongs.map((song) => {
         if (song.delete) {
-          songPosition -= 1;
           return deleteSong(song.id);
         }
         if (song.name || song.audio) {
@@ -181,6 +171,7 @@ const Edit = ({ userName }) => {
         return null;
       });
 
+      const songPosition = editSongs.length;
       const songPostPromises = newSongs.map((song, i) => {
         const data = {
           name: song.name,
@@ -212,8 +203,7 @@ const Edit = ({ userName }) => {
         setLoading(true);
         const response = await getAlbumById(albumId);
         if (response) {
-          response.Songs.sort((a, b) => a.position - b.position);
-          setOriginal(response);
+          setPlaceHolders(response);
           const emptySongArray = response.Songs.map((song) => {
             return {
               name: "",
@@ -223,12 +213,12 @@ const Edit = ({ userName }) => {
               key: uuid(),
             };
           });
-          setOriginalSongs(emptySongArray);
+          setEditSongs(emptySongArray);
         } else {
-          setOriginal(initialState);
+          setPlaceHolders(initialState);
         }
       } catch (err) {
-        setOriginal(initialState);
+        setPlaceHolders(initialState);
         setAlert("failed to find Album");
       } finally {
         setLoading(false);
@@ -239,8 +229,8 @@ const Edit = ({ userName }) => {
   return (
     <div>
       <Loader loading={loading} />
+      <Alert message={alert} />
       <form>
-        <Alert message={alert} />
         <h2>Edit</h2>
         <h3>Edit Album Info</h3>
         <label htmlFor="name">
@@ -249,7 +239,7 @@ const Edit = ({ userName }) => {
             type="text"
             id="name"
             value={album.name}
-            placeholder={original.name}
+            placeholder={placeHolders.name}
             onChange={handleAlbumNameChange}
           />
         </label>
@@ -258,7 +248,7 @@ const Edit = ({ userName }) => {
           <input type="file" id="image" onChange={handleImageChange} />
         </label>
         <h3>Edit Songs</h3>
-        {originalSongs.map((song, i) => {
+        {editSongs.map((song, i) => {
           return (
             <div key={`${song.key}`}>
               <label htmlFor={`song name ${i}`}>
@@ -267,8 +257,8 @@ const Edit = ({ userName }) => {
                   type="text"
                   id={`song name ${i}`}
                   name="name"
-                  value={originalSongs[i].name}
-                  placeholder={original.Songs[i].name}
+                  value={editSongs[i].name}
+                  placeholder={placeHolders.Songs[i].name}
                   onChange={(e) => handleSongNameChange(e, i)}
                 />
               </label>
@@ -286,7 +276,7 @@ const Edit = ({ userName }) => {
                   type="checkbox"
                   id={`delete song ${i}`}
                   name="delete"
-                  checked={originalSongs[i].delete}
+                  checked={editSongs[i].delete}
                   onChange={(e) => handleSongDelete(e, i)}
                 />
               </label>
@@ -337,13 +327,13 @@ const Edit = ({ userName }) => {
         </div>
       </form>
       {confirm === "cancel" && (
-        <Confirm callback={cancel} setState={setConfirm} />
+        <Confirm callback={cancel} setConfirm={setConfirm} />
       )}
       {confirm === "delete" && (
-        <Confirm callback={deleteAlbumClick} setState={setConfirm} />
+        <Confirm callback={deleteAlbumClick} setConfirm={setConfirm} />
       )}
       {confirm === "save" && (
-        <Confirm callback={saveChanges} setState={setConfirm} />
+        <Confirm callback={saveChanges} setConfirm={setConfirm} />
       )}
     </div>
   );
