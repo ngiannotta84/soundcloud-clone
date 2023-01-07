@@ -3,7 +3,95 @@
 exports[`Upload snapshot 1`] = `
 <DocumentFragment>
   <div>
-    Upload
+    <span>
+      Upload You Album
+    </span>
+    <form
+      class="upload_Form"
+    >
+      <div
+        class="upload_Formfield"
+      >
+        <label
+          for="album-name"
+        >
+          <span>
+            Album Name
+          </span>
+          <input
+            id="album-name"
+            name="album-name"
+            type="text"
+            value=""
+          />
+        </label>
+      </div>
+      <div
+        class="upload_Formfield"
+      >
+        <label
+          for="albumImage"
+        >
+          <span>
+            File Image
+          </span>
+          <input
+            id="albumImage"
+            name="albumImage"
+            type="file"
+          />
+        </label>
+      </div>
+      <div
+        class="upload_Formfield"
+      >
+        <div>
+          <label
+            for="song-name0"
+          >
+            <span>
+              SongName
+            </span>
+            <input
+              id="song-name0"
+              name="song-name"
+              type="text"
+              value=""
+            />
+          </label>
+          <label
+            for="audio-files0"
+          >
+            <span>
+              Audio Files
+            </span>
+            <input
+              id="audio-files0"
+              name="audio-files"
+              type="file"
+            />
+          </label>
+          <button
+            class="submit-button"
+            type="submit"
+          >
+            Remove Song
+          </button>
+        </div>
+        <button
+          class="submit-button"
+          type="submit"
+        >
+          Add Song
+        </button>
+        <button
+          class="submit-button"
+          type="submit"
+        >
+          Create an Album
+        </button>
+      </div>
+    </form>
   </div>
 </DocumentFragment>
 `;

@@ -14,7 +14,12 @@ import {
   menu,
 } from "../media/icons";
 
-const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
+const MusicPlayer = ({
+  playlist,
+  playlistIndex,
+  setPlaylistIndex,
+  removeFromPlaylist,
+}) => {
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -127,8 +132,10 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
         src={song.audio}
         ref={audioRef}
         onLoadedMetadata={handleLoadedMetaData}
+        onEnded={() => skipSong()}
         data-testid="audio"
       />
+      <div className="music-player-space" />
       <div className="music-player">
         <div className="music-player__left">
           <img
@@ -136,12 +143,11 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
             alt={`${song.albumName} cover art`}
             className="music-player__left__cover-art"
           />
-          <div className="music-player__left__info">
-            <h2>{song.artistName}</h2>
-            <h3>{song.songName}</h3>
-          </div>
         </div>
         <div className="music-player__center">
+          <h2 className="music-player__song-info">
+            {song.artistName && `${song.artistName} - ${song.songName}`}
+          </h2>
           <input
             type="range"
             name="time"
@@ -153,8 +159,10 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
             data-testid="progressBar"
           />
           <div className="music-player__center__under">
-            <p>{calcTime(time)}</p>
-            <div>
+            <p className="music-player__center__under__time">
+              {calcTime(time)}
+            </p>
+            <div className="music-player__center__under__buttons">
               <button
                 type="button"
                 onClick={() => skipSong(false)}
@@ -180,7 +188,9 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
                 <img src={skip} alt="skip forwards" />
               </button>
             </div>
-            <p>{calcTime(duration)}</p>
+            <p className="music-player__center__under__time">
+              {calcTime(duration)}
+            </p>
           </div>
         </div>
         <div className="music-player__right">
@@ -194,6 +204,7 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
                 max={100}
                 name="volume"
                 data-testid="volume"
+                className="music-player__volume__input"
               />
             )}
             <button
@@ -209,6 +220,8 @@ const MusicPlayer = ({ playlist, playlistIndex, setPlaylistIndex }) => {
                 playlist={playlist}
                 playlistIndex={playlistIndex}
                 setPlaylistIndex={setPlaylistIndex}
+                removeFromPlaylist={removeFromPlaylist}
+                setPlaying={setPlaying}
               />
             )}
             <button
@@ -240,6 +253,7 @@ MusicPlayer.propTypes = {
   ),
   playlistIndex: PropTypes.number.isRequired,
   setPlaylistIndex: PropTypes.func.isRequired,
+  removeFromPlaylist: PropTypes.func.isRequired,
 };
 
 export default MusicPlayer;

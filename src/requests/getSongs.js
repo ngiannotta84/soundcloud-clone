@@ -1,12 +1,8 @@
 import { getRequest } from "./helpers";
 
 const getSongs = async (obj) => {
-  try {
-    const response = await getRequest("songs", obj);
-    return response;
-  } catch (err) {
-    throw new Error(err);
-  }
+  const response = await getRequest("songs", obj);
+  return response;
 };
 
 export default getSongs;

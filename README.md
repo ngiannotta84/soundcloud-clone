@@ -21,6 +21,7 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
 - [js-cookie](https://www.npmjs.com/package/js-cookie)
 - [jwt-decode](https://www.npmjs.com/package/jwt-decode)
 - [uuid](https://www.npmjs.com/package/uuid)
+- [react-spinners](https://www.npmjs.com/package/react-spinners)
 
 **Dev Dependancies**
 
@@ -99,4 +100,7 @@ $ npm run deploy
 Generates a production build of the app and deploys it to GitHub pages.
 
 **Attribution**
+
 Created by **Nicola Giannotta, Perry Baran**.
+
+Icons by [flaticon](https://www.flaticon.com/)

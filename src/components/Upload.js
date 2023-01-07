@@ -1,32 +1,53 @@
-import { React, useState } from "react";
-import "../styles/upload.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import { v4 as uuid } from "uuid";
+import Alert from "./Alert";
+import Loader from "./Loader";
+import postAlbums from "../requests/postAlbums";
+import postSongs from "../requests/postSongs";
 
-const Upload = () => {
-  const [album, setAlbum] = useState("");
+const Upload = ({ userName }) => {
+  const [album, setAlbum] = useState({
+    name: "",
+    image: null,
+  });
+  const [songs, setSongs] = useState([
+    {
+      name: "",
+      audio: "",
+      key: uuid(),
+    },
+  ]);
+  const [alert, setAlert] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
   const handleAlbumNameChange = (e) => {
-    setAlbum(e.target.value);
+    const name = e.target.value;
+    setAlbum((prev) => {
+      return { ...prev, name };
+    });
   };
-  const [image, setImage] = useState("");
+
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const image = e.target.files[0];
+    setAlbum((prev) => {
+      return { ...prev, image };
+    });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const createAlbum = {
-      albumName: album,
-      imageFile: image,
-    };
-    return createAlbum;
-  };
-  const emptysong = {
-    songName: "",
-    audioFile: "",
-  };
-  const [songs, setSongs] = useState([emptysong]); // the state is just an array with and instance of empty song inside this means you can create an album with an empty song to start with//
-  // eslint-disable-next-line no-unused-vars
+
   const addSong = () => {
-    setSongs((prev) => [...prev, emptysong]);
+    const emptySong = {
+      name: "",
+      audio: "",
+      key: uuid(),
+    };
+
+    setSongs((prev) => [...prev, emptySong]);
   };
+
   const removeSong = (index) => {
     setSongs((prev) => {
       const clone = [...prev];
@@ -34,24 +55,74 @@ const Upload = () => {
       return clone;
     });
   };
+
   const handleSongsName = (e, index) => {
     const name = e.target.value;
+
     setSongs((prev) => {
       const clone = [...prev];
-      clone[index].songName = name; // get just the clone instance with the specified index(its like saying array[0].songname) and set it to the value given into the text box(event)//
+      clone[index].name = name;
       return clone;
     });
   };
+
   const handleAudioFile = (event, index) => {
     const file = event.target.files[0];
+
     setSongs((prev) => {
       const clone = [...prev];
-      clone[index].audioFile = file;
+      clone[index].audio = file;
       return clone;
     });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setAlert("");
+    setLoading(true);
+
+    try {
+      if (!album.name) {
+        setAlert("album must contain a name");
+        return;
+      }
+
+      const { length } = songs;
+      for (let i = 0; i < length; i += 1) {
+        const song = songs[i];
+        if (!song.name || !song.audio) {
+          setAlert("all songs must contain a name and audio");
+          return;
+        }
+      }
+
+      const { id: AlbumId } = await postAlbums(album);
+
+      const songPromises = songs.map((song, i) => {
+        const data = {
+          name: song.name,
+          audio: song.audio,
+          position: i,
+          AlbumId,
+        };
+
+        return postSongs(data);
+      });
+
+      await Promise.all(songPromises);
+
+      navigate(`/profile/${userName}`);
+    } catch (err) {
+      setAlert(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
+      <Loader loading={loading} />
+      <Alert message={alert} />
       <h2 className="upload__title">Upload Your Album</h2>
       <form className="upload__form" onSubmit={handleSubmit}>
         <div className="upload__albuminfobox">
@@ -79,7 +150,6 @@ const Upload = () => {
             </label>
           </div>
         </div>
-
         <div className="upload__songsinfobox">
           {songs.map((song, index) => {
             return (
@@ -111,7 +181,7 @@ const Upload = () => {
                 <div className="songs-info">
                   <button
                     className="submit-button"
-                    type="submit"
+                    type="button"
                     onClick={removeSong}
                   >
                     Remove Song
@@ -121,7 +191,7 @@ const Upload = () => {
             );
           })}
           <div className="add-song-container">
-            <button className="add-song-button" type="submit" onClick={addSong}>
+            <button className="add-song-button" type="button" onClick={addSong}>
               Add Song
             </button>
           </div>
@@ -134,6 +204,14 @@ const Upload = () => {
       </form>
     </div>
   );
+};
+
+Upload.defaultProps = {
+  userName: "",
+};
+
+Upload.propTypes = {
+  userName: PropTypes.string,
 };
 
 export default Upload;

@@ -2,7 +2,9 @@
 
 exports[`Home snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="feed"
+  >
     <div
       class="album"
     >
@@ -14,7 +16,9 @@ exports[`Home snapshot 1`] = `
           class="album__cover-art"
           src="art url 1"
         />
-        <div>
+        <div
+          class="album__info"
+        >
           <h2
             class="album__artist-name"
           >
@@ -30,9 +34,27 @@ exports[`Home snapshot 1`] = `
             album1
           </h3>
         </div>
-      </div>
-      <div>
         <div
+          class="album__buttons"
+        >
+          <button
+            class="addSong-button addSong-large"
+            type="button"
+          >
+            Add Album to queue
+          </button>
+          <button
+            class="addSong-button addSong-large"
+            type="button"
+          >
+            Play Album next
+          </button>
+        </div>
+      </div>
+      <li
+        class="album__songs"
+      >
+        <ul
           class="album__song"
         >
           <h4
@@ -42,20 +64,20 @@ exports[`Home snapshot 1`] = `
           </h4>
           <div>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Add to queue
             </button>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Play next
             </button>
           </div>
-        </div>
-        <div
+        </ul>
+        <ul
           class="album__song"
         >
           <h4
@@ -65,20 +87,20 @@ exports[`Home snapshot 1`] = `
           </h4>
           <div>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Add to queue
             </button>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Play next
             </button>
           </div>
-        </div>
-      </div>
+        </ul>
+      </li>
     </div>
     <div
       class="album"
@@ -91,7 +113,9 @@ exports[`Home snapshot 1`] = `
           class="album__cover-art"
           src="art url 2"
         />
-        <div>
+        <div
+          class="album__info"
+        >
           <h2
             class="album__artist-name"
           >
@@ -107,32 +131,27 @@ exports[`Home snapshot 1`] = `
             album2
           </h3>
         </div>
-      </div>
-      <div>
         <div
-          class="album__song"
+          class="album__buttons"
         >
-          <h4
-            class="album__song__song-name"
+          <button
+            class="addSong-button addSong-large"
+            type="button"
           >
-            song4
-          </h4>
-          <div>
-            <button
-              class="album__song__add-song"
-              type="button"
-            >
-              Add to queue
-            </button>
-            <button
-              class="album__song__add-song"
-              type="button"
-            >
-              Play next
-            </button>
-          </div>
+            Add Album to queue
+          </button>
+          <button
+            class="addSong-button addSong-large"
+            type="button"
+          >
+            Play Album next
+          </button>
         </div>
-        <div
+      </div>
+      <li
+        class="album__songs"
+      >
+        <ul
           class="album__song"
         >
           <h4
@@ -142,20 +161,43 @@ exports[`Home snapshot 1`] = `
           </h4>
           <div>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Add to queue
             </button>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Play next
             </button>
           </div>
-        </div>
-      </div>
+        </ul>
+        <ul
+          class="album__song"
+        >
+          <h4
+            class="album__song__song-name"
+          >
+            song4
+          </h4>
+          <div>
+            <button
+              class="addSong-button album__song__button"
+              type="button"
+            >
+              Add to queue
+            </button>
+            <button
+              class="addSong-button album__song__button"
+              type="button"
+            >
+              Play next
+            </button>
+          </div>
+        </ul>
+      </li>
     </div>
   </div>
 </DocumentFragment>

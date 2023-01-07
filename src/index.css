@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
 
 * {
   box-sizing: border-box;
@@ -9,17 +9,54 @@
 
 :root {
   --main-colour: rgb(177, 51, 177);
-  --off-colour: rgb(88, 7, 88);
+  --off-colour: rgb(116, 27, 116);
   --almost-black: rgb(7, 7, 7);
-  --almost-white: rgb(245, 245, 245);
-  --light-grey: rgb(175, 175, 175);
-  --dark-grey: rgb(80, 80, 80);
+  --almost-white: rgb(252, 252, 252);
+  --light-grey: rgb(248, 248, 248);
+  --dark-grey: rgb(235, 235, 235);
+  --darker-grey: rgb(119, 119, 119);
+  --very-dark-grey: rgb(43, 43, 43);
+  --navbar-height: 80px;
+  --scroll-bar-width: 10px;
 }
 
 h1 {
+  all: unset;
   color: inherit;
 }
 
 a {
   color: inherit;
+}
+
+.addSong-button {
+  background-color: var(--almost-white);
+  border: 2px solid var(--almost-black);
+  color: var(--almost-black);
+  cursor: pointer;
+  font-weight: 400;
+  font-size: min(1rem, 2cqw);
+}
+
+.addSong-button:hover {
+  background-color: var(--almost-black);
+  color: var(--almost-white);
+}
+
+.addSong-large {
+  margin: 5px 20px;
+  width: min(203px, 20cqw);
+}
+
+::-webkit-scrollbar {
+  width: var(--scroll-bar-width);
+}
+
+::-webkit-scrollbar-track {
+  border-left: 2px solid var(--main-colour);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--off-colour);
+  border-left: 1px solid var(--main-colour);
 }

@@ -2,23 +2,29 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import getAlbums from "../requests/getAlbums";
 import Album from "./Album";
+import Loader from "./Loader";
 
 const Home = ({ handleSetPlaylist }) => {
   const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       try {
         const response = await getAlbums();
         setAlbums(response);
       } catch (err) {
         setAlbums([]);
+      } finally {
+        setLoading(false);
       }
     })();
   }, []);
 
   return (
-    <div>
+    <div className="feed">
+      <Loader loading={loading} />
       {albums.map((album) => {
         return (
           <Album

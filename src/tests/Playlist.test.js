@@ -8,6 +8,8 @@ describe("Playlist", () => {
     playlist: fakePlaylist,
     playlistIndex: 1,
     setPlaylistIndex: jest.fn(),
+    setPlaying: jest.fn(),
+    removeFromPlaylist: jest.fn(),
   };
 
   test("snapshot", () => {
@@ -29,9 +31,10 @@ describe("Playlist", () => {
         expect(screen.getByText(song.artistName)).toBeInTheDocument();
         expect(screen.getByText(song.songName)).toBeInTheDocument();
       });
-      expect(screen.getAllByText(/play now/i)).toHaveLength(
+      expect(screen.getAllByAltText(/play now/i)).toHaveLength(
         validProps.playlist.length
       );
+      expect(screen.getAllByText("x")).toHaveLength(validProps.playlist.length);
     });
   });
 });

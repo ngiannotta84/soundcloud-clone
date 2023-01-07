@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "../styles/App.css";
+import "../styles/app.css";
 import Cookie from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { v4 as uuid } from "uuid";
@@ -13,7 +13,9 @@ import Profile from "./Profile";
 import SignUp from "./SignUp";
 import MusicPlayer from "./MusicPlayer";
 import Logout from "./Logout";
-import Edit from "./Edit";
+import EditAlbum from "./EditAlbum";
+import EditProfile from "./EditProfile";
+import getUserById from "../requests/getUserById";
 
 const App = () => {
   const initialState = {
@@ -30,9 +32,8 @@ const App = () => {
     if (data === undefined) {
       setUser(initialState.user);
     } else {
-      setUser({
-        name: data.name,
-        id: data.id,
+      setUser((prev) => {
+        return { ...prev, ...data };
       });
     }
   };
@@ -41,65 +42,97 @@ const App = () => {
     const data = song;
     data.key = uuid();
 
-    if (addNext && playlist.length > 0) {
-      setPlaylist((prev) => {
+    setPlaylist((prev) => {
+      if (addNext) {
         const clone = [...prev];
         clone.splice(playlistIndex + 1, 0, data);
         return clone;
-      });
-    } else {
-      setPlaylist((prev) => [...prev, data]);
-    }
+      }
+      return [...prev, data];
+    });
+  };
+
+  const removeFromPlaylist = (i) => {
+    setPlaylist((prev) => {
+      const clone = [...prev];
+      clone.splice(i, 1);
+      return clone;
+    });
+
+    setPlaylistIndex((prev) => {
+      if (i >= prev || prev === 0) {
+        return prev;
+      }
+      return prev - 1;
+    });
   };
 
   useEffect(() => {
-    const token = Cookie.get("userToken");
-    if (token) {
-      const currentUser = jwtDecode(token);
-      handleLogin(currentUser);
-    }
+    (async () => {
+      const token = Cookie.get("userToken");
+      if (!token) return;
+      const { id } = jwtDecode(token);
+      const response = await getUserById(id);
+      handleLogin({
+        name: response.name,
+        id: response.id,
+      });
+    })();
   }, []);
 
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <Navbar userName={user.name} />
-        <Routes>
-          <Route
-            path="/"
-            element={<Home handleSetPlaylist={handleSetPlaylist} />}
-          />
-          <Route
-            path="/search/:name"
-            element={<Search handleSetPlaylist={handleSetPlaylist} />}
-          />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/edit/:albumId" element={<Edit />} />
-          <Route
-            path="/profile/:userName"
-            element={
-              <Profile
-                handleSetPlaylist={handleSetPlaylist}
-                userId={user.id}
-                handleLogout={handleLogin}
-              />
-            }
-          />
-          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-          <Route
-            path="/signup"
-            element={<SignUp handleLogin={handleLogin} />}
-          />
-          <Route
-            path="/logout"
-            element={<Logout handleLogout={handleLogin} />}
-          />
-        </Routes>
+        <div className="app__routes">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home handleSetPlaylist={handleSetPlaylist} />}
+            />
+            <Route
+              path="/search/:name"
+              element={<Search handleSetPlaylist={handleSetPlaylist} />}
+            />
+            <Route path="/upload" element={<Upload userName={user.name} />} />
+            <Route
+              path="/edit/:albumId"
+              element={<EditAlbum userName={user.name} />}
+            />
+            <Route
+              path="/profile/:userName"
+              element={
+                <Profile
+                  handleSetPlaylist={handleSetPlaylist}
+                  userId={user.id}
+                  handleLogout={handleLogin}
+                />
+              }
+            />
+            <Route
+              path="/profile/edit"
+              element={<EditProfile user={user} handleLogin={handleLogin} />}
+            />
+            <Route
+              path="/login"
+              element={<Login handleLogin={handleLogin} />}
+            />
+            <Route
+              path="/signup"
+              element={<SignUp handleLogin={handleLogin} />}
+            />
+            <Route
+              path="/logout"
+              element={<Logout handleLogout={handleLogin} />}
+            />
+          </Routes>
+        </div>
       </Router>
       <MusicPlayer
         playlist={playlist}
         playlistIndex={playlistIndex}
         setPlaylistIndex={setPlaylistIndex}
+        removeFromPlaylist={removeFromPlaylist}
       />
     </div>
   );

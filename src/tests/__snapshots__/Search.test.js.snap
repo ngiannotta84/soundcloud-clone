@@ -2,7 +2,9 @@
 
 exports[`Search snapshots snapshot no user data 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="feed"
+  >
     <h2>
       No results
     </h2>
@@ -12,7 +14,9 @@ exports[`Search snapshots snapshot no user data 1`] = `
 
 exports[`Search snapshots snapshot with user data 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="feed"
+  >
     <div
       class="album"
     >
@@ -24,7 +28,9 @@ exports[`Search snapshots snapshot with user data 1`] = `
           class="album__cover-art"
           src="art url 1"
         />
-        <div>
+        <div
+          class="album__info"
+        >
           <h2
             class="album__artist-name"
           >
@@ -40,9 +46,27 @@ exports[`Search snapshots snapshot with user data 1`] = `
             album1
           </h3>
         </div>
-      </div>
-      <div>
         <div
+          class="album__buttons"
+        >
+          <button
+            class="addSong-button addSong-large"
+            type="button"
+          >
+            Add Album to queue
+          </button>
+          <button
+            class="addSong-button addSong-large"
+            type="button"
+          >
+            Play Album next
+          </button>
+        </div>
+      </div>
+      <li
+        class="album__songs"
+      >
+        <ul
           class="album__song"
         >
           <h4
@@ -52,20 +76,20 @@ exports[`Search snapshots snapshot with user data 1`] = `
           </h4>
           <div>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Add to queue
             </button>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Play next
             </button>
           </div>
-        </div>
-        <div
+        </ul>
+        <ul
           class="album__song"
         >
           <h4
@@ -75,20 +99,20 @@ exports[`Search snapshots snapshot with user data 1`] = `
           </h4>
           <div>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Add to queue
             </button>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Play next
             </button>
           </div>
-        </div>
-      </div>
+        </ul>
+      </li>
     </div>
     <div
       class="album"
@@ -101,7 +125,9 @@ exports[`Search snapshots snapshot with user data 1`] = `
           class="album__cover-art"
           src="art url 2"
         />
-        <div>
+        <div
+          class="album__info"
+        >
           <h2
             class="album__artist-name"
           >
@@ -117,32 +143,27 @@ exports[`Search snapshots snapshot with user data 1`] = `
             album2
           </h3>
         </div>
-      </div>
-      <div>
         <div
-          class="album__song"
+          class="album__buttons"
         >
-          <h4
-            class="album__song__song-name"
+          <button
+            class="addSong-button addSong-large"
+            type="button"
           >
-            song4
-          </h4>
-          <div>
-            <button
-              class="album__song__add-song"
-              type="button"
-            >
-              Add to queue
-            </button>
-            <button
-              class="album__song__add-song"
-              type="button"
-            >
-              Play next
-            </button>
-          </div>
+            Add Album to queue
+          </button>
+          <button
+            class="addSong-button addSong-large"
+            type="button"
+          >
+            Play Album next
+          </button>
         </div>
-        <div
+      </div>
+      <li
+        class="album__songs"
+      >
+        <ul
           class="album__song"
         >
           <h4
@@ -152,20 +173,43 @@ exports[`Search snapshots snapshot with user data 1`] = `
           </h4>
           <div>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Add to queue
             </button>
             <button
-              class="album__song__add-song"
+              class="addSong-button album__song__button"
               type="button"
             >
               Play next
             </button>
           </div>
-        </div>
-      </div>
+        </ul>
+        <ul
+          class="album__song"
+        >
+          <h4
+            class="album__song__song-name"
+          >
+            song4
+          </h4>
+          <div>
+            <button
+              class="addSong-button album__song__button"
+              type="button"
+            >
+              Add to queue
+            </button>
+            <button
+              class="addSong-button album__song__button"
+              type="button"
+            >
+              Play next
+            </button>
+          </div>
+        </ul>
+      </li>
     </div>
     <div
       class="song"
@@ -178,32 +222,37 @@ exports[`Search snapshots snapshot with user data 1`] = `
           class="song__cover-art"
           src="url 0hgnid"
         />
-        <div>
+        <div
+          class="song__info"
+        >
           <h2
             class="song__artist-name"
           >
             <a
+              class="song__artist-name__link"
               href="/profile/name 7gbn"
             >
               name 7gbn
             </a>
           </h2>
           <h3
-            class="song__album-name"
+            class="song__song-name"
           >
             song 756453
           </h3>
         </div>
       </div>
-      <div>
+      <div
+        class="song__buttons"
+      >
         <button
-          class="album__song__add-song"
+          class="addSong-button addSong-large"
           type="button"
         >
           Add to queue
         </button>
         <button
-          class="album__song__add-song"
+          class="addSong-button addSong-large"
           type="button"
         >
           Play next
@@ -221,32 +270,37 @@ exports[`Search snapshots snapshot with user data 1`] = `
           class="song__cover-art"
           src="url 0hgnfgj6id"
         />
-        <div>
+        <div
+          class="song__info"
+        >
           <h2
             class="song__artist-name"
           >
             <a
+              class="song__artist-name__link"
               href="/profile/name 7gbhfgjfn"
             >
               name 7gbhfgjfn
             </a>
           </h2>
           <h3
-            class="song__album-name"
+            class="song__song-name"
           >
             song 7553
           </h3>
         </div>
       </div>
-      <div>
+      <div
+        class="song__buttons"
+      >
         <button
-          class="album__song__add-song"
+          class="addSong-button addSong-large"
           type="button"
         >
           Add to queue
         </button>
         <button
-          class="album__song__add-song"
+          class="addSong-button addSong-large"
           type="button"
         >
           Play next
@@ -264,32 +318,37 @@ exports[`Search snapshots snapshot with user data 1`] = `
           class="song__cover-art"
           src="url 0hgni754d"
         />
-        <div>
+        <div
+          class="song__info"
+        >
           <h2
             class="song__artist-name"
           >
             <a
+              class="song__artist-name__link"
               href="/profile/namefjrtu54 7gbn"
             >
               namefjrtu54 7gbn
             </a>
           </h2>
           <h3
-            class="song__album-name"
+            class="song__song-name"
           >
             song 756457553
           </h3>
         </div>
       </div>
-      <div>
+      <div
+        class="song__buttons"
+      >
         <button
-          class="album__song__add-song"
+          class="addSong-button addSong-large"
           type="button"
         >
           Add to queue
         </button>
         <button
-          class="album__song__add-song"
+          class="addSong-button addSong-large"
           type="button"
         >
           Play next

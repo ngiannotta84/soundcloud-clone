@@ -7,14 +7,17 @@ import Artist from "./Artist";
 import getAlbums from "../requests/getAlbums";
 import getSongs from "../requests/getSongs";
 import getUsers from "../requests/getUsers";
+import Loader from "./Loader";
 
 const Search = ({ handleSetPlaylist }) => {
   const { name } = useParams();
   const [search, setSearch] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const albumResponse = await getAlbums({ name });
         const songResponse = await getSongs({ name });
         const artistResponse = await getUsers({ name });
@@ -23,12 +26,15 @@ const Search = ({ handleSetPlaylist }) => {
         setSearch(data);
       } catch (err) {
         setSearch([]);
+      } finally {
+        setLoading(false);
       }
     })();
   }, [name]);
 
   return (
-    <div>
+    <div className="feed">
+      <Loader loading={loading} />
       {search.length > 0 ? (
         search.map((data) => {
           if (data.AlbumId) {
@@ -61,7 +67,7 @@ const Search = ({ handleSetPlaylist }) => {
             return (
               <Artist
                 name={data.name}
-                image={data.Albums[0].url}
+                image={data.Albums[0]?.url}
                 key={`${data.id}${data.name}`}
               />
             );
@@ -69,7 +75,7 @@ const Search = ({ handleSetPlaylist }) => {
           return null;
         })
       ) : (
-        <h2>No results</h2>
+        <h2>{!loading && "No results"}</h2>
       )}
     </div>
   );

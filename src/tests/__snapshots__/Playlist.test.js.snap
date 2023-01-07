@@ -35,10 +35,19 @@ exports[`Playlist snapshot 1`] = `
           </p>
         </div>
         <button
-          class="playlist__song-button"
+          class="playlist__play-now"
           type="button"
         >
-          Play Now
+          <img
+            alt="play now"
+            src="play.png"
+          />
+        </button>
+        <button
+          class="playlist__remove"
+          type="button"
+        >
+          x
         </button>
       </div>
     </div>
@@ -72,10 +81,19 @@ exports[`Playlist snapshot 1`] = `
           </p>
         </div>
         <button
-          class="playlist__song-button"
+          class="playlist__play-now"
           type="button"
         >
-          Play Now
+          <img
+            alt="play now"
+            src="play.png"
+          />
+        </button>
+        <button
+          class="playlist__remove"
+          type="button"
+        >
+          x
         </button>
       </div>
     </div>
@@ -109,10 +127,19 @@ exports[`Playlist snapshot 1`] = `
           </p>
         </div>
         <button
-          class="playlist__song-button"
+          class="playlist__play-now"
           type="button"
         >
-          Play Now
+          <img
+            alt="play now"
+            src="play.png"
+          />
+        </button>
+        <button
+          class="playlist__remove"
+          type="button"
+        >
+          x
         </button>
       </div>
     </div>

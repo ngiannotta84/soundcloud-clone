@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import MusicPlayer from "../components/MusicPlayer";
 import fakePlaylist from "./testData/fakePlaylist";
 
@@ -8,6 +8,7 @@ describe("MusicPlayer", () => {
     playlist: fakePlaylist,
     playlistIndex: 1,
     setPlaylistIndex: jest.fn(),
+    removeFromPlaylist: jest.fn(),
   };
   const audioPlay = jest.fn();
   const audioPause = jest.fn();
@@ -37,12 +38,9 @@ describe("MusicPlayer", () => {
       expect(screen.getByTestId("audio")).toHaveAttribute("src", song.audio);
       expect(coverArt).toHaveAttribute("alt", `${song.albumName} cover art`);
       expect(coverArt).toHaveAttribute("src", song.image);
-      expect(screen.getByText(song.artistName)).toBeInstanceOf(
-        HTMLHeadingElement
-      );
-      expect(screen.getByText(song.songName)).toBeInstanceOf(
-        HTMLHeadingElement
-      );
+      expect(
+        screen.getByText(`${song.artistName} - ${song.songName}`)
+      ).toBeInstanceOf(HTMLHeadingElement);
       expect(screen.getByTestId("progressBar")).toHaveAttribute(
         "type",
         "range"

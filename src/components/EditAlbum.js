@@ -1,8 +1,9 @@
-/* eslint-disable no-await-in-loop */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import PropTypes from "prop-types";
 import Alert from "./Alert";
+import Loader from "./Loader";
 import getAlbumById from "../requests/getAlbumById";
 import deleteAlbum from "../requests/deleteAlbum";
 import patchAlbum from "../requests/patchAlbum";
@@ -11,21 +12,20 @@ import deleteSong from "../requests/deleteSong";
 import postSongs from "../requests/postSongs";
 import Confirm from "./Confirm";
 
-const Edit = () => {
+const EditAlbum = ({ userName }) => {
   const initialState = {
     name: "",
-    url: "",
     Songs: [],
   };
-  const [original, setOriginal] = useState(initialState);
-  const [album, setAlbum] = useState({
-    name: "",
-    image: "",
-  });
-  const [originalSongs, setOriginalSongs] = useState([]);
+
+  const [placeHolders, setPlaceHolders] = useState(initialState);
+  const [album, setAlbum] = useState({});
+  const [editSongs, setEditSongs] = useState([]);
   const [newSongs, setNewSongs] = useState([]);
   const [alert, setAlert] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const { albumId } = useParams();
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ const Edit = () => {
 
   const handleSongNameChange = (e, i) => {
     const { name, value } = e.target;
-    setOriginalSongs((prev) => {
+    setEditSongs((prev) => {
       const clone = [...prev];
       clone[i][name] = value;
       return clone;
@@ -63,7 +63,7 @@ const Edit = () => {
     if (file.type.split("/")[0] !== "audio") {
       setAlert("Songs files must be of type audio");
     } else {
-      setOriginalSongs((prev) => {
+      setEditSongs((prev) => {
         const clone = [...prev];
         clone[i].audio = file;
         return clone;
@@ -73,7 +73,7 @@ const Edit = () => {
 
   const handleSongDelete = (e, i) => {
     const { checked } = e.target;
-    setOriginalSongs((prev) => {
+    setEditSongs((prev) => {
       const clone = [...prev];
       clone[i].delete = checked;
       return clone;
@@ -123,16 +123,21 @@ const Edit = () => {
 
   const deleteAlbumClick = async () => {
     try {
+      setLoading(true);
       await deleteAlbum(albumId);
       navigate(-1);
     } catch (err) {
       setAlert("failed to delete album");
+    } finally {
+      setLoading(false);
     }
   };
 
   const saveChanges = async () => {
     try {
       setAlert("");
+      setLoading(true);
+
       const { length: newSongLength } = newSongs;
       for (let i = 0; i < newSongLength; i += 1) {
         const song = newSongs[i];
@@ -141,48 +146,64 @@ const Edit = () => {
           return;
         }
       }
+
+      const albumPromise = [];
+
       if (album.name || album.image) {
-        const data = {};
-        if (album.name) data.name = album.name;
-        if (album.image) data.image = album.image;
-        await patchAlbum(albumId, data);
-      }
-      let songPosition = originalSongs.length;
-      const { length: originalSongsLength } = originalSongs;
-      for (let i = 0; i < originalSongsLength; i += 1) {
-        const song = originalSongs[i];
-        if (song.delete) {
-          await deleteSong(song.id);
-          songPosition -= 1;
-        } else if (song.name || song.audio) {
-          const data = {};
-          if (song.name) data.name = song.name;
-          if (song.audio) data.audio = song.audio;
-          await patchSong(song.id, data);
-        }
-      }
-      for (let i = 0; i < newSongLength; i += 1) {
         const data = {
-          name: newSongs[i].name,
-          audio: newSongs[i].audio,
+          name: album.name || undefined,
+          image: album.image || undefined,
+        };
+        albumPromise.push(patchAlbum(albumId, data));
+      }
+
+      const songUpdatePromises = editSongs.map((song) => {
+        if (song.delete) {
+          return deleteSong(song.id);
+        }
+        if (song.name || song.audio) {
+          const data = {
+            name: song.name || undefined,
+            audio: song.audio || undefined,
+          };
+          return patchSong(song.id, data);
+        }
+        return null;
+      });
+
+      const songPosition = editSongs.length;
+      const songPostPromises = newSongs.map((song, i) => {
+        const data = {
+          name: song.name,
+          audio: song.audio,
           position: songPosition + i,
           AlbumId: albumId,
         };
-        await postSongs(data);
-      }
-      navigate(-1);
+        return postSongs(data);
+      });
+
+      const promises = albumPromise.concat(
+        songUpdatePromises,
+        songPostPromises
+      );
+
+      await Promise.all(promises);
+
+      navigate(`/profile/${userName}`);
     } catch (err) {
       setAlert(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const response = await getAlbumById(albumId);
         if (response) {
-          response.Songs.sort((a, b) => a.position - b.position);
-          setOriginal(response);
+          setPlaceHolders(response);
           const emptySongArray = response.Songs.map((song) => {
             return {
               name: "",
@@ -192,20 +213,24 @@ const Edit = () => {
               key: uuid(),
             };
           });
-          setOriginalSongs(emptySongArray);
+          setEditSongs(emptySongArray);
         } else {
-          setOriginal(initialState);
+          setPlaceHolders(initialState);
         }
       } catch (err) {
-        setOriginal(initialState);
+        setPlaceHolders(initialState);
+        setAlert("failed to find Album");
+      } finally {
+        setLoading(false);
       }
     })();
   }, [albumId]);
 
   return (
     <div>
+      <Loader loading={loading} />
+      <Alert message={alert} />
       <form>
-        <Alert message={alert} />
         <h2>Edit</h2>
         <h3>Edit Album Info</h3>
         <label htmlFor="name">
@@ -214,7 +239,7 @@ const Edit = () => {
             type="text"
             id="name"
             value={album.name}
-            placeholder={original.name}
+            placeholder={placeHolders.name}
             onChange={handleAlbumNameChange}
           />
         </label>
@@ -223,7 +248,7 @@ const Edit = () => {
           <input type="file" id="image" onChange={handleImageChange} />
         </label>
         <h3>Edit Songs</h3>
-        {originalSongs.map((song, i) => {
+        {editSongs.map((song, i) => {
           return (
             <div key={`${song.key}`}>
               <label htmlFor={`song name ${i}`}>
@@ -232,8 +257,8 @@ const Edit = () => {
                   type="text"
                   id={`song name ${i}`}
                   name="name"
-                  value={originalSongs[i].name}
-                  placeholder={original.Songs[i].name}
+                  value={editSongs[i].name}
+                  placeholder={placeHolders.Songs[i].name}
                   onChange={(e) => handleSongNameChange(e, i)}
                 />
               </label>
@@ -251,7 +276,7 @@ const Edit = () => {
                   type="checkbox"
                   id={`delete song ${i}`}
                   name="delete"
-                  checked={originalSongs[i].delete}
+                  checked={editSongs[i].delete}
                   onChange={(e) => handleSongDelete(e, i)}
                 />
               </label>
@@ -302,16 +327,24 @@ const Edit = () => {
         </div>
       </form>
       {confirm === "cancel" && (
-        <Confirm callback={cancel} setState={setConfirm} />
+        <Confirm callback={cancel} setConfirm={setConfirm} />
       )}
       {confirm === "delete" && (
-        <Confirm callback={deleteAlbumClick} setState={setConfirm} />
+        <Confirm callback={deleteAlbumClick} setConfirm={setConfirm} />
       )}
       {confirm === "save" && (
-        <Confirm callback={saveChanges} setState={setConfirm} />
+        <Confirm callback={saveChanges} setConfirm={setConfirm} />
       )}
     </div>
   );
 };
 
-export default Edit;
+EditAlbum.defaultProps = {
+  userName: "",
+};
+
+EditAlbum.propTypes = {
+  userName: PropTypes.string,
+};
+
+export default EditAlbum;

@@ -48,8 +48,7 @@ const SignUp = ({ handleLogin }) => {
         handleLogin(response);
         navigate(`/profile/${response.name}`);
       } catch (err) {
-        // add more specific alerts later (e.g. if username is taken)
-        setAlert("Something went wrong, please try again");
+        setAlert(err.message);
       }
     }
   };

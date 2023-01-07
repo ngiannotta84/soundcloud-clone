@@ -13,7 +13,9 @@ exports[`Album snapshot 1`] = `
         class="album__cover-art"
         src="album url"
       />
-      <div>
+      <div
+        class="album__info"
+      >
         <h2
           class="album__artist-name"
         >
@@ -29,32 +31,27 @@ exports[`Album snapshot 1`] = `
           album
         </h3>
       </div>
-    </div>
-    <div>
       <div
-        class="album__song"
+        class="album__buttons"
       >
-        <h4
-          class="album__song__song-name"
+        <button
+          class="addSong-button addSong-large"
+          type="button"
         >
-          song 2
-        </h4>
-        <div>
-          <button
-            class="album__song__add-song"
-            type="button"
-          >
-            Add to queue
-          </button>
-          <button
-            class="album__song__add-song"
-            type="button"
-          >
-            Play next
-          </button>
-        </div>
+          Add Album to queue
+        </button>
+        <button
+          class="addSong-button addSong-large"
+          type="button"
+        >
+          Play Album next
+        </button>
       </div>
-      <div
+    </div>
+    <li
+      class="album__songs"
+    >
+      <ul
         class="album__song"
       >
         <h4
@@ -64,20 +61,43 @@ exports[`Album snapshot 1`] = `
         </h4>
         <div>
           <button
-            class="album__song__add-song"
+            class="addSong-button album__song__button"
             type="button"
           >
             Add to queue
           </button>
           <button
-            class="album__song__add-song"
+            class="addSong-button album__song__button"
             type="button"
           >
             Play next
           </button>
         </div>
-      </div>
-    </div>
+      </ul>
+      <ul
+        class="album__song"
+      >
+        <h4
+          class="album__song__song-name"
+        >
+          song 2
+        </h4>
+        <div>
+          <button
+            class="addSong-button album__song__button"
+            type="button"
+          >
+            Add to queue
+          </button>
+          <button
+            class="addSong-button album__song__button"
+            type="button"
+          >
+            Play next
+          </button>
+        </div>
+      </ul>
+    </li>
   </div>
 </DocumentFragment>
 `;

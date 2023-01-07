@@ -1,13 +1,19 @@
 .album {
-  border: 2px solid grey;
-  border-radius: 5px;
   margin: 20px;
   color: var(--almost-black);
+  background-color: var(--almost-white);
+  width: 95%;
+  max-width: 1000px;
 }
 
 .album__info-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.album__info {
+  width: 100%;
 }
 
 .album__cover-art {
@@ -16,10 +22,26 @@
   margin: 10px;
 }
 
+.album__artist-name > a {
+  text-decoration: none;
+}
+
+.album__artist-name {
+  font-size: min(1.5rem, 5cqw);
+}
+
+.album__album-name {
+  font-size: min(1.2rem, 3.5cqw);
+}
+
 .album__artist-name,
 .album__album-name,
 .album__song__song-name {
   text-align: left;
+}
+
+.album__songs {
+  list-style: none;
 }
 
 .album__song {
@@ -28,10 +50,41 @@
   align-items: center;
   height: 40px;
   padding: 0 10px;
-  border: 2px solid black;
+  border-bottom: 2px solid var(--dark-grey);
   margin: 10px;
 }
 
-.album__song__add-song {
+.album__song__song-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 60%;
+}
+
+.album__song__button {
+  margin-left: 5px;
+}
+
+.album__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+}
+
+.album__buttons__link {
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.album__buttons__link {
+  border: none;
+  border-radius: 3px;
+  background-color: var(--main-colour);
+  color: white;
+  font-weight: 700;
   cursor: pointer;
+}
+
+.album__buttons__link:hover {
+  background-color: var(--off-colour);
 }

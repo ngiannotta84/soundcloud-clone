@@ -9,6 +9,7 @@ import fakeUserData from "./testData/fakeUserData";
 describe("Profile", () => {
   const validProps = {
     handleSetPlaylist: jest.fn(),
+    handleLogout: jest.fn(),
   };
 
   describe("snapshots", () => {
@@ -19,7 +20,7 @@ describe("Profile", () => {
       await act(() => {
         const view = render(
           <Router>
-            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+            <Profile {...validProps} />
           </Router>
         );
         asFragment = view.asFragment;
@@ -35,7 +36,7 @@ describe("Profile", () => {
       await act(() => {
         const view = render(
           <Router>
-            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+            <Profile {...validProps} />
           </Router>
         );
         asFragment = view.asFragment;
@@ -52,7 +53,7 @@ describe("Profile", () => {
       await act(() => {
         render(
           <Router>
-            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+            <Profile {...validProps} />
           </Router>
         );
       });
@@ -81,7 +82,7 @@ describe("Profile", () => {
       await act(() => {
         render(
           <Router>
-            <Profile handleSetPlaylist={validProps.handleSetPlaylist} />
+            <Profile {...validProps} />
           </Router>
         );
       });

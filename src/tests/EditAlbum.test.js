@@ -1,8 +1,8 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { act } from "react-dom/test-utils";
-import Edit from "../components/Edit";
+import EditAlbum from "../components/EditAlbum";
 import * as getAlbumById from "../requests/getAlbumById";
 import * as deleteAlbum from "../requests/deleteAlbum";
 import * as patchAlbum from "../requests/patchAlbum";
@@ -24,12 +24,16 @@ describe("Edit", () => {
   jest.spyOn(patchSong, "default").mockImplementation(patchSongMock);
   jest.spyOn(postSongs, "default").mockImplementation(postSongsMock);
 
-  test("snapshot", () => {
-    const { asFragment } = render(
-      <Router>
-        <Edit />
-      </Router>
-    );
+  test("snapshot", async () => {
+    let asFragment;
+    await act(() => {
+      const view = render(
+        <Router>
+          <EditAlbum />
+        </Router>
+      );
+      asFragment = view.asFragment;
+    });
 
     expect(asFragment()).toMatchSnapshot();
   });
@@ -39,7 +43,7 @@ describe("Edit", () => {
       await act(() => {
         render(
           <Router>
-            <Edit />
+            <EditAlbum />
           </Router>
         );
       });

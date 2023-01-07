@@ -13,32 +13,37 @@ exports[`Song snapshot 1`] = `
         class="song__cover-art"
         src="alburl"
       />
-      <div>
+      <div
+        class="song__info"
+      >
         <h2
           class="song__artist-name"
         >
           <a
+            class="song__artist-name__link"
             href="/profile/artist"
           >
             artist
           </a>
         </h2>
         <h3
-          class="song__album-name"
+          class="song__song-name"
         >
           song
         </h3>
       </div>
     </div>
-    <div>
+    <div
+      class="song__buttons"
+    >
       <button
-        class="album__song__add-song"
+        class="addSong-button addSong-large"
         type="button"
       >
         Add to queue
       </button>
       <button
-        class="album__song__add-song"
+        class="addSong-button addSong-large"
         type="button"
       >
         Play next

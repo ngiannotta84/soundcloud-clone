@@ -7,6 +7,9 @@ exports[`MusicPlayer snapshot 1`] = `
     src="audio 2"
   />
   <div
+    class="music-player-space"
+  />
+  <div
     class="music-player"
   >
     <div
@@ -14,23 +17,18 @@ exports[`MusicPlayer snapshot 1`] = `
     >
       <img
         alt="album 2 cover art"
-        class="music-player__cover-art"
+        class="music-player__left__cover-art"
         src="image 2"
       />
-      <div
-        class="music-player__info"
-      >
-        <h2>
-          artist 2
-        </h2>
-        <h3>
-          song 2
-        </h3>
-      </div>
     </div>
     <div
       class="music-player__center"
     >
+      <h2
+        class="music-player__song-info"
+      >
+        artist 2 - song 2
+      </h2>
       <input
         class="music-player__progress-bar"
         data-testid="progressBar"
@@ -43,10 +41,14 @@ exports[`MusicPlayer snapshot 1`] = `
       <div
         class="music-player__center__under"
       >
-        <p>
+        <p
+          class="music-player__center__under__time"
+        >
           0:00
         </p>
-        <div>
+        <div
+          class="music-player__center__under__buttons"
+        >
           <button
             class="music-player__skip-backwards"
             type="button"
@@ -75,7 +77,9 @@ exports[`MusicPlayer snapshot 1`] = `
             />
           </button>
         </div>
-        <p>
+        <p
+          class="music-player__center__under__time"
+        >
           0:00
         </p>
       </div>
