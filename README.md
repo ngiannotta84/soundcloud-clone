@@ -13,13 +13,13 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
 **Features**
 
 - Built in music player:
-	- Add songs to a playlist.
-	- Songs in the playlist can be removed or skipped to.
-	- Play/Pause button.
-	- Skip to next or previous song buttons.
-	- Volume slider.
-	- Interactable progress bar - allowing for selecting playback time.
-	- Shows Artist name, Song Name and Album cover art.
+  - Add songs to a playlist.
+  - Songs in the playlist can be removed or skipped to.
+  - Play/Pause button.
+  - Skip to next or previous song buttons.
+  - Volume slider.
+  - Interactable progress bar - allowing for selecting playback time.
+  - Shows Artist name, Song Name and Album cover art.
 - Can find other artists albums in the home feed, or use the search bar to find other Artists, Albums or Songs by name.
 - Artists have a profile page containing all albums uploaded by the artist.
 - Login or Signup to upload your own Albums.
@@ -110,6 +110,6 @@ Generates a production build of the app and deploys it to GitHub pages.
 
 **Attribution**
 
-Created by **Nicola Giannotta** and  **Perry Baran**.
+Created by **Nicola Giannotta** and **Perry Baran**.
 
 Icons by [flaticon](https://www.flaticon.com/)
