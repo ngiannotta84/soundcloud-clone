@@ -29,11 +29,14 @@ a {
   color: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 .addSong-button {
   background-color: var(--almost-white);
   border: 2px solid var(--almost-black);
   color: var(--almost-black);
-  cursor: pointer;
   font-weight: 400;
   font-size: min(1rem, 2cqw);
 }

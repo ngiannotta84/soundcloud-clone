@@ -1,44 +1,74 @@
-
-.upload__form {
-    display: flex; 
-    flex-direction:column;
-    padding: 10px;
-    margin: 10px;
+.upload {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.upload__albuminfobox {
-    display: flex;
-    flex-direction:column;
-    justify-content:center;
-    padding: 10px;
-    margin: 10px;
-    row-gap: 10px;
-    position:relative;
-  }
+.upload__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  background-color: var(--almost-white);
+  width: 90%;
+  max-width: 600px;
+}
 
-  .upload__songsinfobox {
-      display: flex;
-      flex-direction:column;
-      justify-content:center;
-      padding: 10px;
-      margin: 10px;
-      position:relative;
-    }
+.upload-info {
+  font-weight: 600;
+  margin: 5px;
+  width: 100%;
+  max-width: 150px;
+}
 
-  .songs-info{
-    padding:10px;
-  }
-  .add-song-container {
-    margin:10px;
-  }
-  .create-an-album-button {
-    width: 10%
-  }
- .upload-info {
-  display: inline;
-  margin: 0px;
-  position: absolute;
-  left:500px;
- }
+.upload__label {
+  display: block;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
+.songs-info {
+  padding: 2px 0;
+}
 
+.upload__file {
+  width: 100%;
+  max-width: 200px;
+}
+
+.upload__album,
+.upload__song {
+  padding: 2px 0;
+  border-bottom: 2px solid var(--dark-grey);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload__song__title {
+  margin: 0;
+}
+
+.upload__title--large {
+  margin: 0;
+  font-size: 1.7rem;
+  border-bottom: 2px solid var(--dark-grey);
+  width: 100%;
+  font-weight: 800;
+}
+
+.upload__text-input {
+  width: 100%;
+  max-width: 210px;
+}
+
+.upload__button {
+  margin: 5px;
+}

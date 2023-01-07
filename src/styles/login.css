@@ -1,34 +1,34 @@
-.please-login{
-    margin:50px;
-    margin-bottom: 10px;
+.please-login {
+  margin: 50px;
+  margin-bottom: 10px;
 }
-.form-fields{
-    display:flex;
-    flex-direction: column;
+.form-fields {
+  display: flex;
+  flex-direction: column;
 }
-.form-field{
-    margin-right: 250px;
+.form-field {
+  margin-right: 250px;
 }
 
-.form-h4{
-display: inline-block;
-width:240px;
-text-align: right;
-margin:10px
+.form-h4 {
+  display: inline-block;
+  width: 240px;
+  text-align: right;
+  margin: 10px;
 }
 
 .navbar-links-item {
-color: var (--main-colour);
+  color: var (--main-colour);
 }
 
 .login-button {
-    margin:30px;
+  margin: 30px;
 }
 .navbar-links-item-login {
-    text-decoration: underline;
-    color:var(--off-colour);
+  text-decoration: underline;
+  color: var(--off-colour);
 }
 .not-registered {
-    display:flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }

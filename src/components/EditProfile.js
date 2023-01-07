@@ -32,6 +32,10 @@ const EditProfile = ({ user, handleLogin }) => {
     });
   };
 
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   const saveChanges = async () => {
     const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     setLoading(true);
@@ -94,13 +98,13 @@ const EditProfile = ({ user, handleLogin }) => {
   }, [user.id]);
 
   return (
-    <div>
+    <div className="upload">
       <Loader loading={loading} />
       <Alert message={alert} />
-      <form>
-        <h2>Update Profile</h2>
-        <label htmlFor="name">
-          <span>New Name</span>
+      <form className="upload__form">
+        <h2 className="upload__title">Update Profile</h2>
+        <label htmlFor="name" className="upload__label">
+          <span className="upload-info">New Name</span>
           <input
             id="name"
             type="text"
@@ -110,8 +114,8 @@ const EditProfile = ({ user, handleLogin }) => {
             placeholder={placeholders.name}
           />
         </label>
-        <label htmlFor="email">
-          <span>New Email</span>
+        <label htmlFor="email" className="upload__label">
+          <span className="upload-info">New Email</span>
           <input
             id="email"
             type="email"
@@ -121,8 +125,8 @@ const EditProfile = ({ user, handleLogin }) => {
             placeholder={placeholders.email}
           />
         </label>
-        <label htmlFor="newPassword">
-          <span>New Password</span>
+        <label htmlFor="newPassword" className="upload__label">
+          <span className="upload-info">New Password</span>
           <input
             id="newPassword"
             type="password"
@@ -131,8 +135,8 @@ const EditProfile = ({ user, handleLogin }) => {
             onChange={handleUserData}
           />
         </label>
-        <label htmlFor="confirmNewPassword">
-          <span>Confirm New Password</span>
+        <label htmlFor="confirmNewPassword" className="upload__label">
+          <span className="upload-info">Confirm New Password</span>
           <input
             id="confirmNewPassword"
             type="password"
@@ -141,19 +145,39 @@ const EditProfile = ({ user, handleLogin }) => {
             onChange={handleUserData}
           />
         </label>
-        <button type="button" onClick={() => setConfirm("delete")}>
-          Delete
-        </button>
-        <button type="button" onClick={() => setConfirm("save")}>
-          Save Changes
-        </button>
-        {confirm === "save" && (
-          <Confirm callback={saveChanges} setConfirm={setConfirm} />
-        )}
-        {confirm === "delete" && (
-          <ConfirmPassword callback={deleteProfile} setConfirm={setConfirm} />
-        )}
+        <div>
+          <button
+            type="button"
+            className="upload__button"
+            onClick={() => setConfirm("cancel")}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={() => setConfirm("delete")}
+            className="upload__button"
+          >
+            Delete
+          </button>
+          <button
+            type="button"
+            onClick={() => setConfirm("save")}
+            className="upload__button"
+          >
+            Save Changes
+          </button>
+        </div>
       </form>
+      {confirm === "save" && (
+        <Confirm callback={saveChanges} setConfirm={setConfirm} />
+      )}
+      {confirm === "delete" && (
+        <ConfirmPassword callback={deleteProfile} setConfirm={setConfirm} />
+      )}
+      {confirm === "cancel" && (
+        <Confirm callback={handleCancel} setConfirm={setConfirm} />
+      )}
     </div>
   );
 };
