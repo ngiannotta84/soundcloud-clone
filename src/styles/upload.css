@@ -1,0 +1,44 @@
+
+.upload__form {
+    display: flex; 
+    flex-direction:column;
+    padding: 10px;
+    margin: 10px;
+}
+
+.upload__albuminfobox {
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    padding: 10px;
+    margin: 10px;
+    row-gap: 10px;
+    position:relative;
+  }
+
+  .upload__songsinfobox {
+      display: flex;
+      flex-direction:column;
+      justify-content:center;
+      padding: 10px;
+      margin: 10px;
+      position:relative;
+    }
+
+  .songs-info{
+    padding:10px;
+  }
+  .add-song-container {
+    margin:10px;
+  }
+  .create-an-album-button {
+    width: 10%
+  }
+ .upload-info {
+  display: inline;
+  margin: 0px;
+  position: absolute;
+  left:500px;
+ }
+
+

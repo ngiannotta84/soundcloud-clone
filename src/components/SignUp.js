@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useNavigate, Link } from "react-router-dom";
 import Alert from "./Alert";
 import userSignup from "../requests/userSignup";
+import "../styles/signup.css";
 
 const SignUp = ({ handleLogin }) => {
   const initialState = {
@@ -55,66 +56,68 @@ const SignUp = ({ handleLogin }) => {
 
   return (
     <div className="login">
-      <h2>Please Signup</h2>
+      <h2 className="please-signup">Please Signup</h2>
       <Alert message={alert} />
       <form onSubmit={handleCredentials}>
-        <div className="form-field">
-          <label htmlFor="username">
-            <span>username</span>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={fields.username}
-              onChange={handleFieldChange}
-            />
-          </label>
-        </div>
-        <div className="form-field">
-          <label htmlFor="email">
-            <span>email</span>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              value={fields.email}
-              onChange={handleFieldChange}
-            />
-          </label>
-        </div>
-        <div className="form-field">
-          <label htmlFor="password">
-            <span>Password</span>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={fields.password}
-              onChange={handleFieldChange}
-            />
-          </label>
-        </div>
-        <div className="form-field">
-          <label htmlFor="passwordConfirmation">
-            <span>Confirm Password</span>
-            <input
-              type="password"
-              id="passwordConfirmation"
-              name="passwordConfirmation"
-              value={fields.password_confirmation}
-              onChange={handleFieldChange}
-            />
-          </label>
+        <div className="form-fields">
+          <div className="form-field">
+            <label htmlFor="username">
+              <h4 className="form-h4">Username</h4>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={fields.username}
+                onChange={handleFieldChange}
+              />
+            </label>
+          </div>
+          <div className="form-field">
+            <label htmlFor="email">
+              <h4 className="form-h4">email</h4>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                value={fields.email}
+                onChange={handleFieldChange}
+              />
+            </label>
+          </div>
+          <div className="form-field">
+            <label htmlFor="password">
+              <h4 className="form-h4">Password</h4>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={fields.password}
+                onChange={handleFieldChange}
+              />
+            </label>
+          </div>
+          <div className="form-field">
+            <label htmlFor="passwordConfirmation">
+              <h4 className="form-h4">Confirm Password</h4>
+              <input
+                type="password"
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                value={fields.password_confirmation}
+                onChange={handleFieldChange}
+              />
+            </label>
+          </div>
         </div>
         <div>
           <button className="submit-button" type="submit">
-            Submit
+            SignUp
           </button>
         </div>
       </form>
-      <p>
+      <p className="already-have-an-account">
         Already have an account?
-        <Link className="navbar-links-item" to="/login">
+        <Link className="navbar-links-item-signup" to="/login">
           Log in Here
         </Link>
       </p>
