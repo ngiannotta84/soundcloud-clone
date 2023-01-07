@@ -7,11 +7,16 @@ const Confirm = ({ callback, setConfirm }) => {
     setConfirm(null);
   };
 
+  const handleYes = () => {
+    setConfirm(null);
+    callback();
+  };
+
   return (
     <div className="confirm--container">
       <div className="confirm">
         <h3 className="confirm__heading">Are You Sure?</h3>
-        <button type="button" onClick={callback} className="confirm__yes">
+        <button type="button" onClick={handleYes} className="confirm__yes">
           Yes
         </button>
         <button type="button" onClick={handleNo} className="confirm__no">

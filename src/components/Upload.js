@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import Alert from "./Alert";
 import Loader from "./Loader";
+import Confirm from "./Confirm";
 import postAlbums from "../requests/postAlbums";
 import postSongs from "../requests/postSongs";
+import "../styles/upload.css";
 
 const Upload = ({ userName }) => {
   const [album, setAlbum] = useState({
@@ -21,6 +23,7 @@ const Upload = ({ userName }) => {
   ]);
   const [alert, setAlert] = useState("");
   const [loading, setLoading] = useState(false);
+  const [confirm, setConfirm] = useState("");
 
   const navigate = useNavigate();
 
@@ -76,8 +79,11 @@ const Upload = ({ userName }) => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
+  const handleSubmit = async () => {
     setAlert("");
     setLoading(true);
 
@@ -88,6 +94,12 @@ const Upload = ({ userName }) => {
       }
 
       const { length } = songs;
+
+      if (length === 0) {
+        setAlert("album must contain atleast one song");
+        return;
+      }
+
       for (let i = 0; i < length; i += 1) {
         const song = songs[i];
         if (!song.name || !song.audio) {
@@ -120,88 +132,97 @@ const Upload = ({ userName }) => {
   };
 
   return (
-    <div>
+    <div className="upload">
       <Loader loading={loading} />
       <Alert message={alert} />
-      <h2 className="upload__title">Upload Your Album</h2>
-      <form className="upload__form" onSubmit={handleSubmit}>
-        <div className="upload__albuminfobox">
-          <div>
-            <label htmlFor="album-name">
-              <h4 className="upload-info">Choose Your Album Name</h4>
-              <input
-                type="text"
-                name="album-name"
-                id="album-name"
-                value={album}
-                onChange={handleAlbumNameChange}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="albumImage">
-              <h4 className="upload-info">Upload Album Image</h4>
-              <input
-                type="file"
-                name="albumImage"
-                id="albumImage"
-                onChange={handleImageChange}
-              />
-            </label>
-          </div>
+      <form className="upload__form">
+        <h2 className="upload__title">Upload An Album</h2>
+        <div className="upload__album">
+          <label htmlFor="album-name" className="upload__label">
+            <span className="upload-info">Album Name</span>
+            <input
+              type="text"
+              name="album-name"
+              id="album-name"
+              value={album.name}
+              onChange={handleAlbumNameChange}
+              className="upload__text-input"
+            />
+          </label>
+          <label htmlFor="albumImage" className="upload__label">
+            <span className="upload-info">Album Art</span>
+            <input
+              type="file"
+              name="albumImage"
+              id="albumImage"
+              onChange={handleImageChange}
+              className="upload__file"
+            />
+          </label>
         </div>
-        <div className="upload__songsinfobox">
-          {songs.map((song, index) => {
-            return (
-              // eslint-disable-next-line react/no-array-index-key
-              <div>
-                <div className="songs-info">
-                  <label htmlFor={`song-name${index}`}>
-                    <h4 className="upload-info">SongName</h4>
-                    <input
-                      type="text"
-                      name="song-name"
-                      id={`song-name${index}`}
-                      onChange={(event) => handleSongsName(event, index)}
-                      value={song.name}
-                    />
-                  </label>
-                </div>
-                <div className="songs-info">
-                  <label htmlFor={`audio-files${index}`}>
-                    <h4 className="upload-info">Upload Your Audio File</h4>
-                    <input
-                      type="file"
-                      name="audio-files"
-                      id={`audio-files${index}`}
-                      onChange={(event) => handleAudioFile(event, index)}
-                    />
-                  </label>
-                </div>
-                <div className="songs-info">
-                  <button
-                    className="submit-button"
-                    type="button"
-                    onClick={removeSong}
-                  >
-                    Remove Song
-                  </button>
-                </div>
+        {songs.map((song, index) => {
+          return (
+            <div key={song.key} className="upload__song">
+              <h3 className="upload__song__title">Song {index + 1}</h3>
+              <label htmlFor={`song-name${index}`} className="upload__label">
+                <span className="upload-info">Song Name</span>
+                <input
+                  type="text"
+                  name="song-name"
+                  id={`song-name${index}`}
+                  onChange={(event) => handleSongsName(event, index)}
+                  value={song.name}
+                  className="upload__text-input"
+                />
+              </label>
+              <label htmlFor={`audio-files${index}`} className="upload__label">
+                <span className="upload-info">Audio</span>
+                <input
+                  type="file"
+                  name="audio-files"
+                  id={`audio-files${index}`}
+                  onChange={(event) => handleAudioFile(event, index)}
+                  className="upload__file"
+                />
+              </label>
+              <div className="songs-info">
+                <button
+                  className="submit-button"
+                  type="button"
+                  onClick={() => removeSong(index)}
+                >
+                  Remove Song
+                </button>
               </div>
-            );
-          })}
-          <div className="add-song-container">
-            <button className="add-song-button" type="button" onClick={addSong}>
-              Add Song
-            </button>
-          </div>
-        </div>
-        <div className="create-an-album-container">
-          <button className="create-an-album-button" type="submit">
-            Create an Album
+            </div>
+          );
+        })}
+        <button type="button" onClick={addSong} className="upload__button">
+          Add Song
+        </button>
+        <div>
+          <button
+            type="button"
+            className="upload__button"
+            onClick={() => setConfirm("cancel")}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="upload__button"
+            onClick={() => setConfirm("save")}
+          >
+            Create Album
           </button>
         </div>
       </form>
+      {confirm === "cancel" && (
+        <Confirm callback={handleCancel} setConfirm={setConfirm} />
+      )}
+      {confirm === "save" && (
+        <Confirm callback={handleSubmit} setConfirm={setConfirm} />
+      )}
     </div>
   );
 };

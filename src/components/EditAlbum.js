@@ -4,13 +4,13 @@ import { v4 as uuid } from "uuid";
 import PropTypes from "prop-types";
 import Alert from "./Alert";
 import Loader from "./Loader";
+import Confirm from "./Confirm";
 import getAlbumById from "../requests/getAlbumById";
 import deleteAlbum from "../requests/deleteAlbum";
 import patchAlbum from "../requests/patchAlbum";
 import patchSong from "../requests/patchSong";
 import deleteSong from "../requests/deleteSong";
 import postSongs from "../requests/postSongs";
-import Confirm from "./Confirm";
 
 const EditAlbum = ({ userName }) => {
   const initialState = {
@@ -227,32 +227,39 @@ const EditAlbum = ({ userName }) => {
   }, [albumId]);
 
   return (
-    <div>
+    <div className="upload">
       <Loader loading={loading} />
       <Alert message={alert} />
-      <form>
-        <h2>Edit</h2>
-        <h3>Edit Album Info</h3>
-        <label htmlFor="name">
-          <span>Album Name</span>
-          <input
-            type="text"
-            id="name"
-            value={album.name}
-            placeholder={placeHolders.name}
-            onChange={handleAlbumNameChange}
-          />
-        </label>
-        <label htmlFor="image">
-          <span>Album Artwork</span>
-          <input type="file" id="image" onChange={handleImageChange} />
-        </label>
-        <h3>Edit Songs</h3>
+      <form className="upload__form">
+        <h2 className="upload__title--large">Edit Album</h2>
+        <div className="upload__album">
+          <label htmlFor="name" className="upload__label">
+            <span className="upload-info">Album Name</span>
+            <input
+              type="text"
+              id="name"
+              value={album.name}
+              placeholder={placeHolders.name}
+              onChange={handleAlbumNameChange}
+            />
+          </label>
+          <label htmlFor="image" className="upload__label">
+            <span className="upload-info">Album Artwork</span>
+            <input
+              type="file"
+              id="image"
+              onChange={handleImageChange}
+              className="upload__file"
+            />
+          </label>
+        </div>
+        <h3 className="upload__title--large">Edit Songs</h3>
         {editSongs.map((song, i) => {
           return (
-            <div key={`${song.key}`}>
-              <label htmlFor={`song name ${i}`}>
-                <span>Song {i + 1}</span>
+            <div key={`${song.key}`} className="upload__song">
+              <h3 className="upload__song__title">Song {i + 1}</h3>
+              <label htmlFor={`song name ${i}`} className="upload__label">
+                <span className="upload-info">Song Name</span>
                 <input
                   type="text"
                   id={`song name ${i}`}
@@ -260,18 +267,20 @@ const EditAlbum = ({ userName }) => {
                   value={editSongs[i].name}
                   placeholder={placeHolders.Songs[i].name}
                   onChange={(e) => handleSongNameChange(e, i)}
+                  className="upload__text-input"
                 />
               </label>
-              <label htmlFor={`song image ${i}`}>
-                <span>Song {i} Audio</span>
+              <label htmlFor={`song image ${i}`} className="upload__label">
+                <span className="upload-info">Audio</span>
                 <input
                   type="file"
                   id={`song image ${i}`}
                   onChange={(e) => handleSongFileChange(e, i)}
+                  className="upload__file"
                 />
               </label>
               <label htmlFor={`delete song ${i}`}>
-                <span>Delete Song?</span>
+                <span className="upload-info">Delete Song?</span>
                 <input
                   type="checkbox"
                   id={`delete song ${i}`}
@@ -283,45 +292,60 @@ const EditAlbum = ({ userName }) => {
             </div>
           );
         })}
-        <h3>Add Songs</h3>
+        <h3 className="upload__title--large">Add Songs</h3>
         {newSongs.map((song, i) => {
           return (
-            <div key={song.key}>
-              <label htmlFor={`new song name ${i}`}>
-                <span>New Song {i + 1}</span>
+            <div key={song.key} className="upload__song">
+              <h3 className="upload__song__title">New Song {i + 1}</h3>
+              <label htmlFor={`new song name ${i}`} className="upload__label">
+                <span className="upload-info">Song Name</span>
                 <input
                   type="text"
                   id={`new song name ${i}`}
                   name="name"
                   value={newSongs[i].name}
                   onChange={(e) => handleNewSongNameChange(e, i)}
+                  className="upload__text-input"
                 />
               </label>
-              <label htmlFor={`new song image ${i}`}>
-                <span>New Song {i + 1} Audio</span>
+              <label htmlFor={`new song image ${i}`} className="upload__label">
+                <span className="upload-info">Audio</span>
                 <input
                   type="file"
                   id={`new song image ${i}`}
                   onChange={(e) => handleNewSongFileChange(e, i)}
+                  className="upload__file"
                 />
               </label>
               <button type="button" onClick={() => handleDeleteSong(i)}>
-                delete
+                Remove Song
               </button>
             </div>
           );
         })}
-        <button type="button" onClick={addSong}>
+        <button type="button" onClick={addSong} className="upload__button">
           Add Song
         </button>
         <div>
-          <button type="button" onClick={() => setConfirm("cancel")}>
+          <button
+            type="button"
+            onClick={() => setConfirm("cancel")}
+            className="upload__button"
+          >
             Cancel
           </button>
-          <button type="button" onClick={() => setConfirm("delete")}>
+          <button
+            type="button"
+            onClick={() => setConfirm("delete")}
+            className="upload__button"
+          >
             Delete Album
           </button>
-          <button type="button" onClick={() => setConfirm("save")}>
+          <button
+            type="button"
+            onClick={() => setConfirm("save")}
+            className="upload__button"
+          >
             Save Changes
           </button>
         </div>
