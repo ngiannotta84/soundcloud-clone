@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Alert from "./Alert";
 import userLogin from "../requests/userLogin";
+import "../styles/login.css";
 
 const Login = ({ handleLogin }) => {
   const initialState = {
@@ -42,42 +43,44 @@ const Login = ({ handleLogin }) => {
 
   return (
     <div className="login">
-      <h2>Please Login</h2>
+      <h2 className="please-login">Please Login</h2>
       <Alert message={alert} />
       <form onSubmit={handleCredentials}>
-        <div className="form-field">
-          <label htmlFor="email">
-            <span>email</span>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              value={fields.email}
-              onChange={handleFieldChange}
-            />
-          </label>
-        </div>
-        <div className="form-field">
-          <label htmlFor="password">
-            <span>password</span>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={fields.password}
-              onChange={handleFieldChange}
-            />
-          </label>
+        <div className="form-fields">
+          <div className="form-field">
+            <label htmlFor="email">
+              <h4 className="form-h4">email</h4>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                value={fields.email}
+                onChange={handleFieldChange}
+              />
+            </label>
+          </div>
+          <div className="form-field">
+            <label htmlFor="password">
+              <h4 className="form-h4">password</h4>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={fields.password}
+                onChange={handleFieldChange}
+              />
+            </label>
+          </div>
         </div>
         <div>
-          <button className="submit-button" type="submit">
-            Submit
+          <button className="login-button" type="submit">
+            Login
           </button>
         </div>
       </form>
-      <p>
+      <p className="not-registered">
         Not Registered?
-        <Link className="navbar-links-item" to="/signup">
+        <Link className="navbar-links-item-login" to="/signup">
           Sign-Up Here
         </Link>
       </p>
