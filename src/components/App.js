@@ -110,7 +110,7 @@ const App = () => {
               }
             />
             <Route
-              path="/profile/edit"
+              path="/edit"
               element={<EditProfile user={user} handleLogin={handleLogin} />}
             />
             <Route
