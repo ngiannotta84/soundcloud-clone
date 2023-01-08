@@ -117,12 +117,13 @@ Album.defaultProps = {
   albumUserId: null,
   userId: null,
   albumId: null,
+  albumArt: null,
 };
 
 Album.propTypes = {
   artistName: PropTypes.string.isRequired,
   albumName: PropTypes.string.isRequired,
-  albumArt: PropTypes.string.isRequired,
+  albumArt: PropTypes.string,
   songs: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
