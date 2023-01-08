@@ -25,9 +25,9 @@ const Login = ({ handleLogin }) => {
     const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     event.preventDefault();
     if (!fields.email) {
-      setAlert("please provide your email address here");
+      setAlert("please provide your email address");
     } else if (!fields.password) {
-      setAlert("please insert your password here");
+      setAlert("please insert your password");
     } else if (!fields.email.match(EMAIL_REGEX)) {
       setAlert("please provide a valid email");
     } else {
@@ -43,44 +43,38 @@ const Login = ({ handleLogin }) => {
 
   return (
     <div className="login">
-      <h2 className="please-login">Please Login</h2>
       <Alert message={alert} />
-      <form onSubmit={handleCredentials}>
-        <div className="form-fields">
-          <div className="form-field">
-            <label htmlFor="email">
-              <h4 className="form-h4">email</h4>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                value={fields.email}
-                onChange={handleFieldChange}
-              />
-            </label>
-          </div>
-          <div className="form-field">
-            <label htmlFor="password">
-              <h4 className="form-h4">password</h4>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={fields.password}
-                onChange={handleFieldChange}
-              />
-            </label>
-          </div>
-        </div>
-        <div>
-          <button className="login-button" type="submit">
-            Login
-          </button>
-        </div>
+      <form onSubmit={handleCredentials} className="login__form">
+        <h2 className="login__heading">Please Login</h2>
+        <label htmlFor="email" className="login__label">
+          <span className="login__label-text">Email</span>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            value={fields.email}
+            onChange={handleFieldChange}
+            className="login__input"
+          />
+        </label>
+        <label htmlFor="password" className="login__label">
+          <span className="login__label-text">Password</span>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={fields.password}
+            onChange={handleFieldChange}
+            className="login__input"
+          />
+        </label>
+        <button className="login__button" type="submit">
+          Login
+        </button>
       </form>
-      <p className="not-registered">
+      <p className="login__signup">
         Not Registered?
-        <Link className="navbar-links-item-login" to="/signup">
+        <Link to="/signup" className="login__signup__link">
           Sign-Up Here
         </Link>
       </p>

@@ -157,28 +157,33 @@ const EditAlbum = ({ userName }) => {
         albumPromise.push(patchAlbum(albumId, data));
       }
 
-      const songUpdatePromises = editSongs.map((song) => {
+      let position = 0;
+      const songUpdatePromises = editSongs.map((song, i) => {
         if (song.delete) {
           return deleteSong(song.id);
         }
-        if (song.name || song.audio) {
+        const songPosition = Number(placeHolders.Songs[i].position);
+        if (song.name || song.audio || position !== songPosition) {
           const data = {
             name: song.name || undefined,
             audio: song.audio || undefined,
+            position: position === songPosition ? undefined : position,
           };
+          position += 1;
           return patchSong(song.id, data);
         }
+        position += 1;
         return null;
       });
 
-      const songPosition = editSongs.length;
-      const songPostPromises = newSongs.map((song, i) => {
+      const songPostPromises = newSongs.map((song) => {
         const data = {
           name: song.name,
           audio: song.audio,
-          position: songPosition + i,
+          position,
           AlbumId: albumId,
         };
+        position += 1;
         return postSongs(data);
       });
 
