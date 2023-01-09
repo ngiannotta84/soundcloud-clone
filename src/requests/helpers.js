@@ -44,19 +44,11 @@ const config = () => {
   };
 };
 
-const deleteRequest = async (model, id) => {
-  try {
-    const response = await instance.delete(`/${model}/${id}`, config());
-    return response.data;
-  } catch (err) {
-    console.error(err);
-    throw new Error(err.response.data.message);
-  }
-};
+const postRequest = async (model, data) => {
+  const formData = createForm(model, data);
 
-const getByIdRequest = async (model, id) => {
   try {
-    const response = await instance.get(`/${model}/${id}`, config());
+    const response = await instance.post(`/${model}`, formData, config());
     return response.data;
   } catch (err) {
     console.error(err);
@@ -92,6 +84,16 @@ const getRequest = async (model, obj) => {
   }
 };
 
+const getByIdRequest = async (model, id) => {
+  try {
+    const response = await instance.get(`/${model}/${id}`, config());
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    throw new Error(err.response.data.message);
+  }
+};
+
 const patchRequest = async (model, id, data) => {
   const formData = createForm(model, data);
 
@@ -108,11 +110,9 @@ const patchRequest = async (model, id, data) => {
   }
 };
 
-const postRequest = async (model, data) => {
-  const formData = createForm(model, data);
-
+const deleteRequest = async (model, id) => {
   try {
-    const response = await instance.post(`/${model}`, formData, config());
+    const response = await instance.delete(`/${model}/${id}`, config());
     return response.data;
   } catch (err) {
     console.error(err);
@@ -120,4 +120,4 @@ const postRequest = async (model, data) => {
   }
 };
 
-export { deleteRequest, getByIdRequest, patchRequest, getRequest, postRequest };
+export { postRequest, getRequest, getByIdRequest, patchRequest, deleteRequest };
