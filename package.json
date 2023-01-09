@@ -23,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,11 +53,13 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.8.1"
   },
   "jest": {
     "transformIgnorePatterns": [
       "\"node_modules/(?!axios)/\""
     ]
-  }
+  },
+  "homepage": "https://ngiannotta84.github.io/soundcloud-clone"
 }

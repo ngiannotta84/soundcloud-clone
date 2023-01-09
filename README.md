@@ -27,7 +27,7 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
 - Edit Album allows you to update the album name or cover art, as well as editing each song in the album (name and audio), delete songs from the album or add new songs to the album.
 - Interacts with the [Backend API](https://github.com/PerryBaran/soundcloud-clone-api) hosted on render to get artist, album and song information. Images and audio files stored in an AWS S3 Bucket.
 
-## [Live Preview]()
+## [Live Preview](https://ngiannotta84.github.io/soundcloud-clone)
 
 ![desktop view](./public/images/soundclone-desktop.png)
 
@@ -48,6 +48,7 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
 
 - [prettier](https://www.npmjs.com/package/prettier)
 - [eslint](https://www.npmjs.com/package/eslint)
+- [gh-pages](https://www.npmjs.com/package/gh-pages)
 
 ## Setup
 
