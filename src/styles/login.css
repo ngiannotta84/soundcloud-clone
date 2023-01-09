@@ -11,7 +11,8 @@
   align-items: center;
   margin: 10px;
   background-color: var(--almost-white);
-  width: 375px;
+  max-width: 375px;
+  width: 97%;
 }
 
 .login__label {
@@ -41,7 +42,7 @@
 
 .login__button {
   background-color: var(--light-grey);
-  border: 2px solid var(--darker-grey);
+  border: 1px solid var(--darker-grey);
   color: var(--very-dark-grey);
   border-radius: 4px;
   width: 80px;
@@ -51,7 +52,7 @@
 
 .login__button:hover {
   background-color: var(--main-colour);
-  border: 2px solid var(--main-colour);
+  border: 1px solid var(--main-colour);
   color: var(--light-grey);
 }
 

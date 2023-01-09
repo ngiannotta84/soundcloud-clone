@@ -35,9 +35,10 @@ button {
 
 .addSong-button {
   background-color: var(--almost-white);
-  border: 2px solid var(--almost-black);
-  color: var(--almost-black);
-  font-weight: 400;
+  border: 2px solid var(--very-dark-grey);
+  border-radius: 2px;
+  color: var(--very-dark-grey);
+  font-weight: 600;
   font-size: min(1rem, 2cqw);
 }
 
@@ -48,7 +49,7 @@ button {
 
 .addSong-large {
   margin: 5px 20px;
-  width: min(203px, 20cqw);
+  width: min(203px, 26cqw);
 }
 
 ::-webkit-file-upload-button,
