@@ -246,10 +246,11 @@ const EditAlbum = ({ userName }) => {
               value={album.name}
               placeholder={placeHolders.name}
               onChange={handleAlbumNameChange}
+              className="upload__text-input"
             />
           </label>
           <label htmlFor="image" className="upload__label">
-            <span className="upload-info">Album Artwork</span>
+            <span className="upload-info">Album Art</span>
             <input
               type="file"
               id="image"
@@ -292,6 +293,7 @@ const EditAlbum = ({ userName }) => {
                   name="delete"
                   checked={editSongs[i].delete}
                   onChange={(e) => handleSongDelete(e, i)}
+                  className="upload__checkbox"
                 />
               </label>
             </div>
@@ -322,34 +324,38 @@ const EditAlbum = ({ userName }) => {
                   className="upload__file"
                 />
               </label>
-              <button type="button" onClick={() => handleDeleteSong(i)}>
+              <button
+                className="upload__remove-button"
+                type="button"
+                onClick={() => handleDeleteSong(i)}
+              >
                 Remove Song
               </button>
             </div>
           );
         })}
-        <button type="button" onClick={addSong} className="upload__button">
+        <button type="button" onClick={addSong} className="upload__add-song">
           Add Song
         </button>
-        <div>
+        <div className="upload__button-container">
           <button
             type="button"
             onClick={() => setConfirm("cancel")}
-            className="upload__button"
+            className="cancel-button"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={() => setConfirm("delete")}
-            className="upload__button"
+            className="delete-button"
           >
             Delete Album
           </button>
           <button
             type="button"
             onClick={() => setConfirm("save")}
-            className="upload__button"
+            className="save-button"
           >
             Save Changes
           </button>

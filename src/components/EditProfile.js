@@ -145,10 +145,10 @@ const EditProfile = ({ user, handleLogin }) => {
             onChange={handleUserData}
           />
         </label>
-        <div>
+        <div className="upload__button-container">
           <button
             type="button"
-            className="upload__button"
+            className="cancel-button"
             onClick={() => setConfirm("cancel")}
           >
             Cancel
@@ -156,14 +156,14 @@ const EditProfile = ({ user, handleLogin }) => {
           <button
             type="button"
             onClick={() => setConfirm("delete")}
-            className="upload__button"
+            className="delete-button"
           >
             Delete
           </button>
           <button
             type="button"
             onClick={() => setConfirm("save")}
-            className="upload__button"
+            className="save-button"
           >
             Save Changes
           </button>

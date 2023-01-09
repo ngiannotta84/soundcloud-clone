@@ -51,6 +51,45 @@ button {
   width: min(203px, 20cqw);
 }
 
+::-webkit-file-upload-button,
+.cancel-button,
+.save-button,
+.delete-button {
+  background-color: var(--light-grey);
+  border: 2px solid var(--darker-grey);
+  color: var(--very-dark-grey);
+  border-radius: 4px;
+  max-width: 120px;
+  width: 100%;
+  margin: 5px;
+  font-weight: 600;
+}
+
+.delete-button:hover {
+  background-color: rgb(255, 241, 241);
+  border: 2px solid red;
+  color: red;
+}
+
+.save-button:hover {
+  background-color: rgb(246, 255, 246);
+  border: 2px solid green;
+  color: green;
+}
+
+::-webkit-file-upload-button:hover,
+.cancel-button:hover {
+  background-color: rgb(241, 241, 241);
+  border: 2px solid var(--almost-black);
+  color: var(--almost-black);
+}
+
+::-webkit-file-upload-button {
+  width: 90px;
+  font-weight: 100;
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   width: var(--scroll-bar-width);
 }

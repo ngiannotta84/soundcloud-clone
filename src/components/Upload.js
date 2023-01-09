@@ -185,32 +185,30 @@ const Upload = ({ userName }) => {
                   className="upload__file"
                 />
               </label>
-              <div className="songs-info">
-                <button
-                  className="submit-button"
-                  type="button"
-                  onClick={() => removeSong(index)}
-                >
-                  Remove Song
-                </button>
-              </div>
+              <button
+                className="upload__remove-button"
+                type="button"
+                onClick={() => removeSong(index)}
+              >
+                Remove Song
+              </button>
             </div>
           );
         })}
-        <button type="button" onClick={addSong} className="upload__button">
+        <button type="button" onClick={addSong} className="upload__add-song">
           Add Song
         </button>
-        <div>
+        <div className="upload__button-container">
           <button
             type="button"
-            className="upload__button"
+            className="cancel-button"
             onClick={() => setConfirm("cancel")}
           >
             Cancel
           </button>
           <button
             type="button"
-            className="upload__button"
+            className="save-button"
             onClick={() => setConfirm("save")}
           >
             Create Album

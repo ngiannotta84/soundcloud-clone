@@ -40,7 +40,19 @@
 }
 
 .login__button {
-  margin: 10px;
+  background-color: var(--light-grey);
+  border: 2px solid var(--darker-grey);
+  color: var(--very-dark-grey);
+  border-radius: 4px;
+  width: 80px;
+  margin: 5px;
+  font-weight: 600;
+}
+
+.login__button:hover {
+  background-color: var(--main-colour);
+  border: 2px solid var(--main-colour);
+  color: var(--light-grey);
 }
 
 .login__signup__link {
