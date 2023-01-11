@@ -1,9 +1,11 @@
-.alert.alert-success {
-  border: 2px, solid green;
+.alert {
+  margin: 5px;
+}
+
+.alert-success {
   color: green;
 }
 
-.alert.alert-error {
-  border: 2px, solid red;
+.alert-error {
   color: red;
 }
