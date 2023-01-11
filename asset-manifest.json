@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/soundcloud-clone/static/css/main.0bf3b656.css",
+    "main.css": "/soundcloud-clone/static/css/main.ceb99535.css",
     "main.js": "/soundcloud-clone/static/js/main.8a51b125.js",
     "static/media/volume-mute.png": "/soundcloud-clone/static/media/volume-mute.a42cdcd7a55312d047a3.png",
     "index.html": "/soundcloud-clone/index.html",
-    "main.0bf3b656.css.map": "/soundcloud-clone/static/css/main.0bf3b656.css.map",
+    "main.ceb99535.css.map": "/soundcloud-clone/static/css/main.ceb99535.css.map",
     "main.8a51b125.js.map": "/soundcloud-clone/static/js/main.8a51b125.js.map"
   },
   "entrypoints": [
-    "static/css/main.0bf3b656.css",
+    "static/css/main.ceb99535.css",
     "static/js/main.8a51b125.js"
   ]
 }
