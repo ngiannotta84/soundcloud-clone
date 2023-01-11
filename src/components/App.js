@@ -60,7 +60,7 @@ const App = () => {
     });
 
     setPlaylistIndex((prev) => {
-      if (i >= prev || prev === 0) {
+      if (i > prev || prev === 0) {
         return prev;
       }
       return prev - 1;

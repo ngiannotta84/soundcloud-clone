@@ -9,7 +9,7 @@ const Artist = ({ name, image }) => {
     <div className="artist">
       <Link to={`/profile/${name}`} className="artist__link">
         <img
-          src={image}
+          src={image || profile}
           alt={`album by ${name}`}
           className="artist__cover-art"
         />
@@ -20,7 +20,7 @@ const Artist = ({ name, image }) => {
 };
 
 Artist.defaultProps = {
-  image: profile,
+  image: null,
 };
 
 Artist.propTypes = {
