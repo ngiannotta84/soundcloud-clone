@@ -25,24 +25,13 @@ const Album = ({
   };
 
   const handleClickSong = (song, addNext = false) => {
-    const data = songData(song);
+    const data = [songData(song)];
     handleSetPlaylist(data, addNext);
   };
 
   const handleClickAlbum = (addNext = false) => {
-    const { length } = songs;
-
-    if (addNext) {
-      for (let i = length - 1; i >= 0; i -= 1) {
-        const data = songData(songs[i]);
-        handleSetPlaylist(data, addNext);
-      }
-    } else {
-      for (let i = 0; i < length; i += 1) {
-        const data = songData(songs[i]);
-        handleSetPlaylist(data, addNext);
-      }
-    }
+    const data = songs.map((song) => songData(song));
+    handleSetPlaylist(data, addNext);
   };
 
   return (

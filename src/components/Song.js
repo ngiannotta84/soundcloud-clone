@@ -13,13 +13,15 @@ const Song = ({
   handleSetPlaylist,
 }) => {
   const handleClick = (addNext = false) => {
-    const data = {
-      image: albumArt,
-      artistName,
-      albumName,
-      songName,
-      audio: songAudio,
-    };
+    const data = [
+      {
+        image: albumArt,
+        artistName,
+        albumName,
+        songName,
+        audio: songAudio,
+      },
+    ];
     handleSetPlaylist(data, addNext);
   };
 

@@ -38,17 +38,20 @@ const App = () => {
     }
   };
 
-  const handleSetPlaylist = (song, addNext = false) => {
-    const data = song;
-    data.key = uuid();
+  const handleSetPlaylist = (songs, addNext = false) => {
+    const data = songs.map((song) => {
+      const clone = song;
+      clone.key = uuid();
+      return clone;
+    });
 
     setPlaylist((prev) => {
       if (addNext) {
         const clone = [...prev];
-        clone.splice(playlistIndex + 1, 0, data);
+        clone.splice(playlistIndex + 1, 0, ...data);
         return clone;
       }
-      return [...prev, data];
+      return [...prev, ...data];
     });
   };
 
