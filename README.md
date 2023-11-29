@@ -10,7 +10,7 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
 4. [Commands](#commands)
 5. [Attribution](#attribution)
 
-**Features**
+## Features
 
 - Built in music player:
   - Add songs to a playlist.
@@ -27,13 +27,15 @@ SoundCloud-clone is an online audio distribution platform and music sharing webs
 - Edit Album allows you to update the album name or cover art, as well as editing each song in the album (name and audio), delete songs from the album or add new songs to the album.
 - Interacts with the [Backend API](https://github.com/PerryBaran/soundcloud-clone-api) hosted on render to get artist, album and song information. Images and audio files stored in an AWS S3 Bucket.
 
-## [Live Preview](https://ngiannotta84.github.io/soundcloud-clone)
+## Preview
+
+Live preview currently unavailable due to running out of the free trial of AWS
 
 ![desktop view](./public/images/soundclone-desktop.png)
 
 ![mobile view](./public/images/soundclone-mobile.png)
 
-**Dependancies**
+## Dependencies
 
 - [react](https://reactjs.org/)
 - [axios](https://www.npmjs.com/package/axios)
@@ -109,7 +111,7 @@ $ npm run deploy
 
 Generates a production build of the app and deploys it to GitHub pages.
 
-**Attribution**
+## Attribution
 
 Created by **Nicola Giannotta** and **Perry Baran**.
 
